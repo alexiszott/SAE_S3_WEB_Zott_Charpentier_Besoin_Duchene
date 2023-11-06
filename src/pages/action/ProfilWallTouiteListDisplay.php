@@ -2,7 +2,7 @@
 
 namespace iutnc\touiter\Action;
 
-class Create_Acount extends Action
+class ProfilWallTouiteListDisplay extends Action
 {
 
     public function execute(): string
