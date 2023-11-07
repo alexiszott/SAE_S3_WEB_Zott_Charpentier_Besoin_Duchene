@@ -2,6 +2,7 @@
 
 namespace iutnc\touiter\render;
 
+use iutnc\touiter\render\Renderer;
 use iutnc\touiter\touit\TouiteList;
 
 class TouiteListRenderer implements Renderer

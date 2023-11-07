@@ -1,8 +1,6 @@
 <?php
 
-namespace iutnc\touiter\Action;
-
-use iutnc\touiter\Action\Action;
+namespace iutnc\touiter\action;
 
 class TouiteDisplay extends Action
 {
