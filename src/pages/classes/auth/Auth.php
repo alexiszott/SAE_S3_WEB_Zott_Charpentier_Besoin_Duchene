@@ -2,16 +2,17 @@
 
 namespace iutnc\touiter\auth;
 
-use iutnc\deefy\db\User;
+
 use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\exception\AuthException;
+use iutnc\touiter\followable\User;
 
 class Auth
 {
 
     // Authentification
     public static function authenticate(string $email, string $password): bool {
-        ConnexionFactory::setConfig('../conf/config.ini');
+        ConnexionFactory::setConfig('../classes/conf/config.ini');
         $pdo = ConnexionFactory::makeConnection();
         $sql = "select emailUtil, passwd, role from Util where emailUtil = ? ";
         $result = $pdo->prepare($sql);
