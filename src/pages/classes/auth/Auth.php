@@ -42,7 +42,7 @@ class Auth
 
 
     //Inscription
-    public function register(string $email, string $passEnClair){
+    public function register(string $nomUtil, string $prenomUtil, string $email, string $passEnClair){
 
         // Vérification du format de l'email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -70,8 +70,10 @@ class Auth
         $hashedPassword = password_hash($passEnClair, PASSWORD_BCRYPT);
 
         // Insérez le nouvel utilisateur dans la base de données avec le rôle 1
-        $query = "INSERT INTO users (email, password, role) VALUES (:email, :password, 1)";
+        $query = "INSERT INTO util(nomUtil, prenomUtil, emailUtil, passwd, role) VALUES (:nom, :prenom, :email, :password, 10)";
         $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':nom', $nomUtil);
+        $stmt->bindParam(':prenom', $prenomUtil);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashedPassword);
         $stmt->execute();
