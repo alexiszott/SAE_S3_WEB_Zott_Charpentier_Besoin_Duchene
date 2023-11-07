@@ -13,7 +13,7 @@ class Auth
     public static function authenticate(string $email, string $password): bool {
         ConnexionFactory::setConfig('../conf/config.ini');
         $pdo = ConnexionFactory::makeConnection();
-        $sql = "select email, passwd, role from User where email = ? ";
+        $sql = "select emailUtil, passwd, role from Util where emailUtil = ? ";
         $result = $pdo->prepare($sql);
         $result->bindParam(1, $email);
         $result->execute();
@@ -30,7 +30,7 @@ class Auth
     public static function loadProfile( string $email): void {
         session_start();
         $pdo = ConnexionFactory::makeConnection();
-        $sql = "select id, lastname, firstname, email, password, role from User where email = ? ";
+        $sql = "select idUtil, nomUtil, prenomUtil, emailUtil, passwd, role from util where emailUtil = ? ";
         $result = $pdo->prepare($sql);
         $result->bindParam(1, $email);
         $result->execute();
