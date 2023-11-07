@@ -11,20 +11,20 @@ class Auth
 
     // Authentification
     public static function authenticate(string $email, string $password): bool {
-            ConnexionFactory::setConfig('../conf/config.ini');
-            $pdo = ConnexionFactory::makeConnection();
-            $sql = "select email, passwd, role from User where email = ? ";
-            $result = $pdo->prepare($sql);
-            $result->bindParam(1, $email);
-            $result->execute();
-            while ($hash = $result->fetch(\PDO::FETCH_ASSOC)) {
-                $pdo = null;
-                if (password_verify($password, $hash['passwd'])) {
-                    self::loadProfile($email);
-                    return true;
-                }
+        ConnexionFactory::setConfig('../conf/config.ini');
+        $pdo = ConnexionFactory::makeConnection();
+        $sql = "select email, passwd, role from User where email = ? ";
+        $result = $pdo->prepare($sql);
+        $result->bindParam(1, $email);
+        $result->execute();
+        while ($hash = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $pdo = null;
+            if (password_verify($password, $hash['passwd'])) {
+                self::loadProfile($email);
+                return true;
             }
-            return false;
+        }
+        return false;
     }
 
     public static function loadProfile( string $email): void {
