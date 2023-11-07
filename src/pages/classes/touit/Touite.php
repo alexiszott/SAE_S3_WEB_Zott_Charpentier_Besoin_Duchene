@@ -2,6 +2,8 @@
 
 namespace iutnc\touiter\touit;
 
+use iutnc\touiter\db\ConnexionFactory;
+
 class Touite
 {
     private int $id;
