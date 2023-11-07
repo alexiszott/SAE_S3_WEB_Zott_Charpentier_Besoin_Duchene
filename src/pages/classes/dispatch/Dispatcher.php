@@ -41,6 +41,7 @@ class Dispatcher
             case 'signin':
                 $act = new SignIn();
                 $html = $act->execute();
+
                 break;
             case 'signup':
                 $act = new SignUp();
@@ -55,7 +56,7 @@ class Dispatcher
                 $html = $act->execute();
                 break;
         }
-        //$this->renderPage($html);
+        $this->renderPage($html);
     }
 
     private function renderPage(string $html):void{
