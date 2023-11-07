@@ -2,6 +2,9 @@
 
 namespace iutnc\touiter\action;
 
+use iutnc\touiter\auth\Auth;
+use iutnc\touiter\exception\AuthException;
+
 class SignUp extends Action
 {
 
@@ -29,11 +32,22 @@ class SignUp extends Action
             $nom =$_POST['nom'];
             $prenom = $_POST['prenom'];
             $mdp = $_POST['passwd'];
+            $email = $_POST['email'];
             $mpdVerif = $_POST['verifPasswd'];
-            var_dump($mdp);
-            var_dump($mpdVerif);
-            var_dump($mdp===$mpdVerif);
-            $texte .="Bonjour";
+
+            if($mdp===$mpdVerif){
+                try{
+                    $creer = Auth::register($nom,$prenom,$email,$mdp);
+                    if ($creer){
+                        $texte.="Votre compte a été créée";
+                    }else{
+                        $texte.="Une erreur s'est levée";
+                    }
+                }catch (AuthException $authException){
+                    $texte.=$authException->getMessage();
+                }
+            }
+            
         }
         return $texte;
     }
