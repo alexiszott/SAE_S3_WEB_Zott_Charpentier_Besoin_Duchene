@@ -10,6 +10,7 @@ use iutnc\touiter\Action\ProfilWallTouiteListDisplay;
 use iutnc\touiter\Action\SignIn;
 use iutnc\touiter\Action\SignUp;
 use iutnc\touiter\Action\TagTouiteListDisplay;
+use iutnc\touiter\action\TouiteDisplay;
 use iutnc\touiter\Action\WriteTouite;
 
 class Dispatcher
@@ -53,6 +54,10 @@ class Dispatcher
                 break;
             case 'write-touite':
                 $act = new WriteTouite();
+                $html = $act->execute();
+                break;
+            case 'display-touite':
+                $act = new TouiteDisplay();
                 $html = $act->execute();
                 break;
         }

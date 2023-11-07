@@ -3,5 +3,8 @@
     "psr-4": {
       "iutnc\\touiter\\" : "./src/pages/classes"
     }
+  },
+  "require": {
+    "ext-pdo": "*"
   }
 }

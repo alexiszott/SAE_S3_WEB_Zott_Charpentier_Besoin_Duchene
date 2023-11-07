@@ -15,27 +15,27 @@ class TouiteRenderer implements Renderer
 
     public function render(int $selector): string
     {
-        $html = '<div id="touite">';
-        $head = '<div id="userName">'.$this->touite->userFirstName.' '.$this->touite->userLastName.'</div>';
+        $html = '<div class="touite">';
+        $html .= '<div class="infos"><p>'.$this->touite->userFirstName.'</p><p>'.$this->touite->userLastName.'</p></div>';
 
         switch ($selector) {
             case 1 :
-                $msgTouite = $this->compact();
+                $html .= $this->compact();
                 break;
             case 2:
                 $msgTouite = $this->long();
                 break;
         }
-        $footer = '<p id="date"> Créé le '.$this->touite->date . '</p>';
+        $html .= '<div class="date"><p> Créé le '.$this->touite->date .'</p></div>';
+        $html .= '<div class="interaction"><p>LIKE</p><p>DISLIKE</p></div>';
 
-        $html = $html . $msgTouite . $footer . "</div>";
         return $html;
     }
 
     private function compact() : string
     {
         if(strlen($this->touite->message ) <= 117){
-            $html = '<p id="message">'.$this->touite->message.'</p>';
+            $html = '<div class="message"><p>'.$this->touite->message.'</p></div>';
         }else{
             $text = substr($this->touite->message, 1, 117) . "...";
             $html = '<p id="message">'.$text.'</p>';
