@@ -16,7 +16,6 @@ class SignUp extends Action
         $texte = '';
 
         if ($this->http_method == 'GET') {
-
             $texte .= '<form method="post"> Nom : <input type="text" name="nom" ><br>
                         Prenom : <input type="text" name="prenom"><br>
                         Email : <input type="email" name="email"><br>

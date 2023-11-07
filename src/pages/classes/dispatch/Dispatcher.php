@@ -42,9 +42,9 @@ class Dispatcher
             case 'signin':
                 $act = new SignIn();
                 $html = $act->execute();
-
                 break;
             case 'signup':
+                echo "TEST";
                 $act = new SignUp();
                 $html = $act->execute();
                 break;

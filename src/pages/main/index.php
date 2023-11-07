@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="../../css/touit.css">
 <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
+
 <header>
     <h1>TOUITEUR</h1>
     <div class="menu navigation">
@@ -15,8 +16,8 @@
         <a href="index.php"><p>Accueil</p></a>
     </div>
     <div class="menu connexion">
-        <a href="?action=signin"><p>Se connecter</p></a>
-        <a href="?action=signup"><p>S'inscrire</p></a>
+        <a href="?action=signin">Se connecter</a>
+        <a href="../othersPages/signup.php">S'inscrire</a>
     </div>
     <label>
         <input type="text" placeholder="Rechercher..">
@@ -37,9 +38,6 @@ if(!isset($_GET['action'])){
 
 $d = new Dispatcher();
 $d->run();
-//TODO
-
-
 ?>
 </html>
 
