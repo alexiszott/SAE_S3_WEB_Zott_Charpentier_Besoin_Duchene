@@ -4,7 +4,7 @@ namespace iutnc\touiter\user;
 
 use iutnc\touiter\db\ConnexionFactory;
 
-class User implements canBeFollow
+class User
 {
     private int $idUser;
     private string $nomUser;
@@ -21,26 +21,7 @@ class User implements canBeFollow
         $this->password = $passwd;
         $this->permission = $perm;
     }
-    public function getTouite(){
-        ConnexionFactory::makeConnection();
 
-        //TODO
-
-    }
-
-    public function getTagTouite(){
-        ConnexionFactory::makeConnection();
-
-        //TODO
-
-    }
-
-    public function getFollowerTouite(){
-        ConnexionFactory::makeConnection();
-
-        //TODO
-
-    }
     public function sendTouite(){
         ConnexionFactory::makeConnection();
 
