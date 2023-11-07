@@ -68,7 +68,6 @@ class Dispatcher
         <body>
                 $html
         </body>
-          
     FIN;
 
     }
