@@ -53,17 +53,20 @@ body {
     margin: 0;
 }
 
-footer {
-    padding: 10px 0;
-    background-color: blue;
-    text-align: center;
+.touite{
+    margin: 0.5% auto 0 auto;
+    background-color: pink;
+    width: 80vh;
+    height: 30vh;
 }
 
-#creator{
-    width: 600px;
+.infos, .interaction {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+.message {
+    background-color: red;
+    padding: 10px;
 }
