@@ -42,7 +42,7 @@ class Auth
 
 
     //Inscription
-    public function register(string $nomUtil, string $prenomUtil, string $email, string $passEnClair){
+    public static function register(string $nomUtil, string $prenomUtil, string $email, string $passEnClair){
 
         // Vérification du format de l'email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -50,7 +50,7 @@ class Auth
         }
 
         //Vérification si l'email existe déjà
-        ConnexionFactory::setConfig("");
+        ConnexionFactory::setConfig("./src/pages/classes/conf/config.ini");
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $pdo->prepare($query);
