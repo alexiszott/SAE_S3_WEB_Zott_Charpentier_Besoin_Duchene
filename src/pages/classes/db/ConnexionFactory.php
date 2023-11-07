@@ -6,6 +6,7 @@ class ConnexionFactory{
     private static $config;
     public static function setConfig($file){
         self::$config = parse_ini_file($file);
+        var_dump(self::$config);
     }
 
     public static function makeConnection(){

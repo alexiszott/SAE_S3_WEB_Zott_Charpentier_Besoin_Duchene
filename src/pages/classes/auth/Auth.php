@@ -50,7 +50,7 @@ class Auth
         }
 
         //Vérification si l'email existe déjà
-        ConnexionFactory::setConfig("./src/pages/classes/conf/config.ini");
+        ConnexionFactory::setConfig("../classes/conf/config.ini");
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT * FROM util WHERE emailUtil = :email";
         $stmt = $pdo->prepare($query);
@@ -62,7 +62,7 @@ class Auth
         }
 
         // Vérification de la puissance du mot de passe
-        if (!self::checkPasswordStrength($passEnClair, 8)) {
+        if (!(new Auth)->checkPasswordStrength($passEnClair, 8)) {
             throw new AuthException("Le mot de passe doit contenir 8 caractères dont une majuscule, une minuscule, un caractère spécial et un chiffre.");
         }
 
