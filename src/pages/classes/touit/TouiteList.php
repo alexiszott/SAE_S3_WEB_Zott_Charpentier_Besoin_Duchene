@@ -23,8 +23,7 @@ class TouiteList
 
     public function mainTouiteList(){
         $this->touiteList = [];
-        ConnexionFactory::setConfig("./src/pages/conf/conf.ini");
-        $pdo = ConnexionFactory::makeConnection();
+           $pdo = ConnexionFactory::makeConnection();
         $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util where touite.idUtil=util.idUtil order by datePubli desc limit 10 offset ?";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(1, $this->nPages);

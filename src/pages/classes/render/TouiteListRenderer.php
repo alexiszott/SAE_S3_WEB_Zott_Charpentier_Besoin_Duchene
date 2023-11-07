@@ -2,7 +2,6 @@
 
 namespace iutnc\touiter\render;
 
-use iutnc\touiter\render\Renderer;
 use iutnc\touiter\touit\TouiteList;
 
 class TouiteListRenderer implements Renderer
@@ -14,7 +13,7 @@ class TouiteListRenderer implements Renderer
         $this->touiteList = $t;
     }
 
-    public function render(): string
+    public function render(int $selector): string
     {
         $html = "";
         foreach ($this->touiteList as $value){

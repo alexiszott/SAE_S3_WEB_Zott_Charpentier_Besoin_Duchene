@@ -9,6 +9,7 @@ class ConnexionFactory{
     }
 
     public static function makeConnection(){
+        self::setConfig("./src/pages/classes/conf/config.ini");
         $driver = self::$config['driver'];
         $host = self::$config['host'];
         $database = self::$config['database'];
