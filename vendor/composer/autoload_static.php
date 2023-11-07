@@ -16,7 +16,7 @@ class ComposerStaticInited590560f7dacde19027ca269f436cfc
     public static $prefixDirsPsr4 = array (
         'iutnc\\touiter\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/classes',
+            0 => __DIR__ . '/../..' . '/src/pages/classes',
         ),
     );
 

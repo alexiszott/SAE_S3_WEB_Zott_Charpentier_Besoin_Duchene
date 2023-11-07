@@ -1,6 +1,6 @@
 <?php
 
-namespace iutnc\touiter\Action;
+namespace iutnc\touiter\action;
 
 class SignUp extends Action
 {

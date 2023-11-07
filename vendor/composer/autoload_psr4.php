@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'iutnc\\touiter\\' => array($baseDir . '/src/classes'),
+    'iutnc\\touiter\\' => array($baseDir . '/src/pages/classes'),
 );

@@ -1,6 +1,8 @@
 <?php
 
-namespace iutnc\touiter\Action;
+namespace iutnc\touiter\action;
+
+use iutnc\touiter\action\Action;
 
 class ProfilWallTouiteListDisplay extends Action
 {
