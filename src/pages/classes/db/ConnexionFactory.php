@@ -9,6 +9,7 @@ class ConnexionFactory{
     }
 
     public static function makeConnection(){
+<<<<<<< HEAD
         $dsn = self::$config['db_driver'] . ':host=' . self::$config['db_host'] . ';dbname=' . self::$config['db_name'];
         $username = self::$config['db_user'];
         $password = self::$config['db_password'];
@@ -21,5 +22,15 @@ class ConnexionFactory{
             // Handle connection errors
             die('Connection failed: ' . $e->getMessage());
         }
+=======
+        self::setConfig("./src/pages/classes/conf/config.ini");
+        $driver = self::$config['driver'];
+        $host = self::$config['host'];
+        $database = self::$config['database'];
+        $dsn = "$driver:hostname=$host;dbname=$database";
+        $username = self::$config['username'];
+        $pswd = self::$config['password'];
+        return new \PDO($dsn, $username, $pswd);
+>>>>>>> 25357a74e71c4e3267fd19a1ee4586e02c200f71
     }
 }
