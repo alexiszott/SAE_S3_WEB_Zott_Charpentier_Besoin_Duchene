@@ -82,7 +82,7 @@ class Auth
     }
 
     public function checkPasswordStrength(string $pass, int $minimumLength): bool {
-        $length = (strlen($pass) < $minimumLength); // longueur minimale
+        $length = (strlen($pass) >= $minimumLength); // longueur minimale
         $digit = preg_match("#[\d]#", $pass); // au moins un chiffre
         $special = preg_match("#[\W]#", $pass); // au moins un caractere special
         $lower = preg_match("#[a-z]#", $pass); // au moins une minuscule
