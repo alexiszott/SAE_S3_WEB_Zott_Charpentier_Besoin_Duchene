@@ -32,7 +32,7 @@ class SignUp extends Action
             $mpdVerif = $_POST['verifPasswd'];
             var_dump($mdp);
             var_dump($mpdVerif);
-          
+            var_dump($mdp===$mpdVerif);
             $texte .="Bonjour";
         }
         return $texte;
