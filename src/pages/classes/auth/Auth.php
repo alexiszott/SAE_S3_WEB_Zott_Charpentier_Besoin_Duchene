@@ -52,7 +52,7 @@ class Auth
         //Vérification si l'email existe déjà
         ConnexionFactory::setConfig("./src/pages/classes/conf/config.ini");
         $pdo = ConnexionFactory::makeConnection();
-        $query = "SELECT * FROM users WHERE email = :email";
+        $query = "SELECT * FROM util WHERE emailUtil = :email";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
