@@ -16,7 +16,7 @@ class TouiteListRenderer implements Renderer
     public function render(int $selector): string
     {
         $html = "";
-        foreach ($this->touiteList as $value){
+        foreach ($this->touiteList->touiteList as $value){
             $render = new TouiteRenderer($value);
             $html = $html . $render->render(1);
         }
