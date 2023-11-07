@@ -10,6 +10,7 @@ use iutnc\touiter\Action\ProfilWallTouiteListDisplay;
 use iutnc\touiter\Action\SignIn;
 use iutnc\touiter\Action\SignUp;
 use iutnc\touiter\Action\TagTouiteListDisplay;
+use iutnc\touiter\action\TouiteDisplay;
 use iutnc\touiter\Action\WriteTouite;
 
 class Dispatcher
@@ -41,6 +42,7 @@ class Dispatcher
             case 'signin':
                 $act = new SignIn();
                 $html = $act->execute();
+
                 break;
             case 'signup':
                 $act = new SignUp();
@@ -54,8 +56,12 @@ class Dispatcher
                 $act = new WriteTouite();
                 $html = $act->execute();
                 break;
+            case 'display-touite':
+                $act = new TouiteDisplay();
+                $html = $act->execute();
+                break;
         }
-        //$this->renderPage($html);
+        $this->renderPage($html);
     }
 
     private function renderPage(string $html):void{

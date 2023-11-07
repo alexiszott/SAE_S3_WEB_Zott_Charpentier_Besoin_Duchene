@@ -9,11 +9,11 @@ class Touite
     private int $id;
     private string $date;
     private string $message;
-    private string $lienImage;
+    private ?string $lienImage;
     private string $userFirstName;
     private string $userLastName;
 
-    public function __construct($i, $d, $m, $l, $fn, $ln)
+    public function __construct($i, $d, $m, $fn, $ln, ?string $l=null)
     {
         $this->id=$i;
         $this->date=$d;
