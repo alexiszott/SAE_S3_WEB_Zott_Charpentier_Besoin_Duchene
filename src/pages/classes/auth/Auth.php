@@ -42,7 +42,7 @@ class Auth
 
 
     //Inscription
-    public function register(string $nomUtil, string $prenomUtil, string $email, string $passEnClair){
+    public static function register(string $nomUtil, string $prenomUtil, string $email, string $passEnClair){
 
         // Vérification du format de l'email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -50,9 +50,9 @@ class Auth
         }
 
         //Vérification si l'email existe déjà
-        ConnexionFactory::setConfig("");
+        ConnexionFactory::setConfig("./src/pages/classes/conf/config.ini");
         $pdo = ConnexionFactory::makeConnection();
-        $query = "SELECT * FROM users WHERE email = :email";
+        $query = "SELECT * FROM util WHERE emailUtil = :email";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -82,7 +82,7 @@ class Auth
     }
 
     public function checkPasswordStrength(string $pass, int $minimumLength): bool {
-        $length = (strlen($pass) < $minimumLength); // longueur minimale
+        $length = (strlen($pass) >= $minimumLength); // longueur minimale
         $digit = preg_match("#[\d]#", $pass); // au moins un chiffre
         $special = preg_match("#[\W]#", $pass); // au moins un caractere special
         $lower = preg_match("#[a-z]#", $pass); // au moins une minuscule
