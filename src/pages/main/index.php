@@ -22,6 +22,10 @@
 <body>
 <?php
 
+use iutnc\touiter\db\ConnexionFactory;
+
+ConnexionFactory::setConfig('./src/classes/conf/config.ini');
+
 //TODO
 
 ?>

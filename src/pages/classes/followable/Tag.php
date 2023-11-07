@@ -2,7 +2,7 @@
 
 namespace iutnc\touiter\user;
 
-class Tag implements canBeFollow
+class Tag
 {
     private int $tagId;
     private string $tagLibelle;
@@ -12,12 +12,5 @@ class Tag implements canBeFollow
         $this->tagId = $id;
         $this->tagLibelle = $lib;
         $this->tagDescription = $desc;
-    }
-
-    public function getTouite()
-    {
-
-        // TODO
-
     }
 }
