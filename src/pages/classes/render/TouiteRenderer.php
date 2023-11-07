@@ -2,7 +2,6 @@
 
 namespace iutnc\touiter\render;
 
-use iutnc\touiter\render\Renderer;
 use iutnc\touiter\touit\Touite;
 
 class TouiteRenderer implements Renderer
