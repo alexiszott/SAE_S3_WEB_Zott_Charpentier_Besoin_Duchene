@@ -17,8 +17,6 @@
     <div class="menu connexion">
         <a href="?action=signin"><p>Se connecter</p></a>
         <a href="?action=signup"><p>S'inscrire</p></a>
-        <a href="?action=display-touite"><p>afficher touite</p></a>
-
     </div>
     <label>
         <input type="text" placeholder="Rechercher..">
