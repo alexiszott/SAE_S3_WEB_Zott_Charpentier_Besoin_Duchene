@@ -38,7 +38,7 @@ class TouiteRenderer implements Renderer
         if(strlen($this->touite->message ) <= 117){
             $html = '<p id="message">'.$this->touite->message.'</p>';
         }else{
-            $text = substr($this->touite->message, 1, 117);
+            $text = substr($this->touite->message, 1, 117) . "...";
             $html = '<p id="message">'.$text.'</p>';
         }
 

@@ -50,8 +50,10 @@ class Auth
         }
 
         //Vérification si l'email existe déjà
+        ConnexionFactory::setConfig("");
+        $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT * FROM users WHERE email = :email";
-        $stmt = $this->db->prepare($query);
+        $stmt = $pdo->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
@@ -69,7 +71,7 @@ class Auth
 
         // Insérez le nouvel utilisateur dans la base de données avec le rôle 1
         $query = "INSERT INTO users (email, password, role) VALUES (:email, :password, 1)";
-        $stmt = $this->db->prepare($query);
+        $stmt = $pdo->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashedPassword);
         $stmt->execute();
