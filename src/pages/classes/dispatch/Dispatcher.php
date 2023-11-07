@@ -57,4 +57,15 @@ class Dispatcher
         }
         //$this->renderPage($html);
     }
+
+    private function renderPage(string $html):void{
+        echo <<<FIN
+        <body>
+                $html
+        </body>
+          
+    FIN;
+
+    }
+
 }

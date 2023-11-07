@@ -56,7 +56,7 @@ class Auth
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            throw new AuthException("L'Email est déjà lié à un compe.");
+            throw new AuthException("L'Email est déjà lié à un compte.");
         }
 
         // Vérification de la puissance du mot de passe
