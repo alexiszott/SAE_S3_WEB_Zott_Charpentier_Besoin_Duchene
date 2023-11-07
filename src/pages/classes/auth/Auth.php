@@ -11,7 +11,7 @@ class Auth
 
     // Authentification
     public static function authenticate(string $email, string $password): bool {
-            ConnexionFactory::setConfig('./config.ini');
+            ConnexionFactory::setConfig('../conf/config.ini');
             $pdo = ConnexionFactory::makeConnection();
             $sql = "select email, passwd, role from User where email = ? ";
             $result = $pdo->prepare($sql);
