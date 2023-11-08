@@ -26,12 +26,12 @@
         <a href=\"?action=disconnect\" class=\"disconnectButton\" >Se déconnecter</a>
             </div>";
             echo "<div class=\"menu navigation\">
-                <a href=\"index.php\">Profile</a>
+               <a href=\"../othersPages/profil.php\">Profil</a>
                 <a href=\"index.php\">Accueil</a>
                 <a href=\"../othersPages/writeTouite.php\">Touiter</a>
             </div>";
         }else{
-            echo "Vous n'êtes pas connecter.</div>";
+            echo "Vous n'êtes pas connecté.</div>";
             echo "<div class=\"menu connexion\">
                 <a href=\"../othersPages/signin.php\" class=\"connexionButton\">Se connecter</a>
                 <a href=\"../othersPages/signup.php\" class=\"connexionButton\">S'inscrire</a>
