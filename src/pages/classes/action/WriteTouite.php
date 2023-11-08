@@ -17,7 +17,7 @@ class WriteTouite extends Action
                 $html .=
                     '<form method="post">
                 <table>
-                    <tr><td><textarea name="touite" rows="8" cols="55">Écrivez votre touite !</textarea></tr></td></br>
+                    <tr><td><textarea name="touite" rows="8" cols="55" placeholder="Écrivez votre touite !"></textarea></tr></td></br>
                     <tr><td><button type="submit" name="envoyer">Envoyer</button></th></td>
                 </table>
             </form>';
