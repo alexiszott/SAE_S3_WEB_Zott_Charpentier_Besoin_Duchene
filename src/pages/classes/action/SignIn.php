@@ -19,6 +19,7 @@ class SignIn extends Action
                         Email : <input type="email" name="email"><br>
                         Mot de passe : <input type="password" name="passwd"><br>
                         <input type = "submit" name = "connect" value = "Connectez-vous">
+                         <a href="index.php?action=signup">Créer un compte</a>
                         </form>' ;
 
         } else if ($this->http_method == 'POST') {
