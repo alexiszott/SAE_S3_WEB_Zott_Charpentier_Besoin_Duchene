@@ -31,7 +31,6 @@ class TouiteRenderer implements Renderer
                 break;
         }
         $html .= '<div class="date"><p> Créé le '.$this->touite->date .'</p></div>';
-        $html .= '<div class="interaction"><p>LIKE</p><p>DISLIKE</p></div>';
 
         return $html;
     }
@@ -59,6 +58,7 @@ class TouiteRenderer implements Renderer
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;
         }
+        $html .= '<div class="nbLike"><p>LIKE</p><p>DISLIKE</p></div>';
         return $html;
     }
 

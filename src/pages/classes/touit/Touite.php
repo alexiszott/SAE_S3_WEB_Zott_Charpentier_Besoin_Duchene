@@ -41,5 +41,46 @@ class Touite
         return $listeTags;
     }
 
+    public function getNbLike() : string{
+        $pdo = ConnexionFactory::makeConnection();
+        $query = "select SUM(dlike) as dlike from user2like where idTouite= ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(1, $this->id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $pdo=null;
+        if(is_null($result['dlike'])){
+            $res = 0;
+        } else{
+            $res = $result['dlike'];
+        }
+        return $res;
+
+    }
+
+    public function setLike(){
+        if(isset($_SESSION['user'])){
+            // Vérifier que l'utilisateur n'a pas encore like
+            $pdo = ConnexionFactory::makeConnection();
+            $queryCheck = "SELECT * from user2like where idUtil = ? and idTouite = ?";
+            $stmt = $pdo->prepare($queryCheck);
+            $stmt->bindParam(1, $_SESSION['user']['id']);
+            $stmt->bindParam(2, $this->id);
+            $stmt->execute();
+
+            if($stmt->rowCount()===0){
+
+            } else {
+
+            }
+        }else{
+            header('src/pages/othersPages/signin.php');
+        }
+    }
+
+    public function likeOrDislike(){
+
+    }
+
 
 }
