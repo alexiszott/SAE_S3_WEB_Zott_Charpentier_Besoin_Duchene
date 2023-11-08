@@ -4,7 +4,7 @@ namespace iutnc\touiter\action;
 
 use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\touit\Touite;
-use iutnc\touiter\user\Tag;
+use iutnc\touiter\followable\Tag;
 class WriteTouite extends Action
 {
     public function execute(): string
