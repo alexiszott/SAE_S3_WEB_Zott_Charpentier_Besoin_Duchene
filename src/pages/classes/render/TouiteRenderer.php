@@ -2,6 +2,7 @@
 
 namespace iutnc\touiter\render;
 
+use iutnc\touiter\followable\User;
 use iutnc\touiter\touit\Touite;
 
 class TouiteRenderer implements Renderer
@@ -16,7 +17,10 @@ class TouiteRenderer implements Renderer
     public function render(?int $selector = null): string
     {
         $html = '<div class="touite">';
-        $html .= '<div class="infos"><p>'.$this->touite->userFirstName.'</p><p>'.$this->touite->userLastName.'</p></div>';
+        $firstName = $this->touite->userFirstName;
+        $lastName = $this->touite->userLastName;
+        $userUrl = User::getUserUrl($firstName, $lastName);
+        $html .= "<div class='infos'><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
         switch ($selector) {
             case 1 :

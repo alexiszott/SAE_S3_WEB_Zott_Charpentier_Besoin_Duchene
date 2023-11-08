@@ -15,7 +15,7 @@ class SignUp extends Action
 
     public function execute(): string
     {
-        $texte = '<div class="signup">';
+        $texte = '<div id="signup">';
         if ($this->http_method == 'GET') {
             $texte .= '<form method="post"> 
                         <table>
@@ -24,9 +24,9 @@ class SignUp extends Action
                                 <tr><td>Email : </td><td><input type="email" id="email" name="email"><br></td></tr>
                                 <tr><td>Mot de passe : </td><td><input type="text" id="passwd" name="passwd"><br></td></tr>
                                 <tr><td>Verfication du mot de passe : </td><td><input type="text" id="verifPasswd" name="verifPasswd"><br></td></tr>
-                                <th><td><input type = "submit" id="creer" name = "creer" value = "Créer votre compte"><td></th>
+                                <th><td><input type = "submit" id="confirm" name = "creer" value = "Créer votre compte"><td></th>
                         </table>
-                        <p class="redirection">Vous posséder déjà un compte, <a href="signin.php">se connecter</a>.</p><br>
+                        <p class="redirection">Vous posséder déjà un compte, <a href="signin.php">se connecter</a>.</p>
                         </form>';
         } else if ($this->http_method == 'POST') {
             $nom =$_POST['nom'];
@@ -34,7 +34,6 @@ class SignUp extends Action
             $mdp = $_POST['passwd'];
             $email = $_POST['email'];
             $mpdVerif = $_POST['verifPasswd'];
-
             if($mdp===$mpdVerif){
                 try{
                     $creer = Auth::register($nom,$prenom,$email,$mdp);

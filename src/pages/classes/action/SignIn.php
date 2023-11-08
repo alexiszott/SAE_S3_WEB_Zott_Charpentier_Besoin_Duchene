@@ -11,17 +11,17 @@ class SignIn extends Action
 {
            public function execute(): string
     {
-        $texte = '';
+        $texte = '<div id="signin">';
 
         if ($this->http_method == 'GET') {
 
             $texte .= '<form method="post">
                             <table>
-                                <tr><td>Email : <input type="email" name="email"><br></td></tr>
-                                <tr><td>Mot de passe : <input type="password" name="passwd"><br></td></tr>
-                                <th><td><input type = "submit" name = "connect" value = "Connectez-vous"><td></th>
+                                <tr><td>Email : </td><td><input type="email" name="email"><br></td></tr>
+                                <tr><td>Mot de passe : </td><td><input type="password" name="passwd"><br></td></tr>
+                                <th><td><input type = "submit" id="confirm" name="connect" value = "Connectez-vous"><br><td></th>
                             </table>
-                            <a href="index.php?action=signup">Créer un compte</a>
+                            <a class="redirection" href="signup.php">Créer un compte</a>
                         </form>' ;
         } else if ($this->http_method == 'POST') {
             $email = $_POST['email'];
@@ -32,6 +32,7 @@ class SignIn extends Action
             }
 
         }
+        $texte .= '</div>';
         return $texte;
     }
 
