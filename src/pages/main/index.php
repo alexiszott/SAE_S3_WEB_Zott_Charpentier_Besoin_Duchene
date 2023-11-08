@@ -44,7 +44,6 @@
 
 require_once '../../../vendor/autoload.php';
 
-
 use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\dispatch\Dispatcher;
 
