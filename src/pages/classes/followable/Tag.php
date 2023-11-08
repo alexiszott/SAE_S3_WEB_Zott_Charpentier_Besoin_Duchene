@@ -27,9 +27,11 @@ class Tag
             $count = $result->fetch(\PDO::FETCH_ASSOC)['count'];
             $result = $pdo->prepare($sqlMaxId);
             $result->execute();
-            $maxId = $result->fetch(\PDO::FETCH_ASSOC)["max"];
-            if ($count === 0) {
-                $sqlInsertTag = "INSERT INTO tag(libelleTag, descriptionTag) VALUES ($v, 'NA')";
+            $maxIdTable = $result->fetch(\PDO::FETCH_ASSOC)["max"];
+            $maxId = max($maxIdTable, 1);
+            // Transtypage parce que count est récupéré sous forme de String
+            if ($count == 0) {
+                $sqlInsertTag = "INSERT INTO tag(libelleTag) VALUES ('$v')";
                 $pdo->exec($sqlInsertTag);
                 $sqlInsertTag2Touite = "INSERT INTO tag2touite VALUES ($maxId+1, $idTouite)";
                 $pdo->exec($sqlInsertTag2Touite);
