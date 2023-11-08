@@ -60,7 +60,7 @@ class TouiteRenderer implements Renderer
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;
         }
-        $html .= '<div class="nbLike"><p>LIKE</p><p>DISLIKE</p></div>';
+       
         return $html;
     }
 
