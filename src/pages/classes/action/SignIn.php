@@ -4,6 +4,9 @@ namespace iutnc\touiter\action;
 
 use iutnc\touiter\auth\Auth;
 
+use iutnc\touiter\exception\AuthException;
+
+
 class SignIn extends Action
 {
            public function execute(): string
@@ -25,6 +28,7 @@ class SignIn extends Action
             if ($var === true) {
                 $texte.="Bienvenue";
             }
+
         }
         return $texte;
     }
