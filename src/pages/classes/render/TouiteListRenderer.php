@@ -13,7 +13,7 @@ class TouiteListRenderer implements Renderer
         $this->touiteList = $t;
     }
 
-    public function render(int $selector): string
+    public function render(?int $selector = null): string
     {
         $html = "";
         foreach ($this->touiteList->touiteList as $value){

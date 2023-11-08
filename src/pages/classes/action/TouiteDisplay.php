@@ -12,7 +12,7 @@ class TouiteDisplay extends Action
         $touitListe = new TouiteList();
         $touitListe->mainTouiteList();
         $t = new TouiteListRenderer($touitListe);
-        $r = $t->render(1);
+        $r = $t->render();
         return $r;
     }
 }
