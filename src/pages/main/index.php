@@ -11,7 +11,6 @@
 <header>
     <h1>TOUITEUR</h1>
     <div class="affiche">
-<<<<<<< HEAD
         <?php
         require_once '../../../vendor/autoload.php';
         use iutnc\touiter\followable\User;
@@ -43,22 +42,6 @@
             </div>";
         }
         ?>
-=======
-    </div>
-    <div class="menu navigation">
-        <a href="index.php" class=""><p>Profile</p></a>
-        <a href="index.php"><p>Accueil</p></a>
-        <a href="../othersPages/writeTouite.php"><p>Ecrire un touite</p></a>
-    </div>
-    <div class="menu connexion">
-
-        <a href="../othersPages/signin.php" class="connexionButton">Se connecter</a>
-        <a href="../othersPages/signup.php" class="connexionButton">S'inscrire</a>
-        <a href="?action=disconnect" class="disconnectButton">Se déconnecter</a>
-
-
-    </div>
->>>>>>> 4bd549d6a596c7d6ef29e27371ec233e383d117d
     <label>
         <input type="text" placeholder="Rechercher..">
     </label>
