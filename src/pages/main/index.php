@@ -28,7 +28,7 @@
             echo "<div class=\"menu navigation\">
                 <a href=\"index.php\">Profile</a>
                 <a href=\"index.php\">Accueil</a>
-                <a href=\"index.php\">Touiter</a>
+                <a href=\"../othersPages/writeTouite.php\">Touiter</a>
             </div>";
         }else{
             echo "Vous n'êtes pas connecter.</div>";
@@ -51,19 +51,6 @@
 require_once '../../../vendor/autoload.php';
 use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\dispatch\Dispatcher;
-
-session_start();
-
-if (isset($_SESSION['user'])){
-    $user = unserialize($_SESSION['user']);
-    $prenom = $user->__get("nomUser");
-    $nom = $user->__get("prenomUser");
-    echo ("$prenom   $nom");
-
-}else{
-    echo ("Veuillez vous connecter");
-}
-
 
 ConnexionFactory::setConfig('../classes/conf/config.ini');
 
