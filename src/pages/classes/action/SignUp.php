@@ -15,18 +15,18 @@ class SignUp extends Action
 
     public function execute(): string
     {
-        $texte = '<div id="signup">';
+        $texte = '<div id="signup" class="backMenu">';
         if ($this->http_method == 'GET') {
             $texte .= '<form method="post"> 
                         <table>
-                                <tr><td>Nom : </td><td><input type="text" id="nom" name="nom" ><br></td></tr>
-                                <tr><td>Prenom : </td><td><input type="text" id="prenom" name="prenom"><br></td></tr>
-                                <tr><td>Email : </td><td><input type="email" id="email" name="email"><br></td></tr>
-                                <tr><td>Mot de passe : </td><td><input type="text" id="passwd" name="passwd"><br></td></tr>
-                                <tr><td>Verfication du mot de passe : </td><td><input type="text" id="verifPasswd" name="verifPasswd"><br></td></tr>
-                                <th><td><input type = "submit" id="confirm" name = "creer" value = "Créer votre compte"><td></th>
+                                <tr><td>Nom : </td><td><input type="text" class="text_area" name="nom" ><br></td></tr>
+                                <tr><td>Prenom : </td><td><input type="text" class="text_area" name="prenom"><br></td></tr>
+                                <tr><td>Email : </td><td><input type="email" class="text_area" name="email"><br></td></tr>
+                                <tr><td>Mot de passe : </td><td><input type="text" class="text_area" name="passwd"><br></td></tr>
+                                <tr><td>Verfication du mot de passe : </td><td><input type="text" class="text_area" name="verifPasswd"><br></td></tr>
+                                <tr><th colspan="2"><input type = "submit" id="confirm" name = "creer" value = "Créer votre compte"></td><tr>
                         </table>
-                        <p class="redirection">Vous posséder déjà un compte, <a href="signin.php">se connecter</a>.</p>
+                        <p class="redirection">Vous possédez déjà un compte ? <a href="signin.php">Se connecter</a>.</p>
                         </form>';
         } else if ($this->http_method == 'POST') {
             $nom =$_POST['nom'];

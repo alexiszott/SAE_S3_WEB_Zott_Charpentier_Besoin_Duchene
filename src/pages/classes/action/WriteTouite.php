@@ -11,9 +11,10 @@ class WriteTouite extends Action
     {
         session_start();
         $html = null;
-        if(isset($_SESSION['user'])){
+        if(isset($_SESSION['user'])) {
             $html = '<div id="writeTouite">';
             if ($this->http_method === "GET") {
+                $html = '<div id="writeTouite" class="backMenu">';
                 $html .=
                     '<form method="post">
                 <table>

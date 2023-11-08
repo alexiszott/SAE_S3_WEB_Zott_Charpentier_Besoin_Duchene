@@ -5,7 +5,7 @@ html {
 }
 
 p {
-    color: white;
+    color: black;
 }
 
 h1 {
@@ -16,15 +16,18 @@ h1 {
 header {
     padding-top: 5%;
     position: sticky;
-    background-color: blue;
+    background-color: white;
     text-align: center;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0,0.1); /*any color you want*/
+    padding-bottom: 1%;
+    border-bottom: 1px solid rgb(220,220,220);
+
 }
 
 a {
-    color: white;
+    color: cornflowerblue;
     margin: 0 auto;
     text-decoration: none;
-
 }
 
 .menu {
@@ -33,7 +36,11 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    flex-basis: 0;
+    flex: 1 1 0;
+}
+
+.menu a {
+    flex: 1 1 0;
 }
 
 .menu.navigation{
@@ -44,22 +51,22 @@ a {
 }
 
 .menu.connexion{
-    width: 10%;
+    width: 20%;
     position: relative;
     bottom: 20px;
-    left: 80%;
+    left: 70%;
 }
 
 .affiche{
     position: relative;
     bottom: 20px;
-    right: 45%;
+    right: 30%;
     color: white;
 }
 
 
 body {
-    background-color: darkblue;
+    background-color: white;
     margin: 0;
 }
 
@@ -92,12 +99,13 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
 #signup{
     padding: 25px;
     margin: 5% auto 0 auto;
-    background-color: blue;
     width: 50vh;
 }
 
 table{
     margin: 0 auto;
+    border-bottom: 1px solid rgb(220,220,220);
+    border-spacing: 15px;
 }
 
 tr{
@@ -109,6 +117,7 @@ th{
 }
 
 .redirection {
+    padding-top: 1%;
     text-align: center;
 }
 
@@ -121,7 +130,6 @@ th{
 #signin{
     padding: 25px;
     margin: 5% auto 0 auto;
-    background-color: blue;
     width: 50vh;
 }
 
@@ -130,7 +138,6 @@ th{
 #writeTouite {
     padding: 25px;
     margin: 5% auto 0 auto;
-    background-color: blue;
     width: 50vh;
 }
 
@@ -143,4 +150,16 @@ textarea {
     border-radius: 4px;
     background-color: #f8f8f8;
     resize: none;
+}
+
+.backMenu {
+    border: 1px solid rgb(220,220,220);
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0,0.1);
+}
+
+.text_area {
+    border: 1px solid rgb(220,220,220);
+    border-radius: 6px;
 }
