@@ -33,7 +33,11 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    flex-basis: 0;
+    flex: 1 1 0;
+}
+
+.menu a {
+    flex: 1 1 0;
 }
 
 .menu.navigation{
@@ -44,10 +48,10 @@ a {
 }
 
 .menu.connexion{
-    width: 10%;
+    width: 20%;
     position: relative;
     bottom: 20px;
-    left: 80%;
+    left: 75%;
 }
 
 body {

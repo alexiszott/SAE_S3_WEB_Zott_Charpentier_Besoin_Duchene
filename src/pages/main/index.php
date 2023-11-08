@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="../../css/touit.css">
 <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
-
 <header>
     <h1>TOUITEUR</h1>
     <div class="menu navigation">
