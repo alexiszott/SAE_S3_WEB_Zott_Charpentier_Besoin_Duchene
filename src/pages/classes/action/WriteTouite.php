@@ -10,6 +10,7 @@ class WriteTouite extends Action
     public function execute(): string
     {
         session_start();
+        $html = null;
         if(isset($_SESSION['user'])){
             $html = '<div id="writeTouite">';
             if ($this->http_method === "GET") {
@@ -20,9 +21,8 @@ class WriteTouite extends Action
                     <tr><td><button type="submit" name="envoyer">Envoyer</button></th></td>
                 </table>
             </form>';
-        }
-        else {
-            if (isset($_POST["envoyer"])) {
+            }
+            elseif (isset($_POST["envoyer"])) {
                 // Connexion à la base de données
                 $pdo = ConnexionFactory::makeConnection();
                 $touite = $_POST["touite"];
@@ -38,18 +38,18 @@ class WriteTouite extends Action
                 $result->execute();
                 // On récupère les tags (s'il y en a) dans le touite et on les ajoute aux différentes tables (tag, tag2touite)
                 $idTouite = $result->fetch(\PDO::FETCH_ASSOC)["max"] + 1;
-                $sqlInsert = "INSERT INTO touite(idUtil, texteTouite) VALUES ('$idUtil', '$touite')";
+                $sqlInsert = "INSERT INTO touite(idUtil, texteTouite) VALUES ($idUtil, '$touite')";
                 $pdo->exec($sqlInsert);
                 Tag::ajouter_tags($listeTags, $idTouite);
                 // Insertion du nouveau touite dans la table notation
                 $sqlInsert = "INSERT INTO notation VALUES ($idTouite, $idUtil, 0)";
                 $pdo->exec($sqlInsert);
-            $html .= '</div>';
+                $html .= '</div>';
+            }
         } else {
-            header("Location: ../othersPages/signin.php");
-            exit();
-        }
-
+                header("Location: ../othersPages/signin.php");
+                exit();
+            }
         return $html;
     }
 }
