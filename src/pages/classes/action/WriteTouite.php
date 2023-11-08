@@ -13,11 +13,11 @@ class WriteTouite extends Action
         if (isset($_SESSION['user'])) {
 
             if ($this->http_method === "GET") {
-                $html = '<div id="writeTouite">';
+                $html = '<div id="writeTouite" class="backMenu">';
                 $html .=
                     '<form method="post">
                 <table>
-                    <tr><td><textarea name="touite" rows="8" cols="55">Écrivez votre touite !</textarea></tr></td></br>
+                    <tr><td><textarea name="touite" class="text_area" rows="8" cols="55">Écrivez votre touite !</textarea></tr></td></br>
                     <tr><td><button type="submit" name="envoyer">Envoyer</button></th></td>
                 </table>
             </form>';

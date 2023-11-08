@@ -11,26 +11,25 @@ class SignIn extends Action
 {
            public function execute(): string
     {
-        $texte = '<div id="signin">';
+        $texte = '<div id="signin" class="backMenu">';
 
         if ($this->http_method == 'GET') {
 
             $texte .= '<form method="post">
                             <table>
-                                <tr><td>Email : </td><td><input type="email" name="email"><br></td></tr>
-                                <tr><td>Mot de passe : </td><td><input type="password" name="passwd"><br></td></tr>
-                                <th><td><input type = "submit" id="confirm" name="connect" value = "Connectez-vous"><br><td></th>
+                                <tr><td>Email : </td><td><input type="email" class="text_area" name="email"><br></td></tr>
+                                <tr><td>Mot de passe : </td><td><input type="password" class="text_area" name="passwd"><br></td></tr>
+                                <tr><th colspan="2"><input type="submit" id="confirm" name="connect" value = "Connectez-vous"></td><tr>
                             </table>
-                            <a class="redirection" href="signup.php">Créer un compte</a>
+                            <p class="redirection"><a href="signup.php">Créer un compte</a></p>
                         </form>' ;
         } else if ($this->http_method == 'POST') {
             $email = $_POST['email'];
             $mdp=$_POST['passwd'];
             $var = Auth::authenticate($email, $mdp);
             if ($var === true) {
-                $texte.="Bienvenue";
+                $texte.="Bienvenue !";
             }
-
         }
         $texte .= '</div>';
         return $texte;

@@ -11,7 +11,7 @@
 <header>
     <h1>TOUITEUR</h1>
     <div class="menu navigation">
-        <a href="../main/index.php"><p>Accueil</p></a>
+        <a href="../main/index.php">Accueil</a>
     </div>
 </header>
 <?php
