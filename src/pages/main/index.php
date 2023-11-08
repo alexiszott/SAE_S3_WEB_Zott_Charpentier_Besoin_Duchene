@@ -13,14 +13,13 @@
     <div class="affiche">
         <?php
         require_once '../../../vendor/autoload.php';
-        use iutnc\touiter\followable\User;
         session_start();
         //Créer une méthode static pour vérifier la connexion à chaque fois
         if (isset($_SESSION['user'])){
             $user = unserialize($_SESSION['user']);
-            $prenom = $user->__get("nomUser");
-            $nom = $user->__get("prenomUser");
-            echo ("$prenom   $nom");
+            $prenom = $user->nomUser;
+            $nom = $user->prenomUser;
+            echo "<p>$prenom $nom</p>";
             echo "</div>";
             echo "<div class=\"menu connexion\">
         <a href=\"?action=disconnect\" class=\"disconnectButton\" >Se déconnecter</a>

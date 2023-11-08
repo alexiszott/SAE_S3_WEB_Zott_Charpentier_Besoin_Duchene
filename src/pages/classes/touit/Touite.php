@@ -41,5 +41,12 @@ class Touite
         return $listeTags;
     }
 
+    public static function nbTouites() : int {
+        $sql = "SELECT COUNT(*) count FROM touite";
+        $pdo = ConnexionFactory::makeConnection();
+        $nbRows = $pdo->query($sql)->fetch(\PDO::FETCH_ASSOC)["count"];
+        $pdo = null;
+        return $nbRows;
+    }
 
 }

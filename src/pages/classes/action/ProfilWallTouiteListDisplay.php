@@ -27,6 +27,9 @@ class ProfilWallTouiteListDisplay extends Action
         $touitListe->userTouiteList($email);
         $t = new TouiteListRenderer($touitListe);
         $r = $t->render();
+        echo "<div class='username'>
+                <h2>$nom[1] $nom[0]</h2>
+            </div>";
         return $r;
 
     }

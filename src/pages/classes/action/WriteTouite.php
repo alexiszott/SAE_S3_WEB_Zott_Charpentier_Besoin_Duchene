@@ -38,7 +38,7 @@ class WriteTouite extends Action
                 $result = $pdo->prepare($sqlIdTouite);
                 $result->execute();
                 // On récupère les tags (s'il y en a) dans le touite et on les ajoute aux différentes tables (tag, tag2touite)
-                $idTouite = $result->fetch(\PDO::FETCH_ASSOC)["max"] + 1;
+                $idTouite = $result->fetch(\PDO::FETCH_ASSOC)["max"];
                 $sqlInsert = "INSERT INTO touite(idUtil, texteTouite) VALUES ($idUtil, '$touite')";
                 $pdo->exec($sqlInsert);
                 Tag::ajouter_tags($listeTags, $idTouite);
