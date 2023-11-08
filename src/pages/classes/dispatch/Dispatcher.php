@@ -59,6 +59,10 @@ class Dispatcher
             case 'display-touite':
                 $act = new TouiteListDisplay();
                 $html = $act->execute();
+                if (isset($_GET['user'])) {
+                    $act =new ProfilWallTouiteListDisplay();
+                    $html= $act->execute();
+                }
                 break;
             case 'display-onetouite':
                 $act = new TouiteDisplay($_GET['id']);
@@ -70,6 +74,7 @@ class Dispatcher
                 break;
         }
         $this->renderPage($html);
+
     }
 
     private function renderPage(string $html):void{
