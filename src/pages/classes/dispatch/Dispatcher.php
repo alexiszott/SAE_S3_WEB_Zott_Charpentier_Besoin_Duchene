@@ -42,7 +42,6 @@ class Dispatcher
             case 'signin':
                 $act = new SignIn();
                 $html = $act->execute();
-
                 break;
             case 'signup':
                 $act = new SignUp();
@@ -69,7 +68,6 @@ class Dispatcher
         <body>
                 $html
         </body>
-          
     FIN;
 
     }

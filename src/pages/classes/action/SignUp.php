@@ -13,21 +13,21 @@ class SignUp extends Action
         parent::__construct();
     }
 
-
     public function execute(): string
     {
-        $texte = '';
-
+        $texte = '<div class="signup">';
         if ($this->http_method == 'GET') {
-
-            $texte .= '<form method="post"> Nom : <input type="text" name="nom" ><br>
-                        Prenom : <input type="text" name="prenom"><br>
-                        Email : <input type="email" name="email"><br>
-                        Mot de passe : <input type="text" name="passwd"><br>
-                        Verfication du mot de passe : <input type="text" name="verifPasswd"><br>
-                        <input type = "submit" name = "creer" value = "Créer votre compte">
-                        </form>' ;
-
+            $texte .= '<form method="post"> 
+                        <table>
+                                <tr><td>Nom : </td><td><input type="text" id="nom" name="nom" ><br></td></tr>
+                                <tr><td>Prenom : </td><td><input type="text" id="prenom" name="prenom"><br></td></tr>
+                                <tr><td>Email : </td><td><input type="email" id="email" name="email"><br></td></tr>
+                                <tr><td>Mot de passe : </td><td><input type="text" id="passwd" name="passwd"><br></td></tr>
+                                <tr><td>Verfication du mot de passe : </td><td><input type="text" id="verifPasswd" name="verifPasswd"><br></td></tr>
+                                <th><td><input type = "submit" id="creer" name = "creer" value = "Créer votre compte"><td></th>
+                        </table>
+                        <p class="redirection">Vous posséder déjà un compte, <a href="signin.php">se connecter</a>.</p><br>
+                        </form>';
         } else if ($this->http_method == 'POST') {
             $nom =$_POST['nom'];
             $prenom = $_POST['prenom'];
@@ -49,6 +49,7 @@ class SignUp extends Action
             }
             
         }
+        $texte .= '</div>';
         return $texte;
     }
 }

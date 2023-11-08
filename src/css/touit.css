@@ -45,7 +45,7 @@ a {
 .menu.connexion{
     position: relative;
     bottom: 20px;
-    left: 1600px;
+    left: 80%;
 }
 
 body {
@@ -69,4 +69,29 @@ body {
 .message {
     background-color: red;
     padding: 10px;
+}
+
+/** SIGNUP **/
+
+.signup{
+    padding: 25px;
+    margin: 5% auto 0 auto;
+    background-color: blue;
+    width: 50vh;
+}
+
+tr{
+    text-align: left;
+}
+
+th{
+    text-align: center;
+}
+
+.redirection {
+    text-align: center;
+}
+
+#creer{
+    text-align: center;
 }
