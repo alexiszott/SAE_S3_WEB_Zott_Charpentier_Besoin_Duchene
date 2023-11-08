@@ -27,7 +27,7 @@ class TouiteRenderer implements Renderer
                 $html .= $this->compact();
                 break;
             case 2:
-                $msgTouite = $this->long();
+                $html .= $this->long();
                 break;
         }
         $html .= '<div class="date"><p> Créé le '.$this->touite->date .'</p></div>';
@@ -42,19 +42,19 @@ class TouiteRenderer implements Renderer
             $html = '<div class="message"><p>'.$this->touite->message.'</p></div>';
         }else{
             $text = substr($this->touite->message, 1, 117) . "...";
-            $html = '<p id="message">'.$text.'</p>';
+            $html = '<p class="message">'.$text.'</p>';
         }
 
         if(!is_null($this->touite->lienImage)){
             $image = '<p>Contient une image</p>';
-            return $html . $image;
+            return '<a id="lienTouite" href="./src/pages/main/index.php">'.$html . $image.'</a>';
         }
-        return $html;
+        return '<a id="lienTouite" href="index.php?action=display-onetouite&id='. $this->touite->id .'">'.$html.'</a>';
     }
 
     private function long()
     {
-        $html = '<p id="message">'.$this->touite->message.'</p>';
+        $html = '<p class="message">'.$this->touite->message.'</p>';
         if(!is_null($this->touite->lienImage)){
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;
