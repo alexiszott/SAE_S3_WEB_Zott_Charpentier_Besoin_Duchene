@@ -21,7 +21,7 @@ class TouiteRenderer implements Renderer
         $firstName = $this->touite->userFirstName;
         $lastName = $this->touite->userLastName;
         $userUrl = User::getUserUrl($firstName, $lastName);
-        $html .= "<div class='infos'><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
         switch ($selector) {
             case 1 :
@@ -31,9 +31,10 @@ class TouiteRenderer implements Renderer
                 $html .= $this->long();
                 break;
         }
-        $html .= '<div class="date"><p> Créé le '.$this->touite->date .'</p></div>';
-        $html .= '<div class="interaction"><p>LIKE</p><p>DISLIKE</p></div>';
 
+        $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
+        $html .= '<p><i class="bi bi-hand-thumbs-up"></i></p><p><i class="bi bi-hand-thumbs-down"></i></p></div>';
+        $html .= '</div>';
         return $html;
     }
 
@@ -60,6 +61,7 @@ class TouiteRenderer implements Renderer
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;
         }
+       
         return $html;
     }
 

@@ -29,7 +29,7 @@ class TouiteDisplay extends Action
             $stmt2 = $pdo->prepare($query2);
             $stmt2->bindParam(1, $result['datePubli']);
             $stmt2->execute();
-            $result2 = $stmt2>fetch(\PDO::FETCH_ASSOC);
+            $result2 = $stmt2->fetch(\PDO::FETCH_ASSOC);
             $tDisplay = new Touite($result['idTouite'],$result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil'], $result2['cheminImage']);
         }
         $pdo=null;

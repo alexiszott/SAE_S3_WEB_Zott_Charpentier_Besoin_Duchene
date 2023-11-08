@@ -50,7 +50,7 @@ class WriteTouite extends Action
         } else {
                 header("Location: ../othersPages/signin.php");
                 exit();
-            }
+        }
         return $html;
     }
 }
