@@ -20,7 +20,7 @@ class TouiteRenderer implements Renderer
         $firstName = $this->touite->userFirstName;
         $lastName = $this->touite->userLastName;
         $userUrl = User::getUserUrl($firstName, $lastName);
-        $html .= "<div class='infos'><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
         switch ($selector) {
             case 1 :
@@ -30,9 +30,9 @@ class TouiteRenderer implements Renderer
                 $html .= $this->long();
                 break;
         }
-        $html .= '<div class="date"><p> Créé le '.$this->touite->date .'</p></div>';
-        $html .= '<div class="interaction"><p>LIKE</p><p>DISLIKE</p></div>';
-
+        $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
+        $html .= '<p><i class="bi bi-hand-thumbs-up"></i></p><p><i class="bi bi-hand-thumbs-down"></i></p></div>';
+        $html .= '</div>';
         return $html;
     }
 
@@ -42,7 +42,7 @@ class TouiteRenderer implements Renderer
             $html = '<div class="message"><p>'.$this->touite->message.'</p></div>';
         }else{
             $text = substr($this->touite->message, 1, 117) . "...";
-            $html = '<p class="message">'.$text.'</p>';
+            $html = '<div class="message"><p>'.$text.'</p></div>';
         }
 
         if(!is_null($this->touite->lienImage)){
@@ -54,7 +54,7 @@ class TouiteRenderer implements Renderer
 
     private function long()
     {
-        $html = '<p class="message">'.$this->touite->message.'</p>';
+        $html = '<div class="message"><p>'.$this->touite->message.'</p></div>';
         if(!is_null($this->touite->lienImage)){
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;
