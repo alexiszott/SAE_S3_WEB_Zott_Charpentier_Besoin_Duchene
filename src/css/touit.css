@@ -48,6 +48,14 @@ a {
     left: 80%;
 }
 
+.affiche{
+    position: relative;
+    bottom: 20px;
+    right: 45%;
+    color: white;
+
+}
+
 body {
     background-color: darkblue;
     margin: 0;

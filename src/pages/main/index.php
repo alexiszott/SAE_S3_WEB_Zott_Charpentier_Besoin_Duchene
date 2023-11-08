@@ -11,6 +11,22 @@
 
 <header>
     <h1>TOUITEUR</h1>
+    <div class="affiche">
+        <?php
+        require_once '../../../vendor/autoload.php';
+        use iutnc\touiter\followable\User;
+        session_start();
+        if (isset($_SESSION['user'])){
+            $user = unserialize($_SESSION['user']);
+            $prenom = $user->__get("nomUser");
+            $nom = $user->__get("prenomUser");
+            echo ("$prenom   $nom");
+
+        }else{
+            echo ("Veuillez vous connecter");
+        }
+        ?>
+    </div>
     <div class="menu navigation">
         <a href="index.php"><p>Profile</p></a>
         <a href="index.php"><p>Accueil</p></a>
@@ -18,6 +34,7 @@
     <div class="menu connexion">
         <a href="../othersPages/signin.php">Se connecter</a>
         <a href="../othersPages/signup.php">S'inscrire</a>
+
     </div>
     <label>
         <input type="text" placeholder="Rechercher..">
