@@ -5,7 +5,7 @@ namespace iutnc\touiter\action;
 use iutnc\touiter\render\TouiteListRenderer;
 use iutnc\touiter\touit\TouiteList;
 
-class TouiteDisplay extends Action
+class TouiteListDisplay extends Action
 {
     public function execute(): string
     {
