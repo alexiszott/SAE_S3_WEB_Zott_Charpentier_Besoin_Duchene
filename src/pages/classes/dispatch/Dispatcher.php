@@ -3,6 +3,7 @@
 namespace iutnc\touiter\dispatch;
 
 use iutnc\touiter\Action\Action;
+use iutnc\touiter\action\Disconnect;
 use iutnc\touiter\Action\MainTouiteListDisplay;
 use iutnc\touiter\Action\Parameters;
 use iutnc\touiter\Action\ProfilTouiteListDisplay;
@@ -16,7 +17,6 @@ use iutnc\touiter\Action\WriteTouite;
 class Dispatcher
 {
     protected ?string $action = null;
-
     public function __construct(){
         $this->action = isset($_GET['action'])? $_GET['action'] : null;
     }
@@ -57,6 +57,10 @@ class Dispatcher
                 break;
             case 'display-touite':
                 $act = new TouiteListDisplay();
+                $html = $act->execute();
+                break;
+            case 'disconnect':
+                $act = new Disconnect();
                 $html = $act->execute();
                 break;
         }
