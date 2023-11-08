@@ -43,4 +43,8 @@ class User
             throw new Exception ("invalid property : $at");
         }
     }
+
+    public static function getUserUrl(string $firstName, string $lastName) : string {
+        return "{$firstName}_{$lastName}";
+    }
 }

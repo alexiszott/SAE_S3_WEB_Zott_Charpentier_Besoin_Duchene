@@ -11,6 +11,7 @@ use iutnc\touiter\Action\ProfilWallTouiteListDisplay;
 use iutnc\touiter\Action\SignIn;
 use iutnc\touiter\Action\SignUp;
 use iutnc\touiter\Action\TagTouiteListDisplay;
+use iutnc\touiter\action\TouiteDisplay;
 use iutnc\touiter\action\TouiteListDisplay;
 use iutnc\touiter\Action\WriteTouite;
 
@@ -59,6 +60,10 @@ class Dispatcher
                 $act = new TouiteListDisplay();
                 $html = $act->execute();
                 break;
+            case 'display-onetouite':
+                $act = new TouiteDisplay($_GET['id']);
+                $html = $act->execute();
+                break;
             case 'disconnect':
                 $act = new Disconnect();
                 $html = $act->execute();
@@ -72,7 +77,7 @@ class Dispatcher
         <body>
                 $html
         </body>
-    FIN;
+     FIN;
 
     }
 
