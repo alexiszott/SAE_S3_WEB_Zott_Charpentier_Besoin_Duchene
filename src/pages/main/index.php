@@ -16,7 +16,7 @@
         <a href="index.php"><p>Accueil</p></a>
     </div>
     <div class="menu connexion">
-        <a href="?action=signin">Se connecter</a>
+        <a href="../othersPages/signin.php">Se connecter</a>
         <a href="../othersPages/signup.php">S'inscrire</a>
     </div>
     <label>

@@ -1,6 +1,6 @@
 <?php
 
-namespace iutnc\touiter\user;
+namespace iutnc\touiter\followable;
 
 use iutnc\touiter\db\ConnexionFactory;
 

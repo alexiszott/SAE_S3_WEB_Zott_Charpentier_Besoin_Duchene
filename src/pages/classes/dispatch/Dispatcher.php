@@ -44,7 +44,6 @@ class Dispatcher
                 $html = $act->execute();
                 break;
             case 'signup':
-                echo "TEST";
                 $act = new SignUp();
                 $html = $act->execute();
                 break;

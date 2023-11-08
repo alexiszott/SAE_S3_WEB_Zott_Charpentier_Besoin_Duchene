@@ -22,7 +22,7 @@ use iutnc\touiter\dispatch\Dispatcher;
 
 ConnexionFactory::setConfig('../classes/conf/config.ini');
 
-$_GET['action'] = 'signup';
+$_GET['action'] = 'signin';
 
 $d = new Dispatcher();
 $d->run();
