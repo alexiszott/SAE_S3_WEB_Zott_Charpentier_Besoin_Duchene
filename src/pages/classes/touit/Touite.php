@@ -33,18 +33,9 @@ class Touite
     {
         $listeTags = null;
         if (str_contains($touite, '#')) {
-            $listeChaine = str_word_count($touite, 1, '#');
-            function tags($var)
-            {
-                return (str_contains($var, '#'));
-            }
-            // On filtre les valeurs pour retenir uniquement les chaînes contenant un #
-            $listeTags = array_filter($listeChaine, "tags");
-            // Après le filtre on obtien des trous dans le tableau, donc on les supprime
-            $listeTags = array_values($listeTags);
-            // On veut uniquement les mots sans les #
-            foreach ($listeTags as $k => $v) {
-                $listeTags[$k] = ltrim($v, '#');
+            preg_match_all('/#(\w+)/', $touite, $matches);
+            if (!empty($matches[1])) {
+                $listeTags = $matches[1];
             }
         }
         return $listeTags;
