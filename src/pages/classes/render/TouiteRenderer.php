@@ -13,7 +13,7 @@ class TouiteRenderer implements Renderer
         $this->touite=$t;
     }
 
-    public function render(int $selector): string
+    public function render(?int $selector = null): string
     {
         $html = '<div class="touite">';
         $html .= '<div class="infos"><p>'.$this->touite->userFirstName.'</p><p>'.$this->touite->userLastName.'</p></div>';
