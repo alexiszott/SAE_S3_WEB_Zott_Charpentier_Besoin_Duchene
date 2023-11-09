@@ -40,4 +40,19 @@ class Tag
             }
         }
     }
+
+    public static function makeTagClickable(string $touite) : string {
+        $listeChaine = explode(' ', $touite);
+        foreach ($listeChaine as $k => $word) {
+            if (str_contains($word , '#')) {
+//                echo "WORD" . $word . "WORD<br>";
+                $lien =  "?action=display-tag-touite&tag=" . ltrim($word, '#');
+                $word = "<a href=$lien>$word</a>";
+//                echo "///" . $word . "///<br>";
+                $listeChaine[$k] = $word;
+            }
+        }
+        $touite = implode(' ',$listeChaine);
+        return $touite;
+    }
 }

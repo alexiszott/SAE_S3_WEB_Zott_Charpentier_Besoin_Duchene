@@ -4,6 +4,7 @@ namespace iutnc\touiter\render;
 
 use iutnc\touiter\followable\User;
 use iutnc\touiter\touit\Touite;
+use iutnc\touiter\followable\Tag;
 
 class TouiteRenderer implements Renderer
 {
@@ -41,10 +42,10 @@ class TouiteRenderer implements Renderer
     private function compact() : string
     {
         if(strlen($this->touite->message ) <= 117){
-            $html = '<div class="message"><p>'.$this->touite->message.'</p></div>';
+            $html = '<div class="message"><p>'.Tag::makeTagClickable($this->touite->message).'</p></div>';
         }else{
             $text = substr($this->touite->message, 1, 117) . "...";
-            $html = '<div class="message"><p>'.$text.'</p></div>';
+            $html = '<p class="message">' . Tag::makeTagClickable($text) . '</p>';
         }
 
         if(!is_null($this->touite->lienImage)){
@@ -56,7 +57,7 @@ class TouiteRenderer implements Renderer
 
     private function long()
     {
-        $html = '<div class="message"><p>'.$this->touite->message.'</p></div>';
+        $html = '<p class="message">' . Tag::makeTagClickable($this->touite->message) . '</p>';
         if(!is_null($this->touite->lienImage)){
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;

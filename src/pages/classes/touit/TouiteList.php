@@ -61,7 +61,7 @@ class TouiteList
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         $limit = $this->nPages * 10;
-        $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util, tag, tag2touite where touite.idUtil=util.idUtil and tag2touite.idTouite=touite.idTouite and tag2touite.idTag=tag.idTag and tag.libelleTag = ? order by datePubli desc limit 10 offset $limit";
+        $query = "select tag2touite.idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util, tag, tag2touite where touite.idUtil=util.idUtil and tag2touite.idTouite=touite.idTouite and tag2touite.idTag=tag.idTag and tag.libelleTag = ? order by datePubli desc limit 10 offset $limit";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(1, $tag);
         $this->creerTouiteListe($stmt, $pdo);

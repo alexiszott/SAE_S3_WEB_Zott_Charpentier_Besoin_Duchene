@@ -63,6 +63,7 @@ class Touite
         return $listeTags;
     }
 
+
     public function getUserLike()
     {
         $rep = '<form method="post"><input type="hidden" name="touiteId" value="' . $this->id . '">';
@@ -85,8 +86,8 @@ class Touite
         return $rep;
     }
 
-    public function getNbLike(): string
-    {
+
+    public function getNbLike() : string{
         $pdo = ConnexionFactory::makeConnection();
         $query = "select SUM(dlike) as dlike from user2like where idTouite= ?";
         $stmt = $pdo->prepare($query);
@@ -146,7 +147,11 @@ class Touite
                     $stmt2->execute();
                 }
                 $pdo = null;
-                header('Location: ' . $_SERVER['PHP_SELF']);
+                if($_GET['action']=='display-onetouite'){
+                    header('Location: ' . $_SERVER['PHP_SELF'] . '?action=display-onetouite&id='.$this->id);
+                }else{
+                    header('Location: ' . $_SERVER['PHP_SELF']);
+                }
             }
 
         } else {
