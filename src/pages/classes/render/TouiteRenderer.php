@@ -32,7 +32,8 @@ class TouiteRenderer implements Renderer
         }
 
         $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
-        $html .= '<p><i class="bi bi-hand-thumbs-up"></i></p><p><i class="bi bi-hand-thumbs-down"></i></p></div>';
+        $html .= $this->touite->getUserLike();
+        $this->touite->setLike();
         $html .= '</div>';
         return $html;
     }

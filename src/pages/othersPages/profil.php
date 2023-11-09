@@ -7,6 +7,7 @@
     <title>Touiteur</title>
     <link rel="stylesheet" href="../../css/touit.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <header>
     <h1>TOUITEUR</h1>
