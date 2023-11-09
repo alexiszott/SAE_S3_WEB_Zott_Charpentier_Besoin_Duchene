@@ -4,6 +4,7 @@ namespace iutnc\touiter\dispatch;
 
 use iutnc\touiter\Action\Action;
 use iutnc\touiter\action\DeleteTouite;
+use iutnc\touiter\action\DeleteTouiteConfirm;
 use iutnc\touiter\action\Disconnect;
 use iutnc\touiter\Action\MainTouiteListDisplay;
 use iutnc\touiter\Action\Parameters;
@@ -29,10 +30,6 @@ class Dispatcher
         switch ($this->action){
             case 'display-main-touite':
                 $act = new MainTouiteListDisplay();
-                $html = $act->execute();
-                break;
-            case 'parameters':
-                $act = new Parameters();
                 $html = $act->execute();
                 break;
             case 'display-profil-touite':
@@ -77,6 +74,10 @@ class Dispatcher
                 break;
             case 'delete-touite':
                 $act = new DeleteTouite();
+                $html = $act->execute();
+                break;
+            case 'delete-touite-confirm':
+                $act = new DeleteTouiteConfirm();
                 $html = $act->execute();
                 break;
         }

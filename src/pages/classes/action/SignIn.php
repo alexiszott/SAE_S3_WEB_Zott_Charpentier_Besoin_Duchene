@@ -13,7 +13,6 @@ class SignIn extends Action
     {
         $texte = '<div id="signin" class="backMenu">';
         if ($this->http_method == 'GET') {
-
             $texte .= '<form method="post">
                             <table>
                                 <tr><td>Email : </td><td><input type="email" class="text_area" name="email"><br></td></tr>
