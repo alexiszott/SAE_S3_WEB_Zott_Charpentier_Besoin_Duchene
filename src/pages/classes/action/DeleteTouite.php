@@ -9,6 +9,7 @@ class DeleteTouite extends Action
 
     public function execute(): string
     {
+        $html = "";
         //On récupère l'ID du touite
         $idTouite = intval($_POST['delete'],10);
         $pdo = ConnexionFactory::makeConnection();
@@ -23,11 +24,24 @@ class DeleteTouite extends Action
         //On récupère l'ID de l'utilisateur qui tente de supprimer  le touite
         $userConnectedSerialized = $_SESSION["user"];
         $userConnectedUnserialized = unserialize($userConnectedSerialized);
-        var_dump($userConnectedUnserialized->idUser);
-        var_dump($idTouiteUser);
-        if($idTouiteUser == $userConnectedUnserialized->idUser){
-            var_dump($idTouiteUser);
+
+        if(intval($idTouiteUser['idUtil'],10) === $userConnectedUnserialized->idUser) {
+            if($this->http_method == 'GET'){
+                $html .= '<div>
+                <form method="post">
+                    <button type="submit" name="supprimer" value="0">Annuler</button>
+                    <button type="submit" name="supprimer" value="1">Suprimer</button>
+                </form>
+                </div>';
+            } else {
+                if($_POST['supprimer'] === 0) {
+                    echo "Annuler";
+                } else {
+                    echo "Supprimer";
+                }
+            }
+
         }
-        return ' ';
+        return $html;
     }
 }
