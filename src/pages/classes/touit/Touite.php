@@ -70,15 +70,12 @@ class Touite
         switch ($this->userLike) {
             case -1 :
                 $rep .= '<button type="submit" name="like"><i class="bi bi-hand-thumbs-up"></i></button><button type="submit" name="dislike"><i class="bi bi-hand-thumbs-down-fill"></i></button>' . $this->getNbLike() . '</div>';
-                //$rep .= '<p><a href="?idT='.$this->id.'&like=y"><i class="bi bi-hand-thumbs-up"></i></a></p><p><a href="?idT='.$this->id.'&like=n"><i class="bi bi-hand-thumbs-down-fill"></i></a></p><p>'.$this->getNbLike() .'</p></div>';
                 break;
             case 0 :
                 $rep .= '<button type="submit" name="like"><i class="bi bi-hand-thumbs-up"></i></button><button type="submit" name="dislike"><i class="bi bi-hand-thumbs-down"></i></button>' . $this->getNbLike() . '</div>';
-                //$rep .= '<p><a href="?idT='.$this->id.'&like=y"><i class="bi bi-hand-thumbs-up"></i></a></p><p><a href="?idT='.$this->id.'&like=n"><i class="bi bi-hand-thumbs-down"></i></a></p><p>'.$this->getNbLike() .'</p></div>';
                 break;
             case 1 :
                 $rep .= '<button type="submit" name="like"><i class="bi bi-hand-thumbs-up-fill"></i></button><button type="submit" name="dislike"><i class="bi bi-hand-thumbs-down"></i></button>' . $this->getNbLike() . '</div>';
-                //$rep .= '<p><a href="?idT='.$this->id.'&like=y"><i class="bi bi-hand-thumbs-up-fill"></i></a></p><p><a href="?idT='.$this->id.'&like=n"><i class="bi bi-hand-thumbs-down"></i></a></p><p>'.$this->getNbLike() .'</p></div>';
 
                 break;
         }
