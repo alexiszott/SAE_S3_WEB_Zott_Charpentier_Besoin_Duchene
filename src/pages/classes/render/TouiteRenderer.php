@@ -24,26 +24,6 @@ class TouiteRenderer implements Renderer
         $idTouite = $this->touite->id;
         $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
-        //Affiche le bouton supprimer si on est le créateur du touite
-        $pdo = ConnexionFactory::makeConnection();
-
-        $userConnectedUnserialized = unserialize($_SESSION["user"]);
-
-        $sqlIdTouiteUser = "SELECT idUtil FROM touite WHERE idTouite = ?";
-        $result = $pdo->prepare($sqlIdTouiteUser);
-        $result->bindParam(1, $idTouite);
-        $result->execute();
-        $row = $result->fetch(\PDO::FETCH_ASSOC);
-
-        if(intval($row['idUtil'],10) === $userConnectedUnserialized->idUser) {
-            $html .= "<div class=\"delete\">
-                    <form method=\"post\" action=\"?action=delete-touite\">
-                    <button type=\"submit\" id=\"delTouite\" name=\"delete\" value=\"$idTouite\">Suprimer</button>
-                    </form>
-                    </div>";
-        }
-        //
-
             switch ($selector) {
                 case 1 :
                     $html .= $this->compact();
@@ -54,6 +34,26 @@ class TouiteRenderer implements Renderer
             }
         $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
         $html .= '<p><i class="bi bi-hand-thumbs-up"></i></p><p><i class="bi bi-hand-thumbs-down"></i></p></div>';
+
+        //Affiche le bouton supprimer si on est le créateur du touite
+        $pdo = ConnexionFactory::makeConnection();
+
+        $sqlIdTouiteUser = "SELECT idUtil FROM touite WHERE idTouite = ?";
+        $result = $pdo->prepare($sqlIdTouiteUser);
+        $result->bindParam(1, $idTouite);
+        $result->execute();
+        $row = $result->fetch(\PDO::FETCH_ASSOC);
+        
+        if(isset($_SESSION["user"])){
+            $userConnectedUnserialized = unserialize($_SESSION["user"]);
+            if(intval($row['idUtil'],10) === $userConnectedUnserialized->idUser) {
+                $html .= "<div class=\"delete\">
+                    <form method=\"post\" action=\"?action=delete-touite\">
+                    <button type=\"submit\" class='supButton' id=\"delButton\" name=\"delete\" value=\"$idTouite\">Suprimer</button>
+                    </form>
+                    </div>";
+            }
+        }
         $html .= '</div>';
         return $html;
     }

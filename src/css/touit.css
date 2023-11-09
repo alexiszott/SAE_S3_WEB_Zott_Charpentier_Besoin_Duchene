@@ -208,6 +208,25 @@ textarea {
     z-index: 1000;
 }
 
-#delButton{
-    background-color: red;
+.supButton {
+    color: red;
+    background-color: rgba(239, 35, 60, 0.2);
+    padding: 1%;
+    border: 3px solid rgba(239, 35, 60, 0.5);
+    border-radius: 12px;
+}
+
+#delButton {
+    position: relative;
+    left: 85%;
+    bottom: 240px;
+    margin: 0 auto;
+}
+
+#d th td{
+    text-align: center;
+}
+
+#textConfirm{
+    margin: 0 auto;
 }
