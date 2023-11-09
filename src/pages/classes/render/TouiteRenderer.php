@@ -20,8 +20,14 @@ class TouiteRenderer implements Renderer
         $firstName = $this->touite->userFirstName;
         $lastName = $this->touite->userLastName;
         $userUrl = User::getUserUrl($firstName, $lastName);
+        $idTouite = $this->touite->id;
         $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
+        $html .= "<div class=\"delete\">
+                    <form method=\"post\" action=\"?action=delete-touite\">
+                    <button type=\"submit\" id=\"delTouite\" name=\"delete\" value=\"$idTouite\">Suprimer</button>
+                    </form>
+                    </div>";
         switch ($selector) {
             case 1 :
                 $html .= $this->compact();
@@ -30,7 +36,6 @@ class TouiteRenderer implements Renderer
                 $html .= $this->long();
                 break;
         }
-
         $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
         $html .= '<p><i class="bi bi-hand-thumbs-up"></i></p><p><i class="bi bi-hand-thumbs-down"></i></p></div>';
         $html .= '</div>';

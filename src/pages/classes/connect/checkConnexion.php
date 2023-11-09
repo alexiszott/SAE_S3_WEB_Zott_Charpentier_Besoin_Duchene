@@ -18,8 +18,7 @@ class checkConnexion
             </div>";
             $html .= "<div class=\"menu navigation\">
                 <a href=\"../othersPages/profil.php\">Profile</a>
-                <a href=\"index.php\">Accueil</a>
-                <a href=\"../othersPages/writeTouite.php\">Touiter</a>
+                <a href=\"../main/index.php\">Accueil</a>
             </div>";
         }else{
             $html .= "Vous n'êtes pas connecter</div>";
@@ -29,7 +28,6 @@ class checkConnexion
             </div>";
             $html .= "<div class=\"menu navigation\">
                 <a href=\"index.php\">Accueil</a>
-                <a href=\"index.php\">Touiter</a>
             </div>";
         }
         return $html;

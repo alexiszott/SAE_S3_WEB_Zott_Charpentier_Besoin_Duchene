@@ -10,12 +10,14 @@ p {
 
 h1 {
     margin: 0;
-    font-size: xxx-large;
+    font-size: 60px;
 }
 
 header {
-    padding-top: 5%;
+    z-index: 1;
     position: sticky;
+    top: -20%;
+    padding-top: 5%;
     background-color: white;
     text-align: center;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0,0.1); /*any color you want*/
@@ -57,9 +59,11 @@ a {
 }
 
 .affiche{
+    width: 10%;
     position: relative;
-    right: 70%;
-    color: blue;
+    top: 50px;
+    right: -10%;
+    color: black;
 }
 
 
@@ -157,8 +161,8 @@ th{
 
 #writeTouite {
     padding: 25px;
-    margin: 5% auto 0 auto;
-    width: 50vh;
+    margin: 0 auto 0 auto;
+    width: 35%;
 }
 
 textarea {
@@ -182,4 +186,25 @@ textarea {
 .text_area {
     border: 1px solid rgb(220,220,220);
     border-radius: 6px;
+}
+
+.profileName {
+    text-align: center;
+}
+
+/** SEARCH BAR **/
+
+.search {
+    position: absolute;
+    left: 75%;
+}
+
+#search_bar{
+    margin-top: 150px;
+    border: 1px solid rgb(220,220,220);
+    padding-left: 25px;
+    border-radius: 24px;
+    height: 40px;
+    width: 150%;
+
 }

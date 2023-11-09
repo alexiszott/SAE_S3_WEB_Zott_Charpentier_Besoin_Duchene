@@ -12,7 +12,6 @@ class SignIn extends Action
            public function execute(): string
     {
         $texte = '<div id="signin" class="backMenu">';
-
         if ($this->http_method == 'GET') {
 
             $texte .= '<form method="post">
@@ -30,6 +29,8 @@ class SignIn extends Action
             if ($var === true) {
                 $texte.="Bienvenue !";
             }
+            header("Location: ../main/index.php");
+            exit();
         }
         $texte .= '</div>';
         return $texte;

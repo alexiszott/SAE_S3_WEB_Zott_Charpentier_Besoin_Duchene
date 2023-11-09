@@ -19,10 +19,15 @@
         $c = new checkConnexion();
         echo $c::isConnected();
         ?>
-    <label>
-        <input type="text" placeholder="Rechercher..">
-    </label>
 </header>
+<div id="writeTouite">
+    <form method="post" action="?action=write-touite">
+        <table>
+            <tr><td><textarea name="touite" class="text_area" rows="8" cols="55" placeholder="Écrivez votre touite ..."></textarea></tr></td></br>
+            <tr><th><button type="submit" name="envoyer">Touiter</button></th></tr>
+        </table>
+    </form>
+</div>
 <?php
 
 use iutnc\touiter\db\ConnexionFactory;

@@ -10,9 +10,17 @@
 </head>
 <header>
     <h1>TOUITEUR</h1>
-    <div class="menu navigation">
-        <a href="../main/index.php">Accueil</a>
-    </div>
+    <?php
+    require_once '../../../vendor/autoload.php';
+    use iutnc\touiter\followable\User;
+    use \iutnc\touiter\connect\checkConnexion;
+    session_start();
+    $c = new checkConnexion();
+    echo $c::isConnected();
+    ?>
+    <label>
+        <input type="text" placeholder="Rechercher..">
+    </label>
 </header>
 <?php
 require_once '../../../vendor/autoload.php';
@@ -21,7 +29,7 @@ use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\dispatch\Dispatcher;
 
 ConnexionFactory::setConfig('../classes/conf/config.ini');
-session_start();
+
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
     $prenom = $user->__get("nomUser");

@@ -46,7 +46,8 @@ class SignUp extends Action
                     $texte.=$authException->getMessage();
                 }
             }
-            
+            header("Location: ../main/index.php");
+            exit();
         }
         $texte .= '</div>';
         return $texte;

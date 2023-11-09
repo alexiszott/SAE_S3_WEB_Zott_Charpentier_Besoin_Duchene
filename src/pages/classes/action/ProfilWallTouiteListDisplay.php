@@ -14,6 +14,7 @@ class ProfilWallTouiteListDisplay extends Action
     {
 
         $nom = explode('_',$_GET['user']);
+        $html = "<div class=\"profileName\"><h2>$nom[0] $nom[1]</h2></div>";
         $pdo = ConnexionFactory::makeConnection();
         $sql = "select emailUtil from util where nomUtil = ? AND prenomUtil = ? ";
         $result = $pdo->prepare($sql);
@@ -26,8 +27,8 @@ class ProfilWallTouiteListDisplay extends Action
         $touitListe = new TouiteList();
         $touitListe->userTouiteList($email);
         $t = new TouiteListRenderer($touitListe);
-        $r = $t->render();
-        return $r;
+        $html .= $t->render();
+        return $html;
 
     }
 }

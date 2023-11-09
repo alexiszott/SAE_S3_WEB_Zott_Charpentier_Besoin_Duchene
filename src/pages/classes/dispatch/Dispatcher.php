@@ -3,11 +3,13 @@
 namespace iutnc\touiter\dispatch;
 
 use iutnc\touiter\Action\Action;
+use iutnc\touiter\action\DeleteTouite;
 use iutnc\touiter\action\Disconnect;
 use iutnc\touiter\Action\MainTouiteListDisplay;
 use iutnc\touiter\Action\Parameters;
 use iutnc\touiter\Action\ProfilTouiteListDisplay;
 use iutnc\touiter\Action\ProfilWallTouiteListDisplay;
+use iutnc\touiter\action\Search;
 use iutnc\touiter\Action\SignIn;
 use iutnc\touiter\Action\SignUp;
 use iutnc\touiter\Action\TagTouiteListDisplay;
@@ -23,6 +25,7 @@ class Dispatcher
     }
 
     public function run() : void {
+        $html = ' ';
         switch ($this->action){
             case 'display-main-touite':
                 $act = new MainTouiteListDisplay();
@@ -72,9 +75,12 @@ class Dispatcher
                 $act = new Disconnect();
                 $html = $act->execute();
                 break;
+            case 'delete-touite':
+                $act = new DeleteTouite();
+                $html = $act->execute();
+                break;
         }
         $this->renderPage($html);
-
     }
 
     private function renderPage(string $html):void{
@@ -83,7 +89,6 @@ class Dispatcher
                 $html
         </body>
      FIN;
-
     }
 
 }

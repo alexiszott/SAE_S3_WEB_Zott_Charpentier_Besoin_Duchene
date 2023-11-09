@@ -9,20 +9,8 @@ class WriteTouite extends Action
 {
     public function execute(): string
     {
-        session_start();
-        $html = null;
+        $html = '';
         if(isset($_SESSION['user'])){
-            $html = '<div id="writeTouite">';
-            if ($this->http_method === "GET") {
-                $html = '<div id="writeTouite" class="backMenu">';
-                $html .=
-                    '<form method="post">
-                <table>
-                    <tr><td><textarea name="touite" class="text_area" rows="8" cols="55">Écrivez votre touite !</textarea></tr></td></br>
-                    <tr><td><button type="submit" name="envoyer">Envoyer</button></th></td>
-                </table>
-            </form>';
-            } else {
                 if (isset($_POST["envoyer"])) {
                     // Connexion à la base de données
                     $pdo = ConnexionFactory::makeConnection();
@@ -45,10 +33,9 @@ class WriteTouite extends Action
                     // Insertion du nouveau touite dans la table notation
                     $sqlInsert = "INSERT INTO notation VALUES ($idTouite, $idUtil, 0)";
                     $pdo->exec($sqlInsert);
-                    $html .= '</div>';
+                    header("Location: ../main/index.php");
+                    exit();
                 }
-
-            }
         } else {
             header("Location: ../othersPages/signin.php");
             exit();
