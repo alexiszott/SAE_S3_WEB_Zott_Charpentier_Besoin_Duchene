@@ -13,22 +13,20 @@ class ProfilWallTouiteListDisplay extends Action
     public function execute(): string
     {
 
-        $nom = explode('_',$_GET['user']);
+        $id = $_GET['user'];
         $pdo = ConnexionFactory::makeConnection();
-        $sql = "select emailUtil from util where nomUtil = ? AND prenomUtil = ? ";
+        $sql = "select nomUtil, prenomUtil from util where idUtil = ?";
         $result = $pdo->prepare($sql);
-        $result->bindParam(1, $nom[1]);
-        $result->bindParam(2,$nom[0]);
+        $result->bindParam(1, $id);
         $result->execute();
         $u = $result->fetch(\PDO::FETCH_ASSOC);
-        $email = $u['emailUtil'];
 
         $touitListe = new TouiteList();
-        $touitListe->userTouiteList($email);
+        $touitListe->userTouiteList($id);
         $t = new TouiteListRenderer($touitListe);
         $r = $t->render();
         echo "<div class='username'>
-                <h2>$nom[1] $nom[0]</h2>
+                <h2>".$u['prenomUtil']." ".$u['nomUtil']."</h2>
             </div>";
         return $r;
 

@@ -2,6 +2,7 @@
 
 namespace iutnc\touiter\render;
 
+use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\followable\User;
 use iutnc\touiter\touit\Touite;
 use iutnc\touiter\followable\Tag;
@@ -17,12 +18,27 @@ class TouiteRenderer implements Renderer
 
     public function render(?int $selector = null): string
     {
+        $pdo = ConnexionFactory::makeConnection();
+        $query = "SELECT idUtil from touite where idTouite = ?";
+        $stmt = $pdo->prepare($query);
+        $id  = $this->touite->id;
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $pdo = null;
         $html = '<div class="touite">';
-        $firstName = $this->touite->userFirstName;
-        $lastName = $this->touite->userLastName;
-        $userUrl = User::getUserUrl($firstName, $lastName);
-        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+        if(isset($_SESSION['user'])){
+            $user = unserialize($_SESSION['user']);
+            $id = $user->idUser;
+            if($result['idUtil']==$id){
+                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href='../othersPages/profil.php'> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+            } else {
+                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+            }
+        } else {
+            $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
+        }
         switch ($selector) {
             case 1 :
                 $html .= $this->compact();

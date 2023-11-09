@@ -25,9 +25,8 @@ ConnexionFactory::setConfig('../classes/conf/config.ini');
 session_start();
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
-    $prenom = $user->__get("nomUser");
-    $nom = $user->__get("prenomUser");
-    $_GET['user']=("{$prenom}_$nom");
+    $id = $user->idUser;
+    $_GET['user']=$id;
 }
 
 $_GET['action'] = 'display-touite';

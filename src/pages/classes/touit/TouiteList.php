@@ -47,13 +47,13 @@ class TouiteList
         $this->creerTouiteListe($stmt, $pdo);
     }
 
-    public function userTouiteList(string $email){
+    public function userTouiteList(string $id){
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         $limit = $this->nPages * 10;
-        $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util where touite.idUtil=util.idUtil and util.emailUtil = ? order by datePubli desc limit 10 offset $limit";
+        $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util where touite.idUtil=util.idUtil and util.idUtil = ? order by datePubli desc limit 10 offset $limit";
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(1, $email);
+        $stmt->bindParam(1, $id);
         $this->creerTouiteListe($stmt, $pdo);
     }
 

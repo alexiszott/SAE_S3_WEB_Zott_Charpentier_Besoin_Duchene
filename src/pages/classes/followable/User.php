@@ -40,11 +40,7 @@ class User
         if(property_exists($this, $at)){
             return $this->$at;
         } else {
-            throw new Exception ("invalid property : $at");
+            throw new \Exception ("invalid property : $at");
         }
-    }
-
-    public static function getUserUrl(string $firstName, string $lastName) : string {
-        return "{$firstName}_{$lastName}";
     }
 }
