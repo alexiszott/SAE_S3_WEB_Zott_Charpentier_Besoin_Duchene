@@ -30,6 +30,9 @@ class SignIn extends Action
             if ($var === true) {
                 $texte.="Bienvenue !";
             }
+            else {
+                $texte .= "<p>Cet email n'existe pas, veuillez créer un compte</p><br><a href='signup.php'>Créer un compte</a>";
+            }
         }
         $texte .= '</div>';
         return $texte;

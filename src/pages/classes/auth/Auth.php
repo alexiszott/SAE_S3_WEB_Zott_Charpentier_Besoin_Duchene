@@ -18,11 +18,13 @@ class Auth
         $result = $pdo->prepare($sql);
         $result->bindParam(1, $email);
         $result->execute();
-        while ($hash = $result->fetch(\PDO::FETCH_ASSOC)) {
-            $pdo = null;
-            if (password_verify($password, $hash['passwd'])) {
-                self::loadProfile($email);
-                return true;
+        if ($result->rowCount() > 0) {
+            while ($hash = $result->fetch(\PDO::FETCH_ASSOC)) {
+                $pdo = null;
+                if (password_verify($password, $hash['passwd'])) {
+                    self::loadProfile($email);
+                    return true;
+                }
             }
         }
         return false;
