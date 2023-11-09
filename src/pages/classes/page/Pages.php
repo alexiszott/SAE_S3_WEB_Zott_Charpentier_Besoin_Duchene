@@ -19,6 +19,7 @@ class Pages
     public static function nbPages($email=null) : int {
         $pdo = ConnexionFactory::makeConnection();
         $page = 0;
+        //Cas ou il n'y a pas d'email cela retourne tout les touites
         if($email===null){
             $sql = "SELECT CEIL(COUNT(idTouite)/10) as nbPages FROM touite";
             $stmt = $pdo->prepare($sql);
@@ -40,7 +41,8 @@ class Pages
         return $page;
     }
 
-    function pageSuivante(){
+    function pageSuivante(): int
+    {
         $nBpagesTot = self::nbPages();
         if ($this->currentPage<$nBpagesTot){
             $this->currentPage+=1;
@@ -48,8 +50,8 @@ class Pages
         return $this->currentPage;
     }
 
-    function pagePrecedente(){
-        $nBpagesTot = self::nbPages();
+    function pagePrecedente(): int
+    {
         if ($this->currentPage>0){
             $this->currentPage-=1;
         }
