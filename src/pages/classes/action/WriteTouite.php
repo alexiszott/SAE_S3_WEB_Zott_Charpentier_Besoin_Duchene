@@ -31,29 +31,48 @@ class WriteTouite extends Action
 
                 // On récupère les tags (s'il y en a) dans le touite et on les ajoute aux différentes tables (tag, tag2touite)
                 $idTouite = max($result->fetch(\PDO::FETCH_ASSOC)["max"]+1, 1);
+
                 //Si le touite a une image
                 if (isset($_FILES["imageInput"]) && $_FILES["imageInput"]["error"] == 0) {
+                    $dossierImage = "./uploadImages/";
 
-                    $dest = "../../uploadImages/";
-                    $destImage = $dest.$_FILES['imageInput']['name'];
-                    $retour = copy($_FILES['imageInput']['tmp_name'], $destImage);
-                    if($retour){
+                    if (!file_exists($dossierImage)) {
+                        mkdir($dossierImage, 0777, true);
+                    }
+
+                    $cheminImage = $dossierImage . $_FILES['imageInput']['name'];
+
+                    // Copie l'image vers le dossier spécifié
+                    $r = copy($_FILES['imageInput']['tmp_name'], $cheminImage);
+
+                    if ($r) {
+                        //Ajout de l'img dans la BD
                         $sqlInsertImage = "INSERT INTO image(cheminImage) VALUES (?)";
                         $result = $pdo->prepare($sqlInsertImage);
-                        $result->bindParam(1, $_FILES['imageInput']['name']);
+                        $result->bindParam(1, $cheminImage);
                         $result->execute();
 
-                        $sqlIdImage = "SELECT MAX(idImage) max FROM image";
-                        $result = $pdo->prepare($sqlIdImage);
+                        //id de l'image (dernier id)
+                        $idImage = $pdo->lastInsertId();
+
+                        //Ajout du touite avec l'img
+                        $sqlInsert = "INSERT INTO touite(idUtil, texteTouite, idImage) VALUES (?, ?, ?)";
+                        $result = $pdo->prepare($sqlInsert);
+                        $result->bindParam(1, $idUtil);
+                        $result->bindParam(2, $touite);
+                        $result->bindParam(3, $idImage);
                         $result->execute();
-                        $idImage = max($result->fetch(\PDO::FETCH_ASSOC)["max"], 1);
-                        $sqlInsert = "INSERT INTO touite(idUtil, texteTouite, idImage) VALUES ($idUtil, '$touite',$idImage)";
+                    } else {
+                        echo "Erreur";
                     }
                 } else {
-                    $sqlInsert = "INSERT INTO touite(idUtil, texteTouite) VALUES ($idUtil, '$touite')";
+                    //Si le touite n'a pas d'image, on insert dans la BD un touite sans image
+                    $sqlInsert = "INSERT INTO touite(idUtil, texteTouite) VALUES (?, ?)";
+                    $result = $pdo->prepare($sqlInsert);
+                    $result->bindParam(1, $idUtil);
+                    $result->bindParam(2, $touite);
+                    $result->execute();
                 }
-
-                $pdo->exec($sqlInsert);
 
                 Tag::ajouter_tags($listeTags, $idTouite);
 
