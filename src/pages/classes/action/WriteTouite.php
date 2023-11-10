@@ -34,8 +34,9 @@ class WriteTouite extends Action
                 //Si le touite a une image
                 if (isset($_FILES["imageInput"]) && $_FILES["imageInput"]["error"] == 0) {
 
-                    $retour = copy($_FILES['imageInput']['tmp_name'], $_FILES['imageInput']['name']);
-
+                    $dest = "../../uploadImages/";
+                    $destImage = $dest.$_FILES['imageInput']['name'];
+                    $retour = copy($_FILES['imageInput']['tmp_name'], $destImage);
                     if($retour){
                         $sqlInsertImage = "INSERT INTO image(cheminImage) VALUES (?)";
                         $result = $pdo->prepare($sqlInsertImage);
