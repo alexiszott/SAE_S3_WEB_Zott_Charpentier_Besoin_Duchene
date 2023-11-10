@@ -193,10 +193,9 @@ textarea {
     border-radius: 6px;
 }
 
-<<<<<<< HEAD
 .username {
     text-align: center;
-=======
+}
 .profileName {
     text-align: center;
 }
@@ -259,5 +258,4 @@ a{
 
 .buttonNavigation:hover{
     background-color: #4ea8de;
->>>>>>> alexis
 }
