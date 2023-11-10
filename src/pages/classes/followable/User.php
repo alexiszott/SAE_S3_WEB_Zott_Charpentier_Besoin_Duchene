@@ -29,4 +29,47 @@ class User
             throw new \Exception ("invalid property : $at");
         }
     }
+
+    public static function EtatTag(string $tag):bool
+    {
+        $etat = "";
+        $idTag = Tag::getIdTag($tag);
+
+        $pdo = ConnexionFactory::makeConnection();
+        $sql = "SELECT * FROM suivretag where
+             idUtil = ? AND idTag = ?";
+        $statment = $pdo->prepare($sql);
+        $user = unserialize($_SESSION['user']);
+        $idUser = $user->idUser;
+        $statment->bindParam(1, $idUser);
+        $statment->bindParam(2, $idTag);
+        $result = $statment->execute();
+        $row = $statment->fetch(\PDO::FETCH_ASSOC);
+        return !$row == null;
+    }
+
+    public static function suivreOuNonTag(string $tag): void
+    {
+        $idTag = Tag::getIdTag($tag);
+        $pdo = ConnexionFactory::makeConnection();
+        $sql = null;
+        $user = unserialize($_SESSION['user']);
+        $idUser = $user->idUser;
+        if (isset($_POST['Nesuitpas'])){
+         $sql = "DELETE FROM suivretag WHERE idUtil = ? AND idTag = ? ";
+
+    } if(isset($_POST['Suit'])){
+            $sql="INSERT INTO suivretag VALUES (?,?)";
+        }
+        if(!is_null($sql)){
+            $statment = $pdo->prepare($sql);
+            $statment->bindParam(1, $idUser);
+            $statment->bindParam(2, $idTag);
+            $statment->execute();
+        }
+        $pdo=null;
+    }
+
+
+
 }
