@@ -32,11 +32,11 @@ class ProfilWallTouiteListDisplay extends Action
                 $selfUser->suivreOuNonUser($id);
                 if ($selfUser->suitUser($id)) {
                     $r.= '<form method="post"> 
-                        <button name ="suitplu"> Ne plus suivre</button>
+                        <button name ="suitplu" class="buttonNavigation"> Ne plus suivre</button>
                     </form>';
                 } else {
                     $r.= '<form method="post">
-                    <button name = "suit"> Suivre</button>
+                    <button name = "suit" class="buttonNavigation"> Suivre</button>
                     </form>';
                 }
 
