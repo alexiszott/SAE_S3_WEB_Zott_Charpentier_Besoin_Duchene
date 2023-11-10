@@ -30,16 +30,28 @@ class TouiteRenderer implements Renderer
 
         $idTouite = $this->touite->id;
         $idUtil = $result["idUtil"];
-        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$idUtil> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
-
-            switch ($selector) {
-                case 1 :
-                    $html .= $this->compact();
-                    break;
-                case 2:
-                    $html .= $this->long();
-                    break;
+        if(isset($_SESSION['user'])){
+            $user = unserialize($_SESSION['user']);
+            $id = $user->idUser;
+            if($result['idUtil']==$id){
+                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i>
+                          <a href='profil.php'> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+            } else {
+                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i>
+                          <a href=?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
             }
+        }
+        else {
+            $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=" . $result['idUtil'] . "> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+        }
+        switch ($selector) {
+            case 1 :
+                $html .= $this->compact();
+                break;
+            case 2:
+                $html .= $this->long();
+                break;
+        }
         $html .= $this->touite->getUserLike();
         $this->touite->setLike();
         $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
@@ -52,7 +64,7 @@ class TouiteRenderer implements Renderer
         $result->bindParam(1, $idTouite);
         $result->execute();
         $row = $result->fetch(\PDO::FETCH_ASSOC);
-        
+
         if(isset($_SESSION["user"])){
             $userConnectedUnserialized = unserialize($_SESSION["user"]);
             if(intval($row['idUtil']) === $userConnectedUnserialized->idUser) {
