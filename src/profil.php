@@ -29,7 +29,9 @@ if (isset($_SESSION['user'])) {
     $_GET['user']=$id;
 }
 
-$_GET['action'] = 'display-touite';
+if (!isset($_GET["action"])) {
+    $_GET['action'] = 'display-touite';
+}
 
 $d = new Dispatcher();
 $d->run();

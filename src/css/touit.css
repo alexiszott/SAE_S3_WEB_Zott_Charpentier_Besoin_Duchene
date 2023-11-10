@@ -7,6 +7,8 @@ html {
 p, td, th, tr{
     color: black;
     font-size: 1.1em;
+    white-space: pre-line;
+    overflow: hidden;
 }
 
 #title{
@@ -191,12 +193,13 @@ textarea {
 .text_area {
     border: 1px solid rgb(220,220,220);
     border-radius: 6px;
+    font-size: 1.1em;
 }
+
 
 .username {
     text-align: center;
 }
-
 .profileName {
     text-align: center;
 }
@@ -228,7 +231,7 @@ textarea {
 #delButton {
     position: relative;
     left: 85%;
-    bottom: 240px;
+    bottom: 275px;
     margin: 0 auto;
 }
 
