@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace iutnc\touiter\touit;
 
 use iutnc\touiter\db\ConnexionFactory;
@@ -22,7 +22,7 @@ class TouiteList
         throw new \Exception ("$at: invalid property");
     }
 
-    public function creerTouiteListe(\PDOStatement $statement, \PDO $pdo){
+    public function creerTouiteListe(\PDOStatement $statement, \PDO $pdo) : void {
         $statement->execute();
         while ($result = $statement->fetch(\PDO::FETCH_ASSOC)) {
             if(is_null($result['idImage'])){
@@ -39,32 +39,39 @@ class TouiteList
 
     }
 
-    public function mainTouiteList(){
+    public function mainTouiteList() : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         if (isset($_GET['page'])){
             $this->nPages=($_GET['page'])-1;
         }
         $limit = $this->nPages * 10;
-        $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util where touite.idUtil=util.idUtil order by datePubli desc limit 10 offset $limit";
+        $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil 
+                  from touite, util 
+                  where touite.idUtil=util.idUtil 
+                  order by datePubli desc limit 10 offset $limit";
         $stmt = $pdo->query($query);
         $this->creerTouiteListe($stmt, $pdo);
     }
 
-    public function userTouiteList(string $id){
+    public function userTouiteList(string $id) : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         if (isset($_GET['page'])){
             $this->nPages=($_GET['page'])-1;
         }
         $limit = $this->nPages * 10;
-        $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util where touite.idUtil=util.idUtil and util.idUtil = ? order by datePubli desc limit 10 offset $limit";
+        $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil 
+                  from touite, util 
+                  where touite.idUtil=util.idUtil 
+                    and util.idUtil = ? 
+                  order by datePubli desc limit 10 offset $limit";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(1, $id);
         $this->creerTouiteListe($stmt, $pdo);
     }
 
-    public function tagTouiteList(string $tag){
+    public function tagTouiteList(string $tag) : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         if (isset($_GET['page'])){
@@ -81,6 +88,30 @@ class TouiteList
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(1, $tag);
         $this->creerTouiteListe($stmt, $pdo);
+    }
+
+    public function getTouiteListInteressant(string $idUtil) : void {
+        $pdo = ConnexionFactory::makeConnection();
+        if (isset($_GET['page'])){
+            $this->nPages=($_GET['page'])-1;
+        }
+        $limit = $this->nPages * 10;
+        $sqlIdTouite = "SELECT touite.idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil
+                        FROM touite, util 
+                        WHERE touite.idUtil=util.idUtil 
+                        AND touite.idTouite IN 
+                        (SELECT touite.idTouite FROM touite, suivreutil
+                        WHERE touite.idUtil = suivreutil.idUtilSuivi
+                        AND suivreUtil.idUtil = :idUtil
+                        UNION 
+                        SELECT tag2touite.idTouite FROM tag2touite, suivretag
+                        WHERE tag2touite.idTag = suivretag.idTag
+                        AND suivreTag.idUtil = :idUtil)
+                        ORDER BY datePubli DESC;";
+        $stmt = $pdo->prepare($sqlIdTouite);
+        $stmt->bindParam(":idUtil", $idUtil);
+        $this->creerTouiteListe($stmt, $pdo);
+        $pdo = null;
     }
 
 }
