@@ -18,9 +18,6 @@
     $c = new checkConnexion();
     echo $c::isConnected();
     ?>
-    <label>
-        <input type="text" placeholder="Rechercher..">
-    </label>
 </header>
 <?php
 require_once '../../../vendor/autoload.php';

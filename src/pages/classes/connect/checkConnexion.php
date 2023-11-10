@@ -14,20 +14,22 @@ class checkConnexion
             $html .= ("$prenom   $nom");
             $html .= "</div>";
             $html .= "<div class=\"menu connexion\">
-            <a href=\"?action=disconnect\" class=\"disconnectButton\" >Se déconnecter</a>
+            <form action='?action=disconnect'>
+            <a href=\"?action=disconnect\" class='buttonNavigation' >Se déconnecter</a>
+            </form>
             </div>";
             $html .= "<div class=\"menu navigation\">
-                <a href=\"../othersPages/profil.php\">Profile</a>
-                <a href=\"../main/index.php\">Accueil</a>
+                    <a href=\"../othersPages/profil.php\" class='buttonNavigation'>Profile</a>
+                    <a href=\"../main/index.php\" class='buttonNavigation'>Accueil</a>
             </div>";
         }else{
             $html .= "Vous n'êtes pas connecter</div>";
             $html .= "<div class=\"menu connexion\">
-                <a href=\"../othersPages/signin.php\" class=\"connexionButton\">Se connecter</a>
-                <a href=\"../othersPages/signup.php\" class=\"connexionButton\">S'inscrire</a>
+            <a href=\"../othersPages/signin.php\" class='buttonNavigation'>Se connecter</a>
+            <a href=\"../othersPages/signup.php\" class='buttonNavigation'>S'inscrire</a>
             </div>";
             $html .= "<div class=\"menu navigation\">
-                <a href=\"index.php\">Accueil</a>
+                <a href=\"index.php\" class='buttonNavigation'>Accueil</a>
             </div>";
         }
         return $html;

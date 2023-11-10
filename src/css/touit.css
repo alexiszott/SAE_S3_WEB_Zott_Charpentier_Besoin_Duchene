@@ -4,14 +4,20 @@ html {
     font-family: Arial, serif;
 }
 
-p {
+p, td, th, tr{
     color: black;
+    font-size: 1.1em;
 }
 
-h1 {
+#title{
     margin: 0;
     font-size: 60px;
+    color: #2667ff;
+    font-weight: 900;
+    text-shadow: 0 8px 0 darkblue;
 }
+
+
 
 header {
     z-index: 1;
@@ -20,15 +26,9 @@ header {
     padding-top: 5%;
     background-color: white;
     text-align: center;
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0,0.1); /*any color you want*/
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0,0.1);
     padding-bottom: 1%;
     border-bottom: 1px solid rgb(220,220,220);
-}
-
-a {
-    color: cornflowerblue;
-    margin: 0 auto;
-    text-decoration: none;
 }
 
 .menu {
@@ -41,9 +41,6 @@ a {
     margin: 1%;
 }
 
-.menu a {
-    flex: 1 1 0;
-}
 
 .menu.navigation{
     width: 30%;
@@ -65,7 +62,6 @@ a {
     right: -10%;
     color: black;
 }
-
 
 body {
     background-color: white;
@@ -176,6 +172,14 @@ textarea {
     resize: none;
 }
 
+.textField{
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    padding: 6px;
+}
+
 .backMenu {
     border: 1px solid rgb(220,220,220);
     background-color: white;
@@ -229,4 +233,25 @@ textarea {
 
 #textConfirm{
     margin: 0 auto;
+}
+
+.buttonNavigation{
+    color: white;
+    margin: 0;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: none;
+    background: #2667ff;
+    cursor:pointer;
+    font-size: 1.1em;
+    width: fit-content;
+}
+
+a{
+    text-decoration: none;
+}
+
+.buttonNavigation:hover{
+    background-color: #4ea8de;
 }

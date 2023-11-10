@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <header>
-    <h1>TOUITEUR</h1>
+    <h1 id="title">TOUITEUR</h1>
         <?php
         require_once '../../../vendor/autoload.php';
         use iutnc\touiter\followable\User;
@@ -23,8 +23,8 @@
 <div id="writeTouite">
     <form method="post" action="?action=write-touite">
         <table>
-            <tr><td><textarea name="touite" class="text_area" rows="8" cols="55" placeholder="Écrivez votre touite ..."></textarea></tr></td></br>
-            <tr><th><button type="submit" name="envoyer">Touiter</button></th></tr>
+            <tr><td><textarea name="touite" maxlength="235" class="text_area" rows="8" cols="55" placeholder="Écrivez votre touite ..."></textarea></tr></td></br>
+            <tr><th><button type="submit" class="buttonNavigation" name="envoyer">Touiter</button></th></tr>
         </table>
     </form>
 </div>

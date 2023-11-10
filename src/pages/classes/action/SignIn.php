@@ -15,9 +15,9 @@ class SignIn extends Action
         if ($this->http_method == 'GET') {
             $texte .= '<form method="post">
                             <table>
-                                <tr><td>Email : </td><td><input type="email" class="text_area" name="email"><br></td></tr>
-                                <tr><td>Mot de passe : </td><td><input type="password" class="text_area" name="passwd"><br></td></tr>
-                                <tr><th colspan="2"><input type="submit" id="confirm" name="connect" value = "Connectez-vous"></td><tr>
+                                <tr><td>Email : </td><td><input type="email" class="textField" name="email"><br></td></tr>
+                                <tr><td>Mot de passe : </td><td><input type="password" class="textField" name="passwd"><br></td></tr>
+                                <tr><th colspan="2"><input type="submit" class="buttonNavigation" name="connect" value = "Connectez-vous"></td><tr>
                             </table>
                             <p class="redirection"><a href="signup.php">Créer un compte</a></p>
                         </form>' ;
@@ -27,9 +27,12 @@ class SignIn extends Action
             $var = Auth::authenticate($email, $mdp);
             if ($var === true) {
                 $texte.="Bienvenue !";
+                header("Location: ../main/index.php");
+                exit();
+            } else {
+                $texte.="Une erreur est survenue !";
+                header("Location: ../othersPages/signin.php");
             }
-            header("Location: ../main/index.php");
-            exit();
         }
         $texte .= '</div>';
         return $texte;
