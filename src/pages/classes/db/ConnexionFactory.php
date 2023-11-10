@@ -7,7 +7,7 @@ use PDO;
 
 class ConnexionFactory{
     private static $config;
-    public static function setConfig($file){
+    public static function setConfig(string $file){
         self::$config = parse_ini_file($file);
     }
 

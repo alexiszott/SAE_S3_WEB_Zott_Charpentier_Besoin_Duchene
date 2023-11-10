@@ -34,7 +34,7 @@ class TouiteList
                     $stmt2->bindParam(1, $result['idImage']);
                     $stmt2->execute();
                     $result2 = $stmt2->fetch(\PDO::FETCH_ASSOC);
-                    $this->touiteList[] = new Touite($result['idTouite'], $result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil'], $result2['cheminImage']);
+                    $this->touiteList[] = new Touite(intval($result['idTouite']), $result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil'], $result2['cheminImage']);
             }
         }
         $pdo=null;
