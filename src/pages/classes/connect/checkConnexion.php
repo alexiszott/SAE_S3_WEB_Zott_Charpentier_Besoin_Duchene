@@ -17,15 +17,15 @@ class checkConnexion
             <a href=\"?action=disconnect\" class=\"disconnectButton\" >Se déconnecter</a>
             </div>";
             $html .= "<div class=\"menu navigation\">
-                <a href=\"../othersPages/profil.php\">Profile</a>
+                <a href=\"profil.php\">Profile</a>
                 <a href=\"index.php\">Accueil</a>
-                <a href=\"../othersPages/writeTouite.php\">Touiter</a>
+                <a href=\"writeTouite.php\">Touiter</a>
             </div>";
         }else{
             $html .= "Vous n'êtes pas connecter</div>";
             $html .= "<div class=\"menu connexion\">
-                <a href=\"../othersPages/signin.php\" class=\"connexionButton\">Se connecter</a>
-                <a href=\"../othersPages/signup.php\" class=\"connexionButton\">S'inscrire</a>
+                <a href=\"signin.php\" class=\"connexionButton\">Se connecter</a>
+                <a href=\"signup.php\" class=\"connexionButton\">S'inscrire</a>
             </div>";
             $html .= "<div class=\"menu navigation\">
                 <a href=\"index.php\">Accueil</a>

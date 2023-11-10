@@ -9,7 +9,7 @@ class Disconnect extends Action
     {
        if(isset($_SESSION['user'])){
            $_SESSION['user'] = null;
-           header("Location: ../main/index.php");
+           header("Location: index.php");
            exit();
        }
        return "Deconnexion";

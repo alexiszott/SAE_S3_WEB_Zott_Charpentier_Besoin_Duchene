@@ -31,7 +31,7 @@ class TouiteRenderer implements Renderer
             $user = unserialize($_SESSION['user']);
             $id = $user->idUser;
             if($result['idUtil']==$id){
-                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href='../othersPages/profil.php'> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href='profil.php'> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
             } else {
                 $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
             }
@@ -66,14 +66,16 @@ class TouiteRenderer implements Renderer
 
         if(!is_null($this->touite->lienImage)){
             $image = '<p>Contient une image</p>';
-            return '<a id="lienTouite" href="./src/pages/main/index.php">'.$html . $image.'</a>';
+            return '<a id="lienTouite" href="'.$_SERVER['PHP_SELF'].'">'.$html . $image.'</a>';
         }
-        return '<a id="lienTouite" href="'.$_SERVER['PHP_SELF'].'?action=display-onetouite&id='. $this->touite->id .'">'.$html.'</a>';
+        $lien = $_SERVER['PHP_SELF'].'?action=display-onetouite&id='.$this->touite->id;
+        return $html . "<a href=$lien>Voir plus...</a>";
+
     }
 
     private function long()
     {
-        $html = '<p class="message">' . Tag::makeTagClickable($this->touite->message) . '</p>';
+        $html = '<div class="message"><p class="message">' . Tag::makeTagClickable($this->touite->message) . '</p></div>';
         if(!is_null($this->touite->lienImage)){
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;

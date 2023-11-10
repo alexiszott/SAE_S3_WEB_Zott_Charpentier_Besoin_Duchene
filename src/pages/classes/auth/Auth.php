@@ -12,7 +12,6 @@ class Auth
 
     // Authentification
     public static function authenticate(string $email, string $password): bool {
-        ConnexionFactory::setConfig('../classes/conf/config.ini');
         $pdo = ConnexionFactory::makeConnection();
         $sql = "select emailUtil, passwd, role from Util where emailUtil = ? ";
         $result = $pdo->prepare($sql);
@@ -53,7 +52,6 @@ class Auth
         }
 
         //Vérification si l'email existe déjà
-        ConnexionFactory::setConfig("../classes/conf/config.ini");
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT * FROM util WHERE emailUtil = :email";
         $stmt = $pdo->prepare($query);

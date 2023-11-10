@@ -42,6 +42,9 @@ class TouiteList
     public function mainTouiteList(){
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
+        if (isset($_GET['page'])){
+            $this->nPages=($_GET['page'])-1;
+        }
         $limit = $this->nPages * 10;
         $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util where touite.idUtil=util.idUtil order by datePubli desc limit 10 offset $limit";
         $stmt = $pdo->query($query);
@@ -51,6 +54,9 @@ class TouiteList
     public function userTouiteList(string $id){
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
+        if (isset($_GET['page'])){
+            $this->nPages=($_GET['page'])-1;
+        }
         $limit = $this->nPages * 10;
         $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil from touite, util where touite.idUtil=util.idUtil and util.idUtil = ? order by datePubli desc limit 10 offset $limit";
         $stmt = $pdo->prepare($query);
@@ -61,6 +67,9 @@ class TouiteList
     public function tagTouiteList(string $tag){
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
+        if (isset($_GET['page'])){
+            $this->nPages=($_GET['page'])-1;
+        }
         $limit = $this->nPages * 10;
         $query = "select tag2touite.idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil
                   from touite, util, tag, tag2touite 
