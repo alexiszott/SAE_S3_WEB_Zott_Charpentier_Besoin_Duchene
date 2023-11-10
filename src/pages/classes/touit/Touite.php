@@ -52,10 +52,14 @@ class Touite
         throw new \Exception ("$at: invalid property");
     }
 
+    //Fonction qui permet d'extraire les tags d'un touite
     public static function extraire_tags(string $touite): array|null
     {
+        //On initialise la liste de tags
         $listeTags = null;
+        //Si le touite contient un # alors
         if (str_contains($touite, '#')) {
+            //Permet d'identifier les mots avec un #
             preg_match_all('/#(\w+)/', $touite, $matches);
             if (!empty($matches[1])) {
                 $listeTags = $matches[1];
@@ -64,7 +68,7 @@ class Touite
         return $listeTags;
     }
 
-
+    //Methode pour afficher les touites que le user a like / dislike
     public function getUserLike()
     {
         $rep = '<div class="interaction"><form method="post"><input type="hidden" name="touiteId" value="' . $this->id . '">';
@@ -84,16 +88,20 @@ class Touite
         return $rep;
     }
 
-
+    //Methode pour récuperer le nombres de likes / dislikes d'un touite
     public function getNbLike(): mixed
     {
         $pdo = ConnexionFactory::makeConnection();
+        //On recupère la somme des like et des dislikes d'un touite grâce à son id
         $query = "select SUM(dlike) as dlike from user2like where idTouite= ?";
         $stmt = $pdo->prepare($query);
+        //On lui associe l'id du touite actuel
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         $pdo = null;
+        //Si il n'y a pas de like, alors le nombre de like = 0
+        //Sinon il est égal au nombre de like + dislike
         if (is_null($result['dlike'])) {
             $res = 0;
         } else {
@@ -102,6 +110,7 @@ class Touite
         return $res;
     }
 
+    //Permet de like et dislike un touite
     public function setLike()
     {
         if (isset($_POST['like']) || isset($_POST['dislike'])) {

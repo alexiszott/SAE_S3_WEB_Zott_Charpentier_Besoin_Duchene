@@ -5,6 +5,9 @@ namespace iutnc\touiter\connect;
 
 class checkConnexion
 {
+    //Permet d'afficher le menu avec le nom de l'utilisateur connecter,
+    // le menu acceuil / profile / et statistiques et le boutton se deconnecter
+    //Sinon on affiche qu'on est pas connecter, avec seulement acceuil, se connecter et s'inscrire
     public static function isConnected() : string{
 
         $html = '<div class="head"><div class="affiche">';

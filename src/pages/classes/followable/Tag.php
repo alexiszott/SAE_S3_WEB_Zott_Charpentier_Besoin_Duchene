@@ -16,6 +16,7 @@ class Tag
         $this->tagDescription = $desc;
     }
 
+    //Permet d'ajouter un tag dans la BD
     public static function ajouter_tags(?array $tags, int $idTouite) : void {
         if ($tags != null) {
             $pdo = ConnexionFactory::makeConnection();
@@ -45,10 +46,12 @@ class Tag
         }
     }
 
+    //Permet d'aller sur la page d'un tag
     public static function makeTagClickable(string $touite) : string {
         $listeChaine = explode(' ', $touite);
         foreach ($listeChaine as $k => $word) {
             if (str_contains($word , '#')) {
+                //ajoute un lien associer au tag
                 $lien =  "?action=display-tag-touite&tag=" . ltrim($word, '#');
                 $word = "<a href=$lien>$word</a>";
                 $listeChaine[$k] = $word;
@@ -58,6 +61,7 @@ class Tag
         return $touite;
     }
 
+    //Permet de récuperer l'id d'un tag grâce à son nom
     public static function getIdTag(string $nomTag) : int {
         $id = null;
         $pdo = ConnexionFactory::makeConnection();
@@ -71,6 +75,7 @@ class Tag
         return intval($row['idTag']);
     }
 
+    //Permet de suivre un tag
     public static function followAnyTags(int $idUtil) : bool {
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT * FROM suivretag WHERE idUtil = $idUtil";

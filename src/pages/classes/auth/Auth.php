@@ -82,6 +82,7 @@ class Auth
         return true;
     }
 
+    //Vérifie si le mdp contient une maj, une minuscule, un chiffre et un caractère spéciale.
     public function checkPasswordStrength(string $pass, int $minimumLength): bool {
         $length = (strlen($pass) >= $minimumLength); // longueur minimale
         $digit = preg_match("#[\d]#", $pass); // au moins un chiffre

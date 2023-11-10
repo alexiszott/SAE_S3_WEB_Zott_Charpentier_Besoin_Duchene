@@ -49,6 +49,7 @@ class User
         return !$row == null;
     }
 
+    //Permet de savoir si on suit ou non un tag
     public static function suivreOuNonTag(string $tag): void
     {
         $idTag = Tag::getIdTag($tag);
@@ -71,6 +72,7 @@ class User
         $pdo=null;
     }
 
+    //Permet de savoir si on suit ou pas un utilisateur
     public function suitUser(int $id) : bool{
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT * FROM suivreutil WHERE idUtil = ? and idUtilSuivi = ?";
@@ -82,6 +84,7 @@ class User
         return !($stmt->rowCount() == 0);
     }
 
+    //Permet de suivre ou ne plus suivre un utilisateur
     public function suivreOuNonUser(int $id) : void {
         $pdo = ConnexionFactory::makeConnection();
         $query=null;
@@ -100,6 +103,7 @@ class User
         $pdo=null;
     }
 
+    //Permet de savoir si on suit ou pas un utilisateur
     public static function followAnyUsers(int $idUtil) : bool
     {
         $pdo = ConnexionFactory::makeConnection();
@@ -109,6 +113,7 @@ class User
         return ($result->rowCount() > 0);
     }
 
+    //Permet de calculer le score d'un touite
     public function calculerScoreTouite() : float {
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT idTouite FROM touite WHERE idUtil = ?";
@@ -131,6 +136,7 @@ class User
         return round($rep,2);
     }
 
+    //Permet de recupèrer la liste de follower
     public function listeFollower() : string{
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT suivreutil.idUtil , nomUtil, prenomUtil FROM suivreutil, util WHERE suivreutil.idUtil=util.idUtil and idUtilSuivi = ?";
