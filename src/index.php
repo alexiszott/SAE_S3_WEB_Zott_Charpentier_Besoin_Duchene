@@ -13,7 +13,6 @@
     <h1 id="title">TOUITEUR</h1>
         <?php
         require_once '../vendor/autoload.php';
-        use iutnc\touiter\followable\User;
         use \iutnc\touiter\connect\checkConnexion;
         session_start();
         $c = new checkConnexion();

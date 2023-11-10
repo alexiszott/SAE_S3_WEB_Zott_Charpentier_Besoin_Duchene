@@ -11,8 +11,8 @@ class checkConnexion
 
         if (isset($_SESSION['user'])){
             $user = unserialize($_SESSION['user']);
-            $prenom = $user->__get("nomUser");
-            $nom = $user->__get("prenomUser");
+            $prenom = $user->nomUser;
+            $nom = $user->prenomUser;
             $html .= ("<p>$prenom   $nom</p>");
             $html .= "</div>";
             $html .= "<div class=\"menu connexion\">
@@ -27,7 +27,7 @@ class checkConnexion
                     <a href=\"profil.php?action=stats\" class='buttonNavigation'>Mes statistiques</a>
 
             </div></div>";
-        }else{
+        } else {
             $html .= "Vous n'êtes pas connecté(e)</div>";
             $html .= "<div class=\"menu connexion\">
             <a href=\"signin.php\" class='buttonNavigation'>Se connecter</a>
