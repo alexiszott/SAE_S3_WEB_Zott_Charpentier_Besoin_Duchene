@@ -20,16 +20,7 @@
         echo $c::isConnected();
         ?>
 </header>
-<div id="writeTouite">
-    <form method="post" action="?action=write-touite">
-        <table>
-            <tr><td><textarea name="touite" maxlength="235" class="text_area" rows="8" cols="55" placeholder="Écrivez votre touite ..."></textarea></tr></td></br>
-            <tr><th><button type="submit" class="buttonNavigation" name="envoyer">Touiter</button></th></tr>
-        </table>
-    </form>
-</div>
 <?php
-
 use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\dispatch\Dispatcher;
 

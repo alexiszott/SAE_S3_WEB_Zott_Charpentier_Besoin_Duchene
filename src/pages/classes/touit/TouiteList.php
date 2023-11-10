@@ -25,18 +25,18 @@ class TouiteList
     public function creerTouiteListe(\PDOStatement $statement, \PDO $pdo){
         $statement->execute();
         while ($result = $statement->fetch(\PDO::FETCH_ASSOC)) {
-            if(is_null($result['idImage'])){
-                $this->touiteList[] = new Touite($result['idTouite'],$result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil']);}
-            else{
-                $query2 = "select cheminImage from image where idImage = ?";
-                $stmt2 = $pdo->prepare($query2);
-                $stmt2->bindParam(1, $result['datePubli']);
-                $stmt2->execute();
-                $result2 = $statement->fetch(\PDO::FETCH_ASSOC);
-                $this->touiteList[] = new Touite($result['idTouite'],$result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil'], $result2['cheminImage']);}
+                if (is_null($result['idImage'])) {
+                    $this->touiteList[] = new Touite($result['idTouite'], $result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil']);
+                } else {
+                    $query2 = "select cheminImage from image where idImage = ?";
+                    $stmt2 = $pdo->prepare($query2);
+                    $stmt2->bindParam(1, $result['idImage']);
+                    $stmt2->execute();
+                    $result2 = $stmt2->fetch(\PDO::FETCH_ASSOC);
+                    $this->touiteList[] = new Touite($result['idTouite'], $result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil'], $result2['cheminImage']);
+            }
         }
         $pdo=null;
-
     }
 
     public function mainTouiteList(){

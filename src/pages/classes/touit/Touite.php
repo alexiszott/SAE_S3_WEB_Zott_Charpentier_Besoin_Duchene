@@ -66,20 +66,20 @@ class Touite
 
     public function getUserLike()
     {
-        $rep = '<form method="post"><input type="hidden" name="touiteId" value="' . $this->id . '">';
+        $rep = '<div class="interaction"><form method="post"><input type="hidden" name="touiteId" value="' . $this->id . '">';
         switch ($this->userLike) {
             case -1 :
-                $rep .= '<button type="submit" name="like"><i class="bi bi-hand-thumbs-up"></i></button><button type="submit" name="dislike"><i class="bi bi-hand-thumbs-down-fill"></i></button>' . $this->getNbLike() . '</div>';
+                $rep .= '<button type="submit" name="like" class="interactButton"><i class="bi bi-hand-thumbs-up"></i></button><button type="submit" name="dislike" class="interactButton"><i class="bi bi-hand-thumbs-down-fill"></i></button>' . $this->getNbLike();
                 break;
             case 0 :
-                $rep .= '<button type="submit" name="like"><i class="bi bi-hand-thumbs-up"></i></button><button type="submit" name="dislike"><i class="bi bi-hand-thumbs-down"></i></button>' . $this->getNbLike() . '</div>';
+                $rep .= '<button type="submit" name="like" class="interactButton"><i class="bi bi-hand-thumbs-up"></i></button><button type="submit" name="dislike" class="interactButton"><i class="bi bi-hand-thumbs-down"></i></button>' . $this->getNbLike();
                 break;
             case 1 :
-                $rep .= '<button type="submit" name="like"><i class="bi bi-hand-thumbs-up-fill"></i></button><button type="submit" name="dislike"><i class="bi bi-hand-thumbs-down"></i></button>' . $this->getNbLike() . '</div>';
+                $rep .= '<button type="submit" name="like" class="interactButton"><i class="bi bi-hand-thumbs-up-fill"></i></button><button type="submit" name="dislike" class="interactButton"><i class="bi bi-hand-thumbs-down"></i></button>' . $this->getNbLike();
 
                 break;
         }
-        $rep .= '</form>';
+        $rep .= '</form></div>';
         return $rep;
     }
 
@@ -105,58 +105,58 @@ class Touite
     public function setLike()
     {
         if (isset($_POST['like']) || isset($_POST['dislike'])) {
-        if (isset($_SESSION['user'])) {
-            $pdo = ConnexionFactory::makeConnection();
-            $query = "select dlike as dlike from user2like where idTouite= ? and idUtil = ?";
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam(1, $this->id);
-            $idUser = unserialize($_SESSION['user']);
-            $idU = $idUser->idUser;
-            $stmt->bindParam(2, $idU);
-            $stmt->execute();
-            $query2 = null;
-            if ($stmt->rowCount() == 0) {
-                if (($_POST['touiteId'] == $this->id) && isset($_POST['like'])) {
-                    $query2 = "INSERT INTO user2like VALUES(?,?,1)";
-                }
-                if (($_POST['touiteId'] == $this->id) && isset($_POST['dislike'])) {
-                    $query2 = "INSERT INTO user2like VALUES(?,?,-1)";
-                }
-            } else {
-                if (($_POST['touiteId'] == $this->id) && isset($_POST['like'])) {
-                    if ($this->userLike == 1) {
-                        $query2 = "DELETE FROM user2like where idUtil= ? and idTouite = ?";
-                    } else {
-                        $query2 = "UPDATE user2like SET dlike = 1 where idUtil= ? and idTouite = ?";
+            if (isset($_SESSION['user'])) {
+                $pdo = ConnexionFactory::makeConnection();
+                $query = "select dlike as dlike from user2like where idTouite= ? and idUtil = ?";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(1, $this->id);
+                $idUser = unserialize($_SESSION['user']);
+                $idU = $idUser->idUser;
+                $stmt->bindParam(2, $idU);
+                $stmt->execute();
+                $query2 = null;
+                if ($stmt->rowCount() == 0) {
+                    if (($_POST['touiteId'] == $this->id) && isset($_POST['like'])) {
+                        $query2 = "INSERT INTO user2like VALUES(?,?,1)";
+                    }
+                    if (($_POST['touiteId'] == $this->id) && isset($_POST['dislike'])) {
+                        $query2 = "INSERT INTO user2like VALUES(?,?,-1)";
+                    }
+                } else {
+                    if (($_POST['touiteId'] == $this->id) && isset($_POST['like'])) {
+                        if ($this->userLike == 1) {
+                            $query2 = "DELETE FROM user2like where idUtil= ? and idTouite = ?";
+                        } else {
+                            $query2 = "UPDATE user2like SET dlike = 1 where idUtil= ? and idTouite = ?";
+                        }
+                    }
+                    if (($_POST['touiteId'] == $this->id) && isset($_POST['dislike'])) {
+                        if ($this->userLike == -1) {
+                            $query2 = "DELETE FROM user2like where idUtil= ? and idTouite = ?";
+                        } else {
+                            $query2 = "UPDATE user2like SET dlike = -1 where idUtil= ? and idTouite = ?";
+                        }
                     }
                 }
-                if (($_POST['touiteId'] == $this->id) && isset($_POST['dislike'])) {
-                    if ($this->userLike == -1) {
-                        $query2 = "DELETE FROM user2like where idUtil= ? and idTouite = ?";
+                if (!is_null($query2)) {
+                    $stmt2 = $pdo->prepare($query2);
+                    $stmt2->bindParam(1, $idU);
+                    $stmt2->bindParam(2, $_POST['touiteId']);
+                    $stmt2->execute();
+                    var_dump($_POST);
+                    if ($_GET['action'] == 'display-onetouite') {
+                        header('Location: ' . $_SERVER['PHP_SELF'] . '?action=display-onetouite&id=' . $this->id);
+                    } elseif (isset($_GET['user'])) {
+                        header('Location: ' . $_SERVER['PHP_SELF'] . '?user=' . $_GET['user']);
                     } else {
-                        $query2 = "UPDATE user2like SET dlike = -1 where idUtil= ? and idTouite = ?";
+                        header('Location: ' . $_SERVER['PHP_SELF']);
                     }
+                    die();
                 }
-            }
-            if (!is_null($query2)) {
-                $stmt2 = $pdo->prepare($query2);
-                $stmt2->bindParam(1, $idU);
-                $stmt2->bindParam(2, $_POST['touiteId']);
-                $stmt2->execute();
-                var_dump($_POST);
-                if ($_GET['action'] == 'display-onetouite') {
-                    header('Location: ' . $_SERVER['PHP_SELF'] . '?action=display-onetouite&id=' . $this->id);
-                } elseif (isset($_GET['user'])){
-                    header('Location: ' . $_SERVER['PHP_SELF'] . '?user='.$_GET['user']);
-                }else{
-                    header('Location: ' . $_SERVER['PHP_SELF']);
-                }
-                die();
-            }
-            $pdo = null;
+                $pdo = null;
 
+            }
         }
-    }
 
-}
+    }
 }

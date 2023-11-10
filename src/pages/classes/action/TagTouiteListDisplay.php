@@ -17,7 +17,7 @@ class TagTouiteListDisplay extends Action
 
             $t = new TouiteListRenderer($touiteList);
             $r = $t->render();
-            echo "<h2>Tag : $tag</h2>";
+            echo "<div id='tag'><h2>Tag : $tag</h2></div>";
             return $r;
         }
 

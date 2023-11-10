@@ -12,7 +12,6 @@ class ProfilWallTouiteListDisplay extends Action
 
     public function execute(): string
     {
-
         $id = $_GET['user'];
         $pdo = ConnexionFactory::makeConnection();
         $sql = "select nomUtil, prenomUtil from util where idUtil = ?";

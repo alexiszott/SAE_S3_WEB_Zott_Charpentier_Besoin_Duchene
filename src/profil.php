@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <header>
-    <h1>TOUITEUR</h1>
-    <div class="menu navigation">
-        <a href="index.php">Accueil</a>
+    <h1  id="title">TOUITEUR</h1>
+    <div class="head">
+        <div class="menu navigation">
+            <a href="index.php" class='buttonNavigation'>Accueil</a>
+        </div>
     </div>
 </header>
 <?php

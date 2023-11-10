@@ -10,8 +10,10 @@
 </head>
 <header>
     <h1 id="title">TOUITEUR</h1>
-    <div class="menu navigation">
-        <a href="index.php" class='buttonNavigation'>Accueil</a>
+    <div class="head">
+        <div class="menu navigation">
+            <a href="index.php" class='buttonNavigation'>Accueil</a>
+        </div>
     </div>
 </header>
 <?php

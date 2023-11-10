@@ -31,7 +31,7 @@ class DeleteTouite extends Action
                             <tr><th id='textConfirm'>Voulez-vous vraiment supprimer votre touite ?</th></tr></br>
                                     <input type='hidden' name='hiddenInput' id='hiddenInput' value='$idTouite'>
                                     <tr><td><button type='submit' name='confirmButton' class='buttonNavigation' value='0'>Annuler</button></td></br>
-                                    <td><button type='submit' name='confirmButton' class='supButton' id='delbuttonConfirm' value='1'>Supprimer</button></tr></td></br>
+                                    <td><button type='submit' name='confirmButton' class='buttonNavigation' id='delbuttonConfirm' value='1'>Supprimer</button></tr></td></br>
                             </table>
                         </form>
                     </div>";

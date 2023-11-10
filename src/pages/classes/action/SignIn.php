@@ -31,7 +31,7 @@ class SignIn extends Action
                 exit();
             } else {
                 $texte .= "<p>Cet email n'existe pas, veuillez créer un compte</p><br><a href='signup.php'>Créer un compte</a>";
-                header("Location: signup.php");
+                header("Location: signin.php");
             }
             $texte .= '</div>';
             return $texte;

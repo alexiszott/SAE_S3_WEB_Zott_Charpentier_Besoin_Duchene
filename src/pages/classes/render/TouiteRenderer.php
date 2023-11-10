@@ -28,22 +28,9 @@ class TouiteRenderer implements Renderer
         $pdo = null;
         $html = '<div class="touite">';
 
-//        $firstName = $this->touite->userFirstName;
-//        $lastName = $this->touite->userLastName;
-//        $userUrl = User::getUserUrl($firstName, $lastName);
         $idTouite = $this->touite->id;
-//        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
-
-            switch ($selector) {
-                case 1 :
-                    $html .= $this->compact();
-                    break;
-                case 2:
-                    $html .= $this->long();
-                    break;
-            }
-        $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
-        $html .= '<p><i class="bi bi-hand-thumbs-up"></i></p><p><i class="bi bi-hand-thumbs-down"></i></p></div>';
+        $idUtil = $result["idUtil"];
+        $html .= "<div class='topTouite'><div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$idUtil> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
         //Affiche le bouton supprimer si on est le créateur du touite
         $pdo = ConnexionFactory::makeConnection();
@@ -53,18 +40,34 @@ class TouiteRenderer implements Renderer
         $result->bindParam(1, $idTouite);
         $result->execute();
         $row = $result->fetch(\PDO::FETCH_ASSOC);
-        
+
         if(isset($_SESSION["user"])){
             $userConnectedUnserialized = unserialize($_SESSION["user"]);
             if(intval($row['idUtil']) === $userConnectedUnserialized->idUser) {
-                $html .= "<div class=\"delete\">
+                $html .= "
                     <form method=\"post\" action=\"?action=delete-touite\">
-                    <button type=\"submit\" class='supButton' id=\"delButton\" name=\"delete\" value=\"$idTouite\">Suprimer</button>
+                    <button type=\"submit\" class='buttonNavigation' id=\"delButton\" name=\"delete\" value=\"$idTouite\">Suprimer</button>
                     </form>
                     </div>";
+            } else {
+                $html .= "</div>";
             }
+        } else {
+            $html .= "</div>";
         }
-        $html .= '</div>';
+
+            switch ($selector) {
+                case 1 :
+                    $html .= $this->compact();
+                    break;
+                case 2:
+                    $html .= $this->long();
+                    break;
+            }
+
+        $html .= $this->touite->getUserLike();
+        $this->touite->setLike();
+        $html .= '<div class="infos"><p>'.$this->touite->date.'</p></div></div></div>';
         return $html;
     }
 
@@ -74,26 +77,25 @@ class TouiteRenderer implements Renderer
             $html = '<div class="message"><p>'.Tag::makeTagClickable($this->touite->message).'</p></div>';
         }else{
             $text = substr($this->touite->message, 1, 117) . "...";
-            $html = '<p class="message">' . Tag::makeTagClickable($text) . '</p>';
+            $html = '<div class="message"><p>' . Tag::makeTagClickable($text) . '</p></div>';
         }
 
         if(!is_null($this->touite->lienImage)){
-            $image = '<p>Contient une image</p>';
-            return '<a id="lienTouite" href="'.$_SERVER['PHP_SELF'].'">'.$html . $image.'</a>';
+            $html .= '</br><p>Contient une image</p>';
         }
         $lien = $_SERVER['PHP_SELF'].'?action=display-onetouite&id='.$this->touite->id;
-        return $html . "<a href=$lien>Voir plus...</a>";
+        return $html . "<div class='bottomTouite'><a href=$lien id='voirplus'>Voir plus...</a>";
 
     }
 
     private function long()
     {
-        $html = '<div class="message"><p class="message">' . Tag::makeTagClickable($this->touite->message) . '</p></div>';
+        $html = '<div class="message"><p>' . Tag::makeTagClickable($this->touite->message) . '</p></div>';
         if(!is_null($this->touite->lienImage)){
-            $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
+            $image = '<br><img src="/src/'.$this->touite->lienImage.'"</img>';
             return $html . $image;
         }
-       
+        $html .= '<div class="bottomTouite">';
         return $html;
     }
 

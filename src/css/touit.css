@@ -7,6 +7,8 @@ html {
 p, td, th, tr{
     color: black;
     font-size: 1.1em;
+    overflow: hidden;
+    white-space: pre-line;
 }
 
 #title{
@@ -17,12 +19,10 @@ p, td, th, tr{
     text-shadow: 0 8px 0 darkblue;
 }
 
-
-
 header {
     z-index: 1;
     position: sticky;
-    top: -20%;
+    top: -10%;
     padding-top: 5%;
     background-color: white;
     text-align: center;
@@ -31,40 +31,39 @@ header {
     border-bottom: 1px solid rgb(220,220,220);
 }
 
-.menu {
-    text-align: center;
-    color: white;
+.head{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    flex: 1 1 0;
-    margin: 1%;
+    flex: 1;
 }
 
+.head :nth-child(1) { order: 1; }
+.head :nth-child(2) { order: 3; }
+.head :nth-child(3) { order: 2; }
 
-.menu.navigation{
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
+.menu {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
 }
 
-.menu.connexion{
-    position: relative;
-    left: 70%;
-    width: 20%;
+.menu a{
+    justify-content: space-around;
+    margin-left: 10px;
+    margin-right: 10px;
+
 }
 
 .affiche{
-    width: 10%;
-    position: relative;
-    top: 50px;
-    right: -10%;
-    color: black;
+    display: flex;
+    align-items:center;
+    justify-content:center;
 }
 
 body {
-    background-color: white;
     margin: 0;
 }
 
@@ -78,16 +77,18 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
     margin: 2% auto ;
     background-color: white;
     width: 35%;
-    height: 25vh;
+    height: fit-content;
     border-bottom: 1px solid rgba(220,220,220);
     box-shadow: 0px 15px 15px -15px rgba(0, 0, 0,0.1);
     z-index: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .message {
     border-radius: 12px;
     background-color: rgba(220,220,220,0.3);
-    margin: 0 2% 2% 2%;
+    margin: 2%;
     height: 50%;
 }
 
@@ -96,25 +97,58 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
     margin: 0;
 }
 
-.creator {
-    flex-direction: column;
-    height: 15%;
+.topTouite{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.bottomTouite {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1 1 0;
+    text-align: center;
+}
+
+.bottomTouite :nth-child(1) { order: 2; padding-top: 2%}
+.bottomTouite :nth-child(2) { order: 1; }
+.bottomTouite :nth-child(3) { order: 3; padding-top: 2%}
+
+.creator{
+    display: flex;
+    flex-direction: row;
 }
 
 .creator a {
-    margin: 3%;
+    padding-left: 10px;
+    margin: 0 auto;
 }
 
 .infos {
     flex-direction: row;
-    margin: 2% 0;
     justify-content: space-around;
 }
 
-.infos {
-    display: flex;
+.infos p {
+    margin: 0;
+    width: fit-content;
 }
 
+.interaction{
+    display: flex;
+    flex-direction: row;
+}
+
+.interactButton{
+    font-size: 1.3em;
+    margin: 10px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
 /** SIGNUP **/
 
 #signup{
@@ -191,13 +225,43 @@ textarea {
 .text_area {
     border: 1px solid rgb(220,220,220);
     border-radius: 6px;
+    font-size: 1.1em;
+    display: block;
 }
 
 .username {
     text-align: center;
 }
+
 .profileName {
     text-align: center;
+}
+
+.writeButton{
+    display: flex;
+    flex-direction: row;
+}
+
+#imageInput {
+    display: none;
+}
+
+.file-input-label {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.file-input-label:hover {
+    background-color: #2980b9;
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 /** DELETE CONFIRMATION **/
@@ -219,18 +283,31 @@ textarea {
 .supButton {
     color: red;
     background-color: rgba(239, 35, 60, 0.2);
-    padding: 1%;
+    padding: 0.5%;
     border: 3px solid rgba(239, 35, 60, 0.5);
     border-radius: 12px;
 }
 
 #delButton {
-    position: relative;
-    left: 85%;
-    bottom: 240px;
-    margin: 0 auto;
+    margin: 0 20px 0 0;
+    background-color: red;
+
 }
 
+.buttonNavigation chooseFile {
+
+}
+
+#delbuttonConfirm{
+    background-color: red;
+}
+#delButton:hover, #delbuttonConfirm:hover{
+    background-color: indianred;
+}
+
+#delButton:focus, #delbuttonConfirm:focus{
+    background-color: darkred;
+}
 #d th td{
     text-align: center;
 }
@@ -244,11 +321,11 @@ textarea {
     margin: 0;
     text-decoration: none;
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border: none;
     background: #2667ff;
     cursor:pointer;
-    font-size: 1.1em;
+    font-size: 1em;
     width: fit-content;
 }
 
@@ -258,4 +335,8 @@ a{
 
 .buttonNavigation:hover{
     background-color: #4ea8de;
+}
+
+#tag{
+    text-align: center;
 }

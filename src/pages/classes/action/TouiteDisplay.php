@@ -27,7 +27,7 @@ class TouiteDisplay extends Action
         else{
             $query2 = "select cheminImage from image where idImage = ?";
             $stmt2 = $pdo->prepare($query2);
-            $stmt2->bindParam(1, $result['datePubli']);
+            $stmt2->bindParam(1, $result['idImage']);
             $stmt2->execute();
             $result2 = $stmt2->fetch(\PDO::FETCH_ASSOC);
             $tDisplay = new Touite($result['idTouite'],$result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil'], $result2['cheminImage']);

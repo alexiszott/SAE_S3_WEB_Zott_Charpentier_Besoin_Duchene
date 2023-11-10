@@ -40,6 +40,15 @@ class Dispatcher
                 $html = $act->execute();
                 break;
             case 'display-profil-touite':
+                    $html = '<div id="writeTouite">
+                    <form method="post" action="?action=write-touite">
+                        <table>
+                            <tr><td><textarea name="touite" maxlength="235" class="text_area" rows="8" cols="55" placeholder="Écrivez votre touite ..."></textarea></tr></td></br>
+                            <tr><th><input type="file" class="buttonNavigation chooseFile" name="image"></th></tr>
+                            <tr><th><button type="submit" class="buttonNavigation" name="envoyer">Touiter</button></th></tr>
+                        </table>
+                    </form>
+                </div>';
                 $act = new ProfilTouiteListDisplay();
                 $html = $act->execute();
                 break;
@@ -65,7 +74,19 @@ class Dispatcher
                 break;
             case 'display-touite':
                 $act = new TouiteListDisplay();
-                $html = $act->execute();
+                $html = '<div id="writeTouite">
+                <form method="post" action="?action=write-touite" enctype="multipart/form-data">
+                    <table>
+                        <tr><th><textarea name="touite" maxlength="235" class="text_area" rows="8" cols="55" placeholder="Écrivez votre touite ..."></textarea></th></tr>
+                        <tr><td class="button-container">
+                            <label for="imageInput" class="buttonNavigation file-input-label">Ajouter une image</label>
+                            <input type="file" name="imageInput" id="imageInput" accept="image/jpeg, image/png">
+                            <button type="submit" class="buttonNavigation" name="envoyer">Touiter</button>
+                        </td></tr>
+                    </table>
+                </form>
+            </div>';
+                $html .= $act->execute();
                 if (isset($_GET['user'])) {
                     $act =new ProfilWallTouiteListDisplay();
                     $html= $act->execute();

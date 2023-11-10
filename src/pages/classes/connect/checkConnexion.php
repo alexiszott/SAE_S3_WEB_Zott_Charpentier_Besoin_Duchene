@@ -5,13 +5,14 @@ namespace iutnc\touiter\connect;
 class checkConnexion
 {
     public static function isConnected() : string{
-        $html = '';
-        $html = '<div class="affiche">';
+
+        $html = '<div class="head"><div class="affiche">';
+
         if (isset($_SESSION['user'])){
             $user = unserialize($_SESSION['user']);
             $prenom = $user->__get("nomUser");
             $nom = $user->__get("prenomUser");
-            $html .= ("$prenom   $nom");
+            $html .= ("<p>$prenom   $nom</p>");
             $html .= "</div>";
             $html .= "<div class=\"menu connexion\">
             <form action='?action=disconnect'>
@@ -23,7 +24,7 @@ class checkConnexion
                     <a href=\"profil.php\" class='buttonNavigation'>Profile</a>
                     <a href=\"index.php\" class='buttonNavigation'>Accueil</a>
 
-            </div>";
+            </div></div>";
         }else{
             $html .= "Vous n'êtes pas connecter</div>";
             $html .= "<div class=\"menu connexion\">
@@ -32,7 +33,7 @@ class checkConnexion
             </div>";
             $html .= "<div class=\"menu navigation\">
                 <a href=\"index.php\" class='buttonNavigation'>Accueil</a>
-            </div>";
+            </div></div>";
         }
         return $html;
     }
