@@ -50,7 +50,6 @@ class Auth
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new AuthException("Format de l'e-mail invalide.");
         }
-
         //Vérification si l'email existe déjà
         $pdo = ConnexionFactory::makeConnection();
         $query = "SELECT * FROM util WHERE emailUtil = :email";

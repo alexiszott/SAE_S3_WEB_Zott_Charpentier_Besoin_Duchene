@@ -115,22 +115,23 @@ class Touite
                 $stmt->bindParam(2, $idU);
                 $stmt->execute();
                 $query2 = null;
+                $touiteId = filter_var($_POST["touiteId"], FILTER_SANITIZE_STRING);
                 if ($stmt->rowCount() == 0) {
-                    if (($_POST['touiteId'] == $this->id) && isset($_POST['like'])) {
+                    if (($touiteId == $this->id) && isset($_POST['like'])) {
                         $query2 = "INSERT INTO user2like VALUES(?,?,1)";
                     }
-                    if (($_POST['touiteId'] == $this->id) && isset($_POST['dislike'])) {
+                    if (($touiteId == $this->id) && isset($_POST['dislike'])) {
                         $query2 = "INSERT INTO user2like VALUES(?,?,-1)";
                     }
                 } else {
-                    if (($_POST['touiteId'] == $this->id) && isset($_POST['like'])) {
+                    if (($touiteId == $this->id) && isset($_POST['like'])) {
                         if ($this->userLike == 1) {
                             $query2 = "DELETE FROM user2like where idUtil= ? and idTouite = ?";
                         } else {
                             $query2 = "UPDATE user2like SET dlike = 1 where idUtil= ? and idTouite = ?";
                         }
                     }
-                    if (($_POST['touiteId'] == $this->id) && isset($_POST['dislike'])) {
+                    if (($touiteId == $this->id) && isset($_POST['dislike'])) {
                         if ($this->userLike == -1) {
                             $query2 = "DELETE FROM user2like where idUtil= ? and idTouite = ?";
                         } else {
@@ -141,7 +142,7 @@ class Touite
                 if (!is_null($query2)) {
                     $stmt2 = $pdo->prepare($query2);
                     $stmt2->bindParam(1, $idU);
-                    $stmt2->bindParam(2, $_POST['touiteId']);
+                    $stmt2->bindParam(2, $touiteId);
                     $stmt2->execute();
                     var_dump($_POST);
                     if ($_GET['action'] == 'display-onetouite') {

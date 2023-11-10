@@ -29,27 +29,30 @@ class SignUp extends Action
                         <p class="redirection">Vous possédez déjà un compte ? <a href="signin.php">Se connecter</a>.</p>
                         </form>';
         } else if ($this->http_method == 'POST') {
-            $nom =$_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $mdp = $_POST['passwd'];
-            $email = $_POST['email'];
-            $mpdVerif = $_POST['verifPasswd'];
-            if($mdp===$mpdVerif){
-                try{
-                    $creer = Auth::register($nom,$prenom,$email,$mdp);
-                    if ($creer){
-                        $texte.="Votre compte a été créée";
-                        header("Location: index.php");
-                        exit();
-                    }else{
-                        $texte.="Une erreur s'est levée";
+            $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+            if ($email) {
+                $nom = filter_var($_POST['nom'], FILTER_SANITIZE_STRING);
+                $prenom = filter_var($_POST['prenom'], FILTER_SANITIZE_STRING);
+                $mdp = filter_var($_POST['passwd'], FILTER_SANITIZE_STRING);
+
+                $mpdVerif = filter_var($_POST['verifPasswd'], FILTER_SANITIZE_STRING);
+                if($mdp===$mpdVerif){
+                    try{
+                        $creer = Auth::register($nom,$prenom,$email,$mdp);
+                        if ($creer){
+                            $texte.="Votre compte a été créée";
+                            header("Location: index.php");
+                            exit();
+                        }else{
+                            $texte.="Une erreur s'est levée";
+                        }
+                    }catch (AuthException $authException){
+                        $texte.=$authException->getMessage();
                     }
-                }catch (AuthException $authException){
-                    $texte.=$authException->getMessage();
                 }
             }
+            $texte .= '</div>';
         }
-        $texte .= '</div>';
         return $texte;
     }
 }
