@@ -229,7 +229,6 @@ textarea {
     display: block;
 }
 
-
 .username, h2.tag {
     text-align: center;
 }
@@ -264,6 +263,13 @@ textarea {
     width: 100%;
 }
 
+img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
 /** DELETE CONFIRMATION **/
 
 #delConfirm{
@@ -289,11 +295,16 @@ textarea {
 }
 
 #delButton {
+<<<<<<< HEAD
+    margin: 0 20px 0 0;
+    background-color: red;
+=======
     background-color: red;
 }
 
 .buttonNavigation chooseFile {
 
+>>>>>>> 8b0df25fc71ac8de5652a2df5c1fd9b4bccc4d58
 }
 
 #delbuttonConfirm{
@@ -335,6 +346,21 @@ a{
     background-color: #4ea8de;
 }
 
-#tag{
+.tag{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/** STATS **/
+
+#stat{
+    width: 30%;
+    margin: 5% auto;
+    padding: 3%;
+    text-align: center;
+}
+
+.user tr, .user td {
     text-align: center;
 }

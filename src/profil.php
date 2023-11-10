@@ -11,11 +11,14 @@
 </head>
 <header>
     <h1  id="title">TOUITEUR</h1>
-    <div class="head">
-        <div class="menu navigation">
-            <a href="index.php" class='buttonNavigation'>Accueil</a>
-        </div>
-    </div>
+    <?php
+    require_once '../vendor/autoload.php';
+    use iutnc\touiter\followable\User;
+    use \iutnc\touiter\connect\checkConnexion;
+    session_start();
+    $c = new checkConnexion();
+    echo $c::isConnected();
+    ?>
 </header>
 <?php
 require_once '../vendor/autoload.php';
@@ -24,7 +27,6 @@ use iutnc\touiter\db\ConnexionFactory;
 use iutnc\touiter\dispatch\Dispatcher;
 
 ConnexionFactory::setConfig('./pages/classes/conf/config.ini');
-session_start();
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
     $id = $user->idUser;

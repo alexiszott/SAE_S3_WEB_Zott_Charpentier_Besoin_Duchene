@@ -127,7 +127,7 @@ class User
             $rep=$rep/$checkTouite->rowCount();
         }
         $pdo = null;
-        return $rep;
+        return round($rep,2);
     }
 
     public function listeFollower() : string{
@@ -138,11 +138,11 @@ class User
         $checkFollower->execute();
         $res = "<h2>Liste des personnes qui vous suivent :</h2>";
         if($checkFollower->rowCount()>0){
-            $res .= '<div class="user">';
+            $res .= '<table class="user">';
             while ($follower = $checkFollower->fetch(\PDO::FETCH_ASSOC)){
-                $res .= '<p><a href="index.php?user='. $follower['idUtil'] .'">'. $follower['prenomUtil'].' '. $follower['nomUtil'].'</a></p>';
+                $res .= '<tr><td><a href="index.php?user='. $follower['idUtil'] .'">'. $follower['prenomUtil'].' '. $follower['nomUtil'].'</a></td></tr>';
             }
-            $res .= '</div>';
+            $res .= '</table>';
         } else {
             $res .= '<p>Personne ne vous suit</p>';
         }
