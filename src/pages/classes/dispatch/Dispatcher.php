@@ -2,7 +2,7 @@
 
 namespace iutnc\touiter\dispatch;
 
-use iutnc\touiter\Action\Action;
+
 use iutnc\touiter\action\Disconnect;
 use iutnc\touiter\Action\MainTouiteListDisplay;
 use iutnc\touiter\Action\Parameters;
@@ -14,6 +14,7 @@ use iutnc\touiter\Action\TagTouiteListDisplay;
 use iutnc\touiter\action\TouiteDisplay;
 use iutnc\touiter\action\TouiteListDisplay;
 use iutnc\touiter\Action\WriteTouite;
+use \iutnc\touiter\page\Pages;
 
 class Dispatcher
 {
@@ -23,6 +24,11 @@ class Dispatcher
     }
 
     public function run() : void {
+        $p = new Pages();
+        $id =null;
+        if (isset($_GET['user'])){
+            $id = $_GET['user'];
+        }
         switch ($this->action){
             case 'display-main-touite':
                 $act = new MainTouiteListDisplay();
@@ -63,6 +69,7 @@ class Dispatcher
                     $act =new ProfilWallTouiteListDisplay();
                     $html= $act->execute();
                 }
+                $html.=$p->afficherPagination($id);
                 break;
             case 'display-onetouite':
                 $act = new TouiteDisplay($_GET['id']);
