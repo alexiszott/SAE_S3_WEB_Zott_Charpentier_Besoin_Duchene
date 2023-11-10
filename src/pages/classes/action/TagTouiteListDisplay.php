@@ -17,12 +17,13 @@ class TagTouiteListDisplay extends Action
             $tag = $_GET["tag"];
             $touiteList = new TouiteList();
             $touiteList->tagTouiteList($tag);
-
+            // Affichage du tag dont on voit les touites qui le mentionne
             $html .= "<h2>Tag : $tag</h2>";
             $t = new TouiteListRenderer($touiteList);
             if (isset($_SESSION['user'])) {
+                // Si l'utilisateur est connecté on lui propose de suivre ou non le tag
                 User::suivreOuNonTag($tag);
-                if (User::EtatTag($tag)) {
+                if (User::etatTag($tag)) {
                     $html .= '<form method="post"> 
                     <button class="buttonNavigation" name="Nesuitpas">Ne plus suivre</button>
                 </form>';

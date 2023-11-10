@@ -17,6 +17,7 @@ class SignUp extends Action
     public function execute(): string
     {
         $texte = '<div id="signup" class="backMenu">';
+        // Envoie du formulaire
         if ($this->http_method == 'GET') {
             $texte .= '<form method="post"> 
                         <table>
@@ -31,6 +32,7 @@ class SignUp extends Action
                         </form>';
         } else if ($this->http_method == 'POST') {
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+            // Nettoyage des données si l'email est valide
             if ($email) {
                 $nom = filter_var($_POST['nom'], FILTER_SANITIZE_STRING);
                 $prenom = filter_var($_POST['prenom'], FILTER_SANITIZE_STRING);
@@ -39,6 +41,7 @@ class SignUp extends Action
                 $mpdVerif = filter_var($_POST['verifPasswd'], FILTER_SANITIZE_STRING);
                 if($mdp===$mpdVerif){
                     try{
+                        // Création du compte si le mdp et sa vérification sont identiques
                         $creer = Auth::register($nom,$prenom,$email,$mdp);
                         if ($creer){
                             $texte.="Votre compte a été créée";

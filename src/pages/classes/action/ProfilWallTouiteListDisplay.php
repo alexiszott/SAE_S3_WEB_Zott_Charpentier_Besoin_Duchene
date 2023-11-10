@@ -26,6 +26,7 @@ class ProfilWallTouiteListDisplay extends Action
         $touitListe->userTouiteList($id);
         $t = new TouiteListRenderer($touitListe);
 
+        // Affichage du nom de l'utilisateur dont on visite le profil
         $r= "<div class='username'>
                 <h2>" . $u['prenomUtil'] . " " . $u['nomUtil'] . "</h2>";
         if (isset($_SESSION['user'])) {

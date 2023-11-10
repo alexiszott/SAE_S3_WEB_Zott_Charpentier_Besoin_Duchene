@@ -31,7 +31,7 @@ class User
         }
     }
 
-    public static function EtatTag(string $tag):bool
+    public static function etatTag(string $tag):bool
     {
         $etat = "";
         $idTag = Tag::getIdTag($tag);
@@ -84,8 +84,12 @@ class User
         return !($stmt->rowCount() == 0);
     }
 
+<<<<<<< HEAD
     //Permet de suivre ou ne plus suivre un utilisateur
     public function suivreOuNonUser(int $id) : void {
+=======
+    public function suivreOuNonUser(int $id) : void{
+>>>>>>> d7dca47778b7b9efc460de8d5ab88843d606ebbe
         $pdo = ConnexionFactory::makeConnection();
         $query=null;
         if(isset($_POST['suit'])){
@@ -155,9 +159,5 @@ class User
         }
         $pdo=null;
         return $res;
-    }
-
-    public static function getRoleUser(int $idUtil) : int {
-        return 0;
     }
 }
