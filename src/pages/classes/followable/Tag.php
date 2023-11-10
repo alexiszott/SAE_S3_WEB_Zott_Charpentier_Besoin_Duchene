@@ -58,7 +58,7 @@ class Tag
         return $touite;
     }
 
-    public static function getIdTag(string $nomTag) : int{
+    public static function getIdTag(string $nomTag) : int {
         $id = null;
         $pdo = ConnexionFactory::makeConnection();
         $sql="SELECT idTag FROM `tag`
@@ -68,7 +68,7 @@ class Tag
         $statment->execute();
         // Recupération de l'id courant
         $row =$statment->fetch(\PDO::FETCH_ASSOC);
-        return $row['idTag'];
+        return intval($row['idTag']);
     }
 
     public static function followAnyTags(int $idUtil) : bool {
