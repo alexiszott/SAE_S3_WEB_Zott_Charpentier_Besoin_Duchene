@@ -7,13 +7,8 @@ html {
 p, td, th, tr{
     color: black;
     font-size: 1.1em;
-<<<<<<< HEAD
     overflow: hidden;
     white-space: pre-line;
-=======
-    white-space: pre-line;
-    overflow: hidden;
->>>>>>> b06ea5d0a53f277c1f65c35827b8498f778f3cef
 }
 
 #title{
@@ -234,7 +229,7 @@ textarea {
     display: block;
 }
 
-.username {
+.username, h2.tag {
     text-align: center;
 }
 .profileName {
@@ -300,8 +295,16 @@ img {
 }
 
 #delButton {
+<<<<<<< HEAD
     margin: 0 20px 0 0;
     background-color: red;
+=======
+    background-color: red;
+}
+
+.buttonNavigation chooseFile {
+
+>>>>>>> 8b0df25fc71ac8de5652a2df5c1fd9b4bccc4d58
 }
 
 #delbuttonConfirm{
@@ -343,7 +346,9 @@ a{
     background-color: #4ea8de;
 }
 
-#tag{
+.tag{
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
