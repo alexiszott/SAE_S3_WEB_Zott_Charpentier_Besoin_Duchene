@@ -15,7 +15,7 @@ class WriteTouite extends Action
 
                 // Connexion à la base de données
                 $pdo = ConnexionFactory::makeConnection();
-                $touite = $_POST["touite"];
+                $touite = filter_var($_POST["touite"], FILTER_SANITIZE_STRING);
                 // Ajout des tags inexistants dans la table tag
                 $listeTags = Touite::extraire_tags($touite);
 

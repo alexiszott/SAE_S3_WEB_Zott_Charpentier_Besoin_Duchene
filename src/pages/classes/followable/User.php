@@ -149,4 +149,8 @@ class User
         $pdo=null;
         return $res;
     }
+
+    public static function getRoleUser(int $idUtil) : int {
+        return 0;
+    }
 }

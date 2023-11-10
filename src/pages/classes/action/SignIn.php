@@ -24,17 +24,22 @@ class SignIn extends Action
         } else if ($this->http_method == 'POST') {
             $email = $_POST['email'];
             $mdp = $_POST['passwd'];
-            $var = Auth::authenticate($email, $mdp);
-            if ($var === true) {
-                $texte .= "Bienvenue !";
-                header("Location: index.php");
-                exit();
-            } else {
-                $texte .= "<p>Cet email n'existe pas, veuillez créer un compte</p><br><a href='signup.php'>Créer un compte</a>";
-                header("Location: signin.php");
+            $emailValid = filter_var($email, FILTER_VALIDATE_EMAIL);
+            if ($emailValid) {
+                $email = filter_var($emailValid, FILTER_SANITIZE_EMAIL);
+                $mdp = filter_var($mdp, FILTER_SANITIZE_STRING);
+                $var = Auth::authenticate($email, $mdp);
+                if ($var === true) {
+                    $texte .= "Bienvenue !";
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    $texte .= "<p>Cet email n'existe pas, veuillez créer un compte</p><br><a href='signup.php'>Créer un compte</a>";
+                    header("Location: signin.php");
+                }
+                $texte .= '</div>';
+                return $texte;
             }
-            $texte .= '</div>';
-            return $texte;
         }
         return $texte;
     }
