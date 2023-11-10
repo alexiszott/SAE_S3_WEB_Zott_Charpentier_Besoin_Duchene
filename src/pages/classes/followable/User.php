@@ -49,7 +49,6 @@ class User
         }
         if(isset($_POST['suitplu'])){
             $query = "DELETE FROM suivreutil WHERE idUtil = ? and idUtilSuivi = ?";
-            echo 'true';
         }
         if(!is_null($query)){
             $stmt = $pdo->prepare($query);
