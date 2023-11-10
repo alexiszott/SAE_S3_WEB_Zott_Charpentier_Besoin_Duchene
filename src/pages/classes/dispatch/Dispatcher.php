@@ -2,19 +2,14 @@
 
 namespace iutnc\touiter\dispatch;
 
-<<<<<<< HEAD
 
-=======
 use iutnc\touiter\Action\Action;
 use iutnc\touiter\action\DeleteTouite;
 use iutnc\touiter\action\DeleteTouiteConfirm;
->>>>>>> alexis
 use iutnc\touiter\action\Disconnect;
 use iutnc\touiter\Action\MainTouiteListDisplay;
-use iutnc\touiter\Action\Parameters;
 use iutnc\touiter\Action\ProfilTouiteListDisplay;
 use iutnc\touiter\Action\ProfilWallTouiteListDisplay;
-use iutnc\touiter\action\Search;
 use iutnc\touiter\Action\SignIn;
 use iutnc\touiter\Action\SignUp;
 use iutnc\touiter\Action\TagTouiteListDisplay;
@@ -31,15 +26,14 @@ class Dispatcher
     }
 
     public function run() : void {
-<<<<<<< HEAD
+
         $p = new Pages();
         $id =null;
         if (isset($_GET['user'])){
             $id = $_GET['user'];
         }
-=======
+
         $html = ' ';
->>>>>>> alexis
         switch ($this->action){
             case 'display-main-touite':
                 $act = new MainTouiteListDisplay();
