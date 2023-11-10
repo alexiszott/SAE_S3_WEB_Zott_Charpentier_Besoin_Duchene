@@ -98,4 +98,46 @@ class User
         }
         $pdo=null;
     }
+
+    public function calculerScoreTouite() : float {
+        $pdo = ConnexionFactory::makeConnection();
+        $query = "SELECT idTouite FROM touite WHERE idUtil = ?";
+        $checkTouite = $pdo->prepare($query);
+        $checkTouite->bindParam(1, $this->idUser);
+        $checkTouite->execute();
+        $rep = 0;
+        if($checkTouite->rowCount()>0){
+            $query2 = "SELECT SUM(dlike) as res FROM user2like WHERE idTouite = ?";
+            while ($t = $checkTouite->fetch(\PDO::FETCH_ASSOC)){
+                $checkMoyenneTouite = $pdo->prepare($query2);
+                $checkMoyenneTouite->bindParam(1, $t['idTouite']);
+                $checkMoyenneTouite->execute();
+                $resultTouit = $checkMoyenneTouite->fetch(\PDO::FETCH_ASSOC);
+                $rep += $resultTouit['res'];
+            }
+            $rep=$rep/$checkTouite->rowCount();
+        }
+        $pdo = null;
+        return $rep;
+    }
+
+    public function listeFollower() : string{
+        $pdo = ConnexionFactory::makeConnection();
+        $query = "SELECT suivreutil.idUtil , nomUtil, prenomUtil FROM suivreutil, util WHERE suivreutil.idUtil=util.idUtil and idUtilSuivi = ?";
+        $checkFollower = $pdo->prepare($query);
+        $checkFollower->bindParam(1, $this->idUser);
+        $checkFollower->execute();
+        $res = "<h2>Liste des personnes qui vous suivent :</h2>";
+        if($checkFollower->rowCount()>0){
+            $res .= '<div class="user">';
+            while ($follower = $checkFollower->fetch(\PDO::FETCH_ASSOC)){
+                $res .= '<p><a href="index.php?user='. $follower['idUtil'] .'">'. $follower['prenomUtil'].' '. $follower['nomUtil'].'</a></p>';
+            }
+            $res .= '</div>';
+        } else {
+            $res .= '<p>Personne ne vous suit</p>';
+        }
+        $pdo=null;
+        return $res;
+    }
 }
