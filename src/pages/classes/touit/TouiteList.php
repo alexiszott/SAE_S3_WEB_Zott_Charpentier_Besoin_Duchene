@@ -27,7 +27,7 @@ class TouiteList
         $statement->execute();
         while ($result = $statement->fetch(\PDO::FETCH_ASSOC)) {
                 if (is_null($result['idImage'])) {
-                    $this->touiteList[] = new Touite($result['idTouite'], $result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil']);
+                    $this->touiteList[] = new Touite(intval($result['idTouite']), $result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil']);
                 } else {
                     $query2 = "select cheminImage from image where idImage = ?";
                     $stmt2 = $pdo->prepare($query2);
