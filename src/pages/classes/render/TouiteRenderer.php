@@ -27,32 +27,7 @@ class TouiteRenderer implements Renderer
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         $pdo = null;
         $html = '<div class="touite">';
-<<<<<<< HEAD
-        if(isset($_SESSION['user'])){
-            $user = unserialize($_SESSION['user']);
-            $id = $user->idUser;
-            if($result['idUtil']==$id){
-                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href='profil.php'> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
-            } else {
-                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
-            }
-        } else {
-            $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
-        }
-        switch ($selector) {
-            case 1 :
-                $html .= $this->compact();
-                break;
-            case 2:
-                $html .= $this->long();
-                break;
-        }
-
-        $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
-        $html .= $this->touite->getUserLike();
-        $this->touite->setLike();
-=======
         $firstName = $this->touite->userFirstName;
         $lastName = $this->touite->userLastName;
         $userUrl = User::getUserUrl($firstName, $lastName);
