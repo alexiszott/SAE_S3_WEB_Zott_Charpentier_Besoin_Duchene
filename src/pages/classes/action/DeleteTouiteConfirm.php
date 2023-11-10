@@ -11,7 +11,7 @@ class DeleteTouiteConfirm extends Action
     {
         if ($this->http_method == 'POST') {
             if($_POST['confirmButton'] == 0){
-                header("Location: ../main/index.php");
+                header("Location: index.php");
                 exit();
             } else if ($_POST['confirmButton'] == 1){
                 $pdo = ConnexionFactory::makeConnection();

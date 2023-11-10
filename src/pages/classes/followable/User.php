@@ -70,6 +70,32 @@ class User
         $pdo=null;
     }
 
+    public function suitUser(int $id) : bool{
+        $pdo = ConnexionFactory::makeConnection();
+        $query = "SELECT * FROM suivreutil WHERE idUtil = ? and idUtilSuivi = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(1, $this->idUser);
+        $stmt->bindParam(2, $id);
+        $stmt->execute();
+        $pdo=null;
+        return !($stmt->rowCount() == 0);
+    }
 
-
+    public function suivreOuNonUser(int $id) : void{
+        $pdo = ConnexionFactory::makeConnection();
+        $query=null;
+        if(isset($_POST['suit'])){
+            $query = "INSERT INTO suivreutil VALUES (? , ?)";
+        }
+        if(isset($_POST['suitplu'])){
+            $query = "DELETE FROM suivreutil WHERE idUtil = ? and idUtilSuivi = ?";
+        }
+        if(!is_null($query)){
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(1, $this->idUser);
+            $stmt->bindParam(2, $id);
+            $stmt->execute();
+        }
+        $pdo=null;
+    }
 }

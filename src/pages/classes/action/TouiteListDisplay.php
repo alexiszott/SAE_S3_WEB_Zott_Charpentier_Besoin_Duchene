@@ -9,10 +9,14 @@ class TouiteListDisplay extends Action
 {
     public function execute(): string
     {
-        $touitListe = new TouiteList();
-        $touitListe->mainTouiteList();
-        $t = new TouiteListRenderer($touitListe);
-        $r = $t->render();
+        $r = "";
+        if (isset($_SESSION['user'])) {
+            $touitListe = new TouiteList();
+            $selfUser = unserialize($_SESSION['user']);
+            $touitListe->getTouiteListInteressant($selfUser->idUser);
+            $t = new TouiteListRenderer($touitListe);
+            $r = $t->render();
+        }
         return $r;
     }
 }
