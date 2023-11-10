@@ -15,7 +15,7 @@ class Touite
     private string $userLastName;
     private int $userLike;
 
-    public function __construct($i, $d, $m, $fn, $ln, ?string $l = null)
+    public function __construct(int $i, string $d, string $m, string $fn, string $ln, ?string $l = null)
     {
         $this->id = $i;
         $this->date = $d;
