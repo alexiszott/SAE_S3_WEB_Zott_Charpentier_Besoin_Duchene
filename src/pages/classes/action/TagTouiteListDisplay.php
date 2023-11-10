@@ -17,25 +17,22 @@ class TagTouiteListDisplay extends Action
             $touiteList = new TouiteList();
             $touiteList->tagTouiteList($tag);
 
+            $r .= "<h2 class='tag'>Tag : $tag</h2>";
             $t = new TouiteListRenderer($touiteList);
             if (isset($_SESSION['user'])) {
-                    User::suivreOuNonTag($tag);
-                    if (User::EtatTag($tag)) {
-
-                        $r .= '<form method="post"> 
-                        <button name ="Nesuitpas"> Ne plus suivre</button>
-                    </form>';
-                    } else {
-                        $r .= '<form method="post">
-                    <button name = "Suit"> Suivre</button>
-                    </form>';
-                    }
-
+                User::suivreOuNonTag($tag);
+                if (User::EtatTag($tag)) {
+                    $r .= '<form method="post"> 
+                    <button class="buttonNavigation" name ="Nesuitpas"> Ne plus suivre</button>
+                </form>';
+                } else {
+                    $r .= '<form method="post">
+                <button class="buttonNavigation" name = "Suit"> Suivre</button>
+                </form>';
                 }
-                }
-            $r .= $t->render();
-            echo "<h2>Tag : $tag</h2>";
-
+            }
+        }
+        $r .= $t->render() . "</div>";
         return $r;
     }
 }
