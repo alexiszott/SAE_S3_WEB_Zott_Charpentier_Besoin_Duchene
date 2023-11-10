@@ -36,6 +36,7 @@ class TouiteList
                 $this->touiteList[] = new Touite($result['idTouite'],$result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil'], $result2['cheminImage']);}
         }
         $pdo=null;
+
     }
 
     public function mainTouiteList(){

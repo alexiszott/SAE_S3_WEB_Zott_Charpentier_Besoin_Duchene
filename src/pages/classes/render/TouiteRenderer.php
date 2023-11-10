@@ -68,7 +68,7 @@ class TouiteRenderer implements Renderer
             $image = '<p>Contient une image</p>';
             return '<a id="lienTouite" href="./src/pages/main/index.php">'.$html . $image.'</a>';
         }
-        return '<a id="lienTouite" href="index.php?action=display-onetouite&id='. $this->touite->id .'">'.$html.'</a>';
+        return '<a id="lienTouite" href="'.$_SERVER['PHP_SELF'].'?action=display-onetouite&id='. $this->touite->id .'">'.$html.'</a>';
     }
 
     private function long()
