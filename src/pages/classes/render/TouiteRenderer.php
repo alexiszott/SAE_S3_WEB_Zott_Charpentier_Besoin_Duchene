@@ -68,12 +68,14 @@ class TouiteRenderer implements Renderer
             $image = '<p>Contient une image</p>';
             return '<a id="lienTouite" href="./src/pages/main/index.php">'.$html . $image.'</a>';
         }
-        return '<a id="lienTouite" href="index.php?action=display-onetouite&id='. $this->touite->id .'">'.$html.'</a>';
+        $lien = 'index.php?action=display-onetouite&id='.$this->touite->id;
+
+        return $html . "<a href=$lien>Voir plus...</a>";
     }
 
     private function long()
     {
-        $html = '<p class="message">' . Tag::makeTagClickable($this->touite->message) . '</p>';
+        $html = '<div class="message"><p class="message">' . Tag::makeTagClickable($this->touite->message) . '</p></div>';
         if(!is_null($this->touite->lienImage)){
             $image = '<br><img href"'.$this->touite->lienImage.'"</img>';
             return $html . $image;
