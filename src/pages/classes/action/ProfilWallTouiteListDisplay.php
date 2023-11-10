@@ -23,10 +23,28 @@ class ProfilWallTouiteListDisplay extends Action
         $touitListe = new TouiteList();
         $touitListe->userTouiteList($id);
         $t = new TouiteListRenderer($touitListe);
-        $r = $t->render();
-        echo "<div class='username'>
-                <h2>".$u['prenomUtil']." ".$u['nomUtil']."</h2>
-            </div>";
+
+        $r= "<div class='username'>
+                <h2>" . $u['prenomUtil'] . " " . $u['nomUtil'] . "</h2>";
+        if (isset($_SESSION['user'])) {
+            $selfUser = unserialize($_SESSION['user']);
+            if ($selfUser->idUser != $id) {
+                $selfUser->suivreOuNonUser($id);
+                if ($selfUser->suitUser($id)) {
+                    $r.= '<form method="post"> 
+                        <button name ="suitplu"> Ne plus suivre</button>
+                    </form>';
+                } else {
+                    $r.= '<form method="post">
+                    <button name = "suit"> Suivre</button>
+                    </form>';
+                }
+
+            }
+        }
+        $r.= '</div>';
+        $pdo=null;
+        $r .= $t->render();
         return $r;
 
     }

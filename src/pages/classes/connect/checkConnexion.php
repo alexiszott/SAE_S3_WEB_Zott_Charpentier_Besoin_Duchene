@@ -21,12 +21,13 @@ class checkConnexion
             </div>";
             $html .= "<div class=\"menu navigation\">
 
-                    <a href=\"profil.php\" class='buttonNavigation'>Profile</a>
+                    <a href=\"profil.php\" class='buttonNavigation'>Profil</a>
                     <a href=\"index.php\" class='buttonNavigation'>Accueil</a>
+                    <a href=\"profil.php?action=stats\" class='buttonNavigation'>Mes statistiques</a>
 
             </div></div>";
         }else{
-            $html .= "Vous n'êtes pas connecter</div>";
+            $html .= "Vous n'êtes pas connecté(e)</div>";
             $html .= "<div class=\"menu connexion\">
             <a href=\"signin.php\" class='buttonNavigation'>Se connecter</a>
             <a href=\"signup.php\" class='buttonNavigation'>S'inscrire</a>

@@ -62,4 +62,18 @@ class Tag
         $touite = implode(' ',$listeChaine);
         return $touite;
     }
+
+    public static function getIdTag(string $nomTag):int{
+        $id = null;
+        $pdo = ConnexionFactory::makeConnection();
+        $sql="SELECT idTag FROM `tag`
+              where libelleTag = ? ";
+        $statment = $pdo->prepare($sql);
+        $statment->bindParam(1,$nomTag);
+        $statment->execute();
+        // Recupération de l'id courant
+        $row =$statment->fetch(\PDO::FETCH_ASSOC);
+        return $row['idTag'];
+    }
+
 }

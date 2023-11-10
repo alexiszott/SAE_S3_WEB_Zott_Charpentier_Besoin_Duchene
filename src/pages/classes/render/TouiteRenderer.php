@@ -30,7 +30,36 @@ class TouiteRenderer implements Renderer
 
         $idTouite = $this->touite->id;
         $idUtil = $result["idUtil"];
+<<<<<<< HEAD
         $html .= "<div class='topTouite'><div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$idUtil> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+=======
+        if(isset($_SESSION['user'])){
+            $user = unserialize($_SESSION['user']);
+            $id = $user->idUser;
+            if($result['idUtil']==$id){
+                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i>
+                          <a href='profil.php'> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+            } else {
+                $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i>
+                          <a href=index.php?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+            }
+        }
+        else {
+            $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=" . $result['idUtil'] . "> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+        }
+        switch ($selector) {
+            case 1 :
+                $html .= $this->compact();
+                break;
+            case 2:
+                $html .= $this->long();
+                break;
+        }
+        $html .= $this->touite->getUserLike();
+        $this->touite->setLike();
+        $html .= '<div class="infos"><p>'.$this->touite->date.'</p></div></div></div>';
+        return $html;
+>>>>>>> b06ea5d0a53f277c1f65c35827b8498f778f3cef
 
         //Affiche le bouton supprimer si on est le créateur du touite
         $pdo = ConnexionFactory::makeConnection();
@@ -55,20 +84,6 @@ class TouiteRenderer implements Renderer
         } else {
             $html .= "</div>";
         }
-
-            switch ($selector) {
-                case 1 :
-                    $html .= $this->compact();
-                    break;
-                case 2:
-                    $html .= $this->long();
-                    break;
-            }
-
-        $html .= $this->touite->getUserLike();
-        $this->touite->setLike();
-        $html .= '<div class="infos"><p>'.$this->touite->date.'</p></div></div></div>';
-        return $html;
     }
 
     private function compact() : string

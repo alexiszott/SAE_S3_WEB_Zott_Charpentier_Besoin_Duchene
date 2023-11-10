@@ -7,8 +7,13 @@ html {
 p, td, th, tr{
     color: black;
     font-size: 1.1em;
+<<<<<<< HEAD
     overflow: hidden;
     white-space: pre-line;
+=======
+    white-space: pre-line;
+    overflow: hidden;
+>>>>>>> b06ea5d0a53f277c1f65c35827b8498f778f3cef
 }
 
 #title{
@@ -226,13 +231,16 @@ textarea {
     border: 1px solid rgb(220,220,220);
     border-radius: 6px;
     font-size: 1.1em;
+<<<<<<< HEAD
     display: block;
+=======
+>>>>>>> b06ea5d0a53f277c1f65c35827b8498f778f3cef
 }
+
 
 .username {
     text-align: center;
 }
-
 .profileName {
     text-align: center;
 }
@@ -289,9 +297,16 @@ textarea {
 }
 
 #delButton {
+<<<<<<< HEAD
     margin: 0 20px 0 0;
     background-color: red;
 
+=======
+    position: relative;
+    left: 85%;
+    bottom: 275px;
+    margin: 0 auto;
+>>>>>>> b06ea5d0a53f277c1f65c35827b8498f778f3cef
 }
 
 .buttonNavigation chooseFile {

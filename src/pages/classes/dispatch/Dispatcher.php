@@ -12,6 +12,7 @@ use iutnc\touiter\Action\ProfilTouiteListDisplay;
 use iutnc\touiter\Action\ProfilWallTouiteListDisplay;
 use iutnc\touiter\Action\SignIn;
 use iutnc\touiter\Action\SignUp;
+use iutnc\touiter\action\StatsAction;
 use iutnc\touiter\Action\TagTouiteListDisplay;
 use iutnc\touiter\action\TouiteDisplay;
 use iutnc\touiter\action\TouiteListDisplay;
@@ -107,6 +108,10 @@ class Dispatcher
                 break;
             case 'delete-touite-confirm':
                 $act = new DeleteTouiteConfirm();
+                $html = $act->execute();
+                break;
+            case 'stats' :
+                $act = new StatsAction();
                 $html = $act->execute();
                 break;
         }
