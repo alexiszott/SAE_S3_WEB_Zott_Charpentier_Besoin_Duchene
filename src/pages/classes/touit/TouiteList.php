@@ -23,12 +23,14 @@ class TouiteList
         throw new \Exception ("$at: invalid property");
     }
 
+    // Création d'une liste de touites selon une requête donné
     public function creerTouiteListe(\PDOStatement $statement, \PDO $pdo) : void {
         $statement->execute();
         while ($result = $statement->fetch(\PDO::FETCH_ASSOC)) {
+            // s'il y a une image on ajoute un touite sans le chemin de l'image
                 if (is_null($result['idImage'])) {
                     $this->touiteList[] = new Touite(intval($result['idTouite']), $result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil']);
-                } else {
+                } else { // S'il y a une image on récupère son adresse depuis la base de données
                     $query2 = "select cheminImage from image where idImage = ?";
                     $stmt2 = $pdo->prepare($query2);
                     $stmt2->bindParam(1, $result['idImage']);
@@ -40,6 +42,7 @@ class TouiteList
         $pdo=null;
     }
 
+    // Créer une liste de touites contenant tous les touites existants
     public function mainTouiteList() : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
@@ -55,6 +58,7 @@ class TouiteList
         $this->creerTouiteListe($stmt, $pdo);
     }
 
+    // Créer une liste des touites envoyés par un utilisateur donné
     public function userTouiteList(int $id) : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
@@ -72,6 +76,7 @@ class TouiteList
         $this->creerTouiteListe($stmt, $pdo);
     }
 
+    // Créer une liste de touites contnant un tag donné
     public function tagTouiteList(string $tag) : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
@@ -91,6 +96,7 @@ class TouiteList
         $this->creerTouiteListe($stmt, $pdo);
     }
 
+    // Créer une liste de touites contenant un tag auquel l'utilisateur est abonné ou provenant d'une personne à laquelle on est abonnée
     public function getTouiteListInteressant(int $idUtil) : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
