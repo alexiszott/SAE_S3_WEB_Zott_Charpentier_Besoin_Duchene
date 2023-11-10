@@ -9,9 +9,9 @@
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
 <header>
-    <h1>TOUITEUR</h1>
+    <h1 id="title">TOUITEUR</h1>
     <div class="menu navigation">
-        <a href="index.php">Accueil</a>
+        <a href="index.php" class='buttonNavigation'>Accueil</a>
     </div>
 </header>
 <?php
