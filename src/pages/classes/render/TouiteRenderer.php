@@ -28,11 +28,9 @@ class TouiteRenderer implements Renderer
         $pdo = null;
         $html = '<div class="touite">';
 
-//        $firstName = $this->touite->userFirstName;
-//        $lastName = $this->touite->userLastName;
-//        $userUrl = User::getUserUrl($firstName, $lastName);
         $idTouite = $this->touite->id;
-//        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+        $idUtil = $result["idUtil"];
+        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$idUtil> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
             switch ($selector) {
                 case 1 :
@@ -42,8 +40,9 @@ class TouiteRenderer implements Renderer
                     $html .= $this->long();
                     break;
             }
+        $html .= $this->touite->getUserLike();
+        $this->touite->setLike();
         $html .= '<div class="infos"><p>Publié le '.$this->touite->date .'</p>';
-        $html .= '<p><i class="bi bi-hand-thumbs-up"></i></p><p><i class="bi bi-hand-thumbs-down"></i></p></div>';
 
         //Affiche le bouton supprimer si on est le créateur du touite
         $pdo = ConnexionFactory::makeConnection();
