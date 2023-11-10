@@ -21,6 +21,7 @@ class ProfilWallTouiteListDisplay extends Action
         $result->execute();
         $u = $result->fetch(\PDO::FETCH_ASSOC);
 
+        $id = intval($id);
         $touitListe = new TouiteList();
         $touitListe->userTouiteList($id);
         $t = new TouiteListRenderer($touitListe);

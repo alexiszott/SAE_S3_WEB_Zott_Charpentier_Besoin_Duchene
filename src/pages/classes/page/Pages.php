@@ -16,7 +16,7 @@ class Pages
 
     public static function nbPages($id = null): int
     {
-
+        $page = 0;
         $pdo = ConnexionFactory::makeConnection();
         //Cas ou il n'y a pas d'email cela retourne tout les touites
         if ($id === null) {
@@ -24,7 +24,7 @@ class Pages
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            $page = $result['nbPages'];
+            $page = intval($result['nbPages']);
 
         } else {
             $sql = "SELECT CEIL(COUNT(idTouite)/10) as nbPages FROM touite
@@ -33,7 +33,7 @@ class Pages
             $stmt->bindParam(1, $id);
             $stmt->execute();
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            $page = $result['nbPages'];
+            $page = intval($result['nbPages']);
 
         }
         return $page;

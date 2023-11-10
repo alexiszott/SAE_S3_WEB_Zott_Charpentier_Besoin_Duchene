@@ -85,7 +85,7 @@ class Touite
     }
 
 
-    public function getNbLike(): string
+    public function getNbLike(): mixed
     {
         $pdo = ConnexionFactory::makeConnection();
         $query = "select SUM(dlike) as dlike from user2like where idTouite= ?";
@@ -100,7 +100,6 @@ class Touite
             $res = $result['dlike'];
         }
         return $res;
-
     }
 
     public function setLike()

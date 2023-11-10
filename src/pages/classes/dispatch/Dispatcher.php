@@ -96,7 +96,7 @@ class Dispatcher
                 $html.=$p->afficherPagination($id);
                 break;
             case 'display-onetouite':
-                $act = new TouiteDisplay($_GET['id']);
+                $act = new TouiteDisplay(intval($_GET['id']));
                 $html = $act->execute();
                 break;
             case 'disconnect':

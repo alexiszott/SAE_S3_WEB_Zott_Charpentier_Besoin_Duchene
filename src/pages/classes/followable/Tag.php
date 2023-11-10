@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 namespace iutnc\touiter\followable;
 
 use iutnc\touiter\db\ConnexionFactory;
@@ -59,7 +58,7 @@ class Tag
         return $touite;
     }
 
-    public static function getIdTag(string $nomTag):int{
+    public static function getIdTag(string $nomTag) : int{
         $id = null;
         $pdo = ConnexionFactory::makeConnection();
         $sql="SELECT idTag FROM `tag`

@@ -82,7 +82,7 @@ class User
         return !($stmt->rowCount() == 0);
     }
 
-    public function suivreOuNonUser(int $id) : void{
+    public function suivreOuNonUser(int $id) : void {
         $pdo = ConnexionFactory::makeConnection();
         $query=null;
         if(isset($_POST['suit'])){

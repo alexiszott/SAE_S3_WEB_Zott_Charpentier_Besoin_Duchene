@@ -12,8 +12,8 @@ class TouiteList
 
     public function __construct()
     {
-    $this->touiteList = Array();
-    $this->nPages=0;
+        $this->touiteList = Array();
+        $this->nPages=0;
     }
 
 
@@ -55,11 +55,11 @@ class TouiteList
         $this->creerTouiteListe($stmt, $pdo);
     }
 
-    public function userTouiteList(string $id) : void {
+    public function userTouiteList(int $id) : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         if (isset($_GET['page'])){
-            $this->nPages=($_GET['page'])-1;
+            $this->nPages= intval($_GET['page'])-1;
         }
         $limit = $this->nPages * 10;
         $query = "select idTouite, idImage, texteTouite, datePubli, prenomUtil, nomUtil 
@@ -91,7 +91,7 @@ class TouiteList
         $this->creerTouiteListe($stmt, $pdo);
     }
 
-    public function getTouiteListInteressant(string $idUtil) : void {
+    public function getTouiteListInteressant(int $idUtil) : void {
         $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         if (isset($_GET['page'])){
