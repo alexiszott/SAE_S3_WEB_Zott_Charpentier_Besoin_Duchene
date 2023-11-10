@@ -17,9 +17,6 @@ class Tag
     }
 
     public static function ajouter_tags(?array $tags, int $idTouite) : void {
-        // PROBLEME :
-        // Si on veut insérer dans tag2touite un nouveau touite avec un nouveau tag mais que la table tag n'est pas vide (donc il existe
-        // déjà d'autres tags), l'id tag insérer pour cet ajout sera mauvais
         if ($tags != null) {
             $pdo = ConnexionFactory::makeConnection();
             // Récupère le nombre de lignes correspondant au tag libelleTag donné ==> 1 s'il existe, 0 sinon
@@ -52,10 +49,8 @@ class Tag
         $listeChaine = explode(' ', $touite);
         foreach ($listeChaine as $k => $word) {
             if (str_contains($word , '#')) {
-//                echo "WORD" . $word . "WORD<br>";
                 $lien =  "?action=display-tag-touite&tag=" . ltrim($word, '#');
                 $word = "<a href=$lien>$word</a>";
-//                echo "///" . $word . "///<br>";
                 $listeChaine[$k] = $word;
             }
         }
@@ -74,6 +69,14 @@ class Tag
         // Recupération de l'id courant
         $row =$statment->fetch(\PDO::FETCH_ASSOC);
         return $row['idTag'];
+    }
+
+    public static function followAnyTags(int $idUtil) : bool {
+        $pdo = ConnexionFactory::makeConnection();
+        $query = "SELECT * FROM suivretag WHERE idUtil = $idUtil";
+        $result = $pdo->prepare($query);
+        $result->execute();
+        return ($result->rowCount() > 0);
     }
 
 }

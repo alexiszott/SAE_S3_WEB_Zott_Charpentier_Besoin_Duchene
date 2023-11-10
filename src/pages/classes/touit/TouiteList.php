@@ -91,6 +91,7 @@ class TouiteList
     }
 
     public function getTouiteListInteressant(string $idUtil) : void {
+        $this->touiteList = [];
         $pdo = ConnexionFactory::makeConnection();
         if (isset($_GET['page'])){
             $this->nPages=($_GET['page'])-1;

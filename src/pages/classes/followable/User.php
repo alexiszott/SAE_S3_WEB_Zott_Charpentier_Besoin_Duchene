@@ -98,4 +98,12 @@ class User
         }
         $pdo=null;
     }
+
+    public static function followAnyUsers(int $idUtil) : bool {
+        $pdo = ConnexionFactory::makeConnection();
+        $query = "SELECT * FROM suivreUtil WHERE idUtil = $idUtil";
+        $result = $pdo->prepare($query);
+        $result->execute();
+        return ($result->rowCount() > 0);
+    }
 }
