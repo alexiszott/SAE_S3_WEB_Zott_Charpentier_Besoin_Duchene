@@ -31,7 +31,7 @@ class User
         }
     }
 
-    public static function EtatTag(string $tag):bool
+    public static function etatTag(string $tag):bool
     {
         $etat = "";
         $idTag = Tag::getIdTag($tag);
@@ -82,7 +82,7 @@ class User
         return !($stmt->rowCount() == 0);
     }
 
-    public function suivreOuNonUser(int $id) : void {
+    public function suivreOuNonUser(int $id) : void{
         $pdo = ConnexionFactory::makeConnection();
         $query=null;
         if(isset($_POST['suit'])){
@@ -149,9 +149,5 @@ class User
         }
         $pdo=null;
         return $res;
-    }
-
-    public static function getRoleUser(int $idUtil) : int {
-        return 0;
     }
 }

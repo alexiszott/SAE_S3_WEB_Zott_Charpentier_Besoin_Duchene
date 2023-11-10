@@ -23,9 +23,10 @@ class TouiteDisplay extends Action
         $stmt->bindParam(1, $this->touite);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        // Si le touite ne contient pas d'image on laisse le champ nul à l'attribut image
         if(is_null($result['idImage'])){
             $tDisplay = new Touite(intval($result['idTouite']),$result['datePubli'], $result['texteTouite'], $result['prenomUtil'], $result['nomUtil']);}
-        else{
+        else{ // Sinon on inclut l'image au touite
             $query2 = "select cheminImage from image where idImage = ?";
             $stmt2 = $pdo->prepare($query2);
             $stmt2->bindParam(1, $result['idImage']);

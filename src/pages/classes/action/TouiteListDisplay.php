@@ -14,10 +14,12 @@ class TouiteListDisplay extends Action
     {
         $r = "";
         $touitListe = new TouiteList();
+        // Initialise la liste de touites à celle par défaut (tous les touites existant)
         $touitListe->mainTouiteList();
         if (isset($_SESSION['user'])) {
             $selfUser = unserialize($_SESSION['user']);
             if (User::followAnyUsers($selfUser->idUser) || Tag::followAnyTags($selfUser->idUser)) {
+                // Si l'utilisateur est connecté est suit au moins un utilisateur ou un tag il aura la liste des touites qui le concerne
                 $touitListe->getTouiteListInteressant($selfUser->idUser);
             }
         }

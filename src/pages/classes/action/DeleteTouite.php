@@ -25,6 +25,7 @@ class DeleteTouite extends Action
         $idTU = intval($idTouiteUser['idUtil'],10);
         $userConnectedUnserialized = unserialize($_SESSION["user"]);
 
+        // Affichage de la page de confirmation de suppression du touite
         if($idTU === $userConnectedUnserialized->idUser){
             $html .= "<div class='backMenu' id='delConfirm'>
                         <form method='post' action='?action=delete-touite-confirm'>

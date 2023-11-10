@@ -39,7 +39,7 @@ class Touite
             if ($stmt->rowCount() == 0) {
                 $this->userLike = 0;
             } else {
-                $this->userLike = $result['dlike'];
+                $this->userLike = intval($result['dlike']);
             }
         } else {
             $this->userLike = 0;
@@ -97,7 +97,7 @@ class Touite
         if (is_null($result['dlike'])) {
             $res = 0;
         } else {
-            $res = $result['dlike'];
+            $res = intval($result['dlike']);
         }
         return $res;
     }
