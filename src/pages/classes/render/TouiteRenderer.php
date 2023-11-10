@@ -38,7 +38,7 @@ class TouiteRenderer implements Renderer
                           <a href='profil.php'> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
             } else {
                 $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i>
-                          <a href=?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+                          <a href=index.php?user=".$result['idUtil']."> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
             }
         }
         else {
