@@ -8,8 +8,36 @@
     </head>
     <body>
         <?php
-            session_start();
-            if (isset($_SESSION['admin']))
+        require_once '../vendor/autoload.php';
+
+        use iutnc\touiter\db\ConnexionFactory;
+
+        session_start();
+            if (isset($_SESSION['admin'])){}
+                ConnexionFactory::setConfig('./pages/classes/conf/config.ini');
+                $pdo = ConnexionFactory::makeConnection();
+                $sql = "SELECT DISTINCT idUtilSuivi FROM suivreutil GROUP BY idUtilSuivi ORDER BY COUNT(idUtilSuivi) DESC ";
+                $statment = $pdo->prepare($sql);
+                $statment->execute();
+
+                // Création de la boucle
+                $i = 0;
+                echo "<h1>Utilisateurs les plus suivis</h1> <br>";
+                while ($i < 5 && $row = $statment->fetch(\PDO::FETCH_ASSOC)) {
+                    $id = $row['idUtilSuivi'];
+                    $sql = "SELECT nomUtil , prenomUtil FROM util where idUtil=?";
+                    $statment2 = $pdo->prepare($sql);
+                    $statment2->bindParam(1, $id);
+                    $statment2->execute();
+                    $row2 = $statment2->fetch(\PDO::FETCH_ASSOC);
+                    echo $row2["prenomUtil"] . " " . $row2["nomUtil"];
+                    echo "<br>";
+                    $i++;
+            }
+
+   
+
         ?>
+
     </body>
 </html>
