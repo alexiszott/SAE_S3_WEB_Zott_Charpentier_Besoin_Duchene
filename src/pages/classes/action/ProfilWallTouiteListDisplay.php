@@ -27,8 +27,8 @@ class ProfilWallTouiteListDisplay extends Action
         $r= "<div class='username'>
                 <h2>" . $u['prenomUtil'] . " " . $u['nomUtil'] . "</h2>";
         if (isset($_SESSION['user'])) {
-            if ($_SERVER['PHP_SELF'] != '/SAE_S3_WEB_Zott_Charpentier_Besoin_Duchene/src/profil.php') {
-                $selfUser = unserialize($_SESSION['user']);
+            $selfUser = unserialize($_SESSION['user']);
+            if ($selfUser->idUser != $id) {
                 $selfUser->suivreOuNonUser($id);
                 if ($selfUser->suitUser($id)) {
                     $r.= '<form method="post"> 
