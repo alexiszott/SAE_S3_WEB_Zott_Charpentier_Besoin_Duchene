@@ -28,11 +28,11 @@ class TouiteRenderer implements Renderer
         $pdo = null;
         $html = '<div class="touite">';
 
-        $firstName = $this->touite->userFirstName;
-        $lastName = $this->touite->userLastName;
-        $userUrl = User::getUserUrl($firstName, $lastName);
+//        $firstName = $this->touite->userFirstName;
+//        $lastName = $this->touite->userLastName;
+//        $userUrl = User::getUserUrl($firstName, $lastName);
         $idTouite = $this->touite->id;
-        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
+//        $html .= "<div class='creator'><i class=\"bi bi-person-circle\"></i><a href=?user=$userUrl> {$this->touite->userFirstName} {$this->touite->userLastName}</a></div>";
 
             switch ($selector) {
                 case 1 :
@@ -56,7 +56,7 @@ class TouiteRenderer implements Renderer
         
         if(isset($_SESSION["user"])){
             $userConnectedUnserialized = unserialize($_SESSION["user"]);
-            if(intval($row['idUtil'],10) === $userConnectedUnserialized->idUser) {
+            if(intval($row['idUtil']) === $userConnectedUnserialized->idUser) {
                 $html .= "<div class=\"delete\">
                     <form method=\"post\" action=\"?action=delete-touite\">
                     <button type=\"submit\" class='supButton' id=\"delButton\" name=\"delete\" value=\"$idTouite\">Suprimer</button>
@@ -64,7 +64,6 @@ class TouiteRenderer implements Renderer
                     </div>";
             }
         }
->>>>>>> alexis
         $html .= '</div>';
         return $html;
     }

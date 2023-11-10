@@ -24,7 +24,7 @@ class DeleteTouiteConfirm extends Action
                 $result = $pdo->prepare($sqlIdTouiteUser);
                 $result->bindParam(1, $_POST['hiddenInput']);
                 $result->execute();
-                header("Location: ../main/index.php");
+                header("Location: index.php");
                 exit();
             }
         }

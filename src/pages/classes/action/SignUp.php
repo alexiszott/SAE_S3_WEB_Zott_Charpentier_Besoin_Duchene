@@ -39,7 +39,7 @@ class SignUp extends Action
                     $creer = Auth::register($nom,$prenom,$email,$mdp);
                     if ($creer){
                         $texte.="Votre compte a été créée";
-                        header("Location: ../main/index.php");
+                        header("Location: index.php");
                         exit();
                     }else{
                         $texte.="Une erreur s'est levée";
