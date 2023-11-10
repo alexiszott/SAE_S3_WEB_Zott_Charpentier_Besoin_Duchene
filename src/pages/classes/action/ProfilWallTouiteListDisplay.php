@@ -13,7 +13,12 @@ class ProfilWallTouiteListDisplay extends Action
     public function execute(): string
     {
 
+<<<<<<< HEAD
         $id = $_GET['user'];
+=======
+        $nom = explode('_',$_GET['user']);
+        $html = "<div class=\"profileName\"><h2>$nom[0] $nom[1]</h2></div>";
+>>>>>>> alexis
         $pdo = ConnexionFactory::makeConnection();
         $sql = "select nomUtil, prenomUtil from util where idUtil = ?";
         $result = $pdo->prepare($sql);
@@ -24,11 +29,16 @@ class ProfilWallTouiteListDisplay extends Action
         $touitListe = new TouiteList();
         $touitListe->userTouiteList($id);
         $t = new TouiteListRenderer($touitListe);
+<<<<<<< HEAD
         $r = $t->render();
         echo "<div class='username'>
                 <h2>".$u['prenomUtil']." ".$u['nomUtil']."</h2>
             </div>";
         return $r;
+=======
+        $html .= $t->render();
+        return $html;
+>>>>>>> alexis
 
     }
 }

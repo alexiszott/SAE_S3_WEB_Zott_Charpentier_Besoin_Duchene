@@ -22,20 +22,6 @@ class User
         $this->permission = $perm;
     }
 
-    public function sendTouite(){
-        ConnexionFactory::makeConnection();
-
-        //TODO
-
-    }
-
-    public function interactTouite(){
-        ConnexionFactory::makeConnection();
-
-        //TODO
-
-    }
-
     public function __get(string $at) : mixed{
         if(property_exists($this, $at)){
             return $this->$at;
