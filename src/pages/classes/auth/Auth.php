@@ -38,7 +38,7 @@ class Auth
         $result->bindParam(1, $email);
         $result->execute();
         $u = $result->fetch(\PDO::FETCH_ASSOC);
-        $profile = new User($u['idUtil'], $u['prenomUtil'], $u['nomUtil'], $u['emailUtil'], $u['passwd'], $u['role']);
+        $profile = new User(intval($u['idUtil']), $u['prenomUtil'], $u['nomUtil'], $u['emailUtil'], $u['passwd'], intval($u['role']));
         $_SESSION['user'] = serialize($profile);
         $pdo=null;
     }
