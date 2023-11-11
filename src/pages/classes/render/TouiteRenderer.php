@@ -42,7 +42,7 @@ class TouiteRenderer implements Renderer
                 //Si oui alors on affiche le boutton supprimer
                 $html .= "
                     <form method=\"post\" action=\"?action=delete-touite\">
-                    <button type=\"submit\" class='buttonNavigation' id=\"delButton\" name=\"delete\" value=\"$idTouite\">Suprimer</button>
+                    <button type=\"submit\" class='buttonNavigation' id=\"delButton\" name=\"delete\" value=\"{$this->touite->id}\">Suprimer</button>
                     </form>
                     </div>";
             } else {

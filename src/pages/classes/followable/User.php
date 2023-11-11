@@ -84,12 +84,8 @@ class User
         return !($stmt->rowCount() == 0);
     }
 
-<<<<<<< HEAD
     //Permet de suivre ou ne plus suivre un utilisateur
     public function suivreOuNonUser(int $id) : void {
-=======
-    public function suivreOuNonUser(int $id) : void{
->>>>>>> d7dca47778b7b9efc460de8d5ab88843d606ebbe
         $pdo = ConnexionFactory::makeConnection();
         $query=null;
         if(isset($_POST['suit'])){
